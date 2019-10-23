@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4184DF3B235F3901006E7E4A /* GreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4184DF3A235F3901006E7E4A /* GreenController.swift */; };
-		4184DF3D235F3E6C006E7E4A /* SomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4184DF3C235F3E6C006E7E4A /* SomeController.swift */; };
 		4184DF3F235F4137006E7E4A /* UiViewController+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4184DF3E235F4137006E7E4A /* UiViewController+ext.swift */; };
 		41CD650F235B8AE000DD3359 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD650E235B8AE000DD3359 /* AppDelegate.swift */; };
 		41CD6511235B8AE000DD3359 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD6510235B8AE000DD3359 /* SceneDelegate.swift */; };
@@ -19,8 +17,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4184DF3A235F3901006E7E4A /* GreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenController.swift; sourceTree = "<group>"; };
-		4184DF3C235F3E6C006E7E4A /* SomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SomeController.swift; sourceTree = "<group>"; };
 		4184DF3E235F4137006E7E4A /* UiViewController+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiViewController+ext.swift"; sourceTree = "<group>"; };
 		41CD650B235B8AE000DD3359 /* Aleksei_Varaksin_vk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aleksei_Varaksin_vk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41CD650E235B8AE000DD3359 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -66,9 +62,7 @@
 				41CD6510235B8AE000DD3359 /* SceneDelegate.swift */,
 				41CD6512235B8AE000DD3359 /* LoginController.swift */,
 				4184DF3E235F4137006E7E4A /* UiViewController+ext.swift */,
-				4184DF3A235F3901006E7E4A /* GreenController.swift */,
 				41CD6514235B8AE000DD3359 /* Main.storyboard */,
-				4184DF3C235F3E6C006E7E4A /* SomeController.swift */,
 				41CD6517235B8AE100DD3359 /* Assets.xcassets */,
 				41CD6519235B8AE100DD3359 /* LaunchScreen.storyboard */,
 				41CD651C235B8AE100DD3359 /* Info.plist */,
@@ -149,10 +143,8 @@
 			files = (
 				4184DF3F235F4137006E7E4A /* UiViewController+ext.swift in Sources */,
 				41CD6513235B8AE000DD3359 /* LoginController.swift in Sources */,
-				4184DF3B235F3901006E7E4A /* GreenController.swift in Sources */,
 				41CD650F235B8AE000DD3359 /* AppDelegate.swift in Sources */,
 				41CD6511235B8AE000DD3359 /* SceneDelegate.swift in Sources */,
-				4184DF3D235F3E6C006E7E4A /* SomeController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
