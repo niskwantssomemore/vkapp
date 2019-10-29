@@ -1,20 +1,20 @@
 //
-//  FavouriteController.swift
+//  FriendStartController.swift
 //  Aleksei_Varaksin_vk
 //
-//  Created by Aleksei Niskarav on 25/10/2019.
+//  Created by Aleksei Niskarav on 29/10/2019.
 //  Copyright © 2019 Aleksei Niskarav. All rights reserved.
 //
 
 import UIKit
 
-class FavouriteController: UITableViewController {
-
-    var groups = [
-    Group(image: UIImage(named: "groupgeek")!, name: "Geekbrains"),
-    Group(image: UIImage(named: "groupgeek")!, name: "Studio 21"),
-    Group(image: UIImage(named: "groupgeek")!, name: "Школа 21")
+class FriendStartController: UITableViewController {
+    var friends = [
+    Group(image: UIImage(named: "friendInternet")!, name: "John Wall"),
+    Group(image: UIImage(named: "friendInternet")!, name: "Timofey Mozgov"),
+    Group(image: UIImage(named: "friendInternet")!, name: "Steven Adams")
     ]
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,16 +39,16 @@ class FavouriteController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return groups.count
+        return friends.count
     }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as? GroupCell else { preconditionFailure("GroupCell cannot be dequeued") }
-        let groupimage = groups[indexPath.row].image
-        let groupname = groups[indexPath.row].name
-        cell.groupnameLabel.text = groupname
-        cell.groupImageView.image = groupimage
 
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendStartCell", for: indexPath) as? FriendStartCell else { preconditionFailure("FriendStartCell cannot be dequeued") }
+        let friendimage = friends[indexPath.row].image
+        let friendname = friends[indexPath.row].name
+        cell.FriendStartLabel.text = friendname
+        cell.FriendStartImageView.image = friendimage
+            
         return cell
     }
 
@@ -96,14 +96,14 @@ class FavouriteController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    @IBAction func addSelectedGroup(segue: UIStoryboardSegue) {
-        if let sourceVC = segue.source as? AllController,
-            let indexPath = sourceVC.tableView.indexPathForSelectedRow {
-            let group = sourceVC.groups[indexPath.row]
-            if !groups.contains(where: { $0.name == group.name}) {
-                groups.append(group)
-                tableView.reloadData()
-            }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Show friend",
+            let destinationVC = segue.destination as? FriendController,
+            let indexPath = tableView.indexPathForSelectedRow
+        {
+            let friendname = friends[indexPath.row].name
+            destinationVC.title = friendname
         }
     }
 }

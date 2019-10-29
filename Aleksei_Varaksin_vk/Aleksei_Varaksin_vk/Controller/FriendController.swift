@@ -11,7 +11,13 @@ import UIKit
 private let reuseIdentifier = "Cell"
 
 class FriendController: UICollectionViewController {
-
+    private let photos = [
+        UIImage(named: "david1"),
+        UIImage(named: "david2"),
+        UIImage(named: "david3"),
+        UIImage(named: "david4"),
+        UIImage(named: "david5")
+    ]
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -44,12 +50,13 @@ class FriendController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 10
+        return photos.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendCell", for: indexPath) as? FriendCell else { preconditionFailure("FriendCell cannot be dequeued") }
-    
+        cell.friendImageView.image = photos[indexPath.item]
+        
         return cell
     }
 

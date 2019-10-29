@@ -21,6 +21,8 @@
 		41EF7304236338C70047E0B5 /* BasicGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EF7303236338C70047E0B5 /* BasicGroupCell.swift */; };
 		41EF730623633CC80047E0B5 /* FriendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EF730523633CC80047E0B5 /* FriendController.swift */; };
 		41EF730823633CE40047E0B5 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EF730723633CE40047E0B5 /* FriendCell.swift */; };
+		41FBFC32236847CE001685D8 /* FriendStartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FBFC31236847CE001685D8 /* FriendStartController.swift */; };
+		41FBFC382368492B001685D8 /* FriendStartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FBFC372368492B001685D8 /* FriendStartCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		41EF7303236338C70047E0B5 /* BasicGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicGroupCell.swift; sourceTree = "<group>"; };
 		41EF730523633CC80047E0B5 /* FriendController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendController.swift; sourceTree = "<group>"; };
 		41EF730723633CE40047E0B5 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
+		41FBFC31236847CE001685D8 /* FriendStartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendStartController.swift; sourceTree = "<group>"; };
+		41FBFC372368492B001685D8 /* FriendStartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendStartCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4152095C2368D2CD0045840E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				41D075CE2363279600470998 /* Group.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4152095D2368D3020045840E /* Outlets */ = {
+			isa = PBXGroup;
+			children = (
+				41EF730723633CE40047E0B5 /* FriendCell.swift */,
+				41EF7303236338C70047E0B5 /* BasicGroupCell.swift */,
+				41FBFC372368492B001685D8 /* FriendStartCell.swift */,
+				41D075CC2363213C00470998 /* GroupCell.swift */,
+			);
+			path = Outlets;
+			sourceTree = "<group>";
+		};
 		41CD6502235B8AE000DD3359 = {
 			isa = PBXGroup;
 			children = (
@@ -76,10 +99,8 @@
 				41CD6510235B8AE000DD3359 /* SceneDelegate.swift */,
 				41EF7309236342980047E0B5 /* Controller */,
 				41CD6514235B8AE000DD3359 /* Main.storyboard */,
-				41EF730723633CE40047E0B5 /* FriendCell.swift */,
-				41EF7303236338C70047E0B5 /* BasicGroupCell.swift */,
-				41D075CE2363279600470998 /* Group.swift */,
-				41D075CC2363213C00470998 /* GroupCell.swift */,
+				4152095D2368D3020045840E /* Outlets */,
+				4152095C2368D2CD0045840E /* Model */,
 				41CD6517235B8AE100DD3359 /* Assets.xcassets */,
 				41CD6519235B8AE100DD3359 /* LaunchScreen.storyboard */,
 				41CD651C235B8AE100DD3359 /* Info.plist */,
@@ -94,6 +115,7 @@
 				4184DF3E235F4137006E7E4A /* UiViewController+ext.swift */,
 				41EF730523633CC80047E0B5 /* FriendController.swift */,
 				41D075CA23631D8300470998 /* AllController.swift */,
+				41FBFC31236847CE001685D8 /* FriendStartController.swift */,
 				41D075C823631C6900470998 /* FavouriteController.swift */,
 			);
 			path = Controller;
@@ -170,6 +192,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41FBFC32236847CE001685D8 /* FriendStartController.swift in Sources */,
 				41EF730823633CE40047E0B5 /* FriendCell.swift in Sources */,
 				41D075CD2363213C00470998 /* GroupCell.swift in Sources */,
 				4184DF3F235F4137006E7E4A /* UiViewController+ext.swift in Sources */,
@@ -179,6 +202,7 @@
 				41CD650F235B8AE000DD3359 /* AppDelegate.swift in Sources */,
 				41CD6511235B8AE000DD3359 /* SceneDelegate.swift in Sources */,
 				41EF730623633CC80047E0B5 /* FriendController.swift in Sources */,
+				41FBFC382368492B001685D8 /* FriendStartCell.swift in Sources */,
 				41D075C923631C6900470998 /* FavouriteController.swift in Sources */,
 				41D075CB23631D8300470998 /* AllController.swift in Sources */,
 			);
