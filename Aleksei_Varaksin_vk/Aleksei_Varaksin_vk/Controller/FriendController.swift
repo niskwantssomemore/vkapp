@@ -11,6 +11,7 @@ import UIKit
 private let reuseIdentifier = "Cell"
 
 class FriendController: UICollectionViewController {
+    
     private let photos = [
         UIImage(named: "david1"),
         UIImage(named: "david2"),
