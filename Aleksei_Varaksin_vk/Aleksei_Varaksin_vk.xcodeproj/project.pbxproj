@@ -97,6 +97,7 @@
 		41CD650D235B8AE000DD3359 /* Aleksei_Varaksin_vk */ = {
 			isa = PBXGroup;
 			children = (
+				41CD651C235B8AE100DD3359 /* Info.plist */,
 				41E10EB0236DD76F00F6A27D /* Apple */,
 				41EF7309236342980047E0B5 /* Controller */,
 				41CD6514235B8AE000DD3359 /* Main.storyboard */,
@@ -114,7 +115,6 @@
 				41CD650E235B8AE000DD3359 /* AppDelegate.swift */,
 				41CD6510235B8AE000DD3359 /* SceneDelegate.swift */,
 				41CD6519235B8AE100DD3359 /* LaunchScreen.storyboard */,
-				41CD651C235B8AE100DD3359 /* Info.plist */,
 			);
 			path = Apple;
 			sourceTree = "<group>";
