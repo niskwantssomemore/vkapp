@@ -11,5 +11,4 @@ import UIKit
 class BasicGroupCell: UITableViewCell {
     @IBOutlet var basicgroupImageView: UIImageView!
     @IBOutlet var basicgroupnameLabel: UILabel!
-    
 }

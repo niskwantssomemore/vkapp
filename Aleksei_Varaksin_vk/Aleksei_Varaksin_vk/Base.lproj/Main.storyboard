@@ -196,7 +196,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9zt-eS-q13">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" highlighted="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9zt-eS-q13">
                                             <rect key="frame" x="30" y="15" width="150" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="9zt-eS-q13" secondAttribute="height" multiplier="1:1" id="Jy8-q0-8He"/>
@@ -344,9 +344,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="NoZ-QO-Why">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendStartCell" rowHeight="80" id="Saq-FZ-w7N" customClass="FriendStartCell" customModule="Aleksei_Varaksin_vk" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="80"/>
+                                <rect key="frame" x="0.0" y="72" width="414" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Saq-FZ-w7N" id="MDe-T1-YBa">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
@@ -361,21 +366,31 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KXK-K4-TsM" customClass="AvatarView" customModule="Aleksei_Varaksin_vk" customModuleProvider="target">
                                             <rect key="frame" x="5" y="7.5" width="65" height="65"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rZ5-Nz-XnI">
-                                                    <rect key="frame" x="2.5" y="2.5" width="60" height="60"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="60" id="0sf-km-OKl"/>
-                                                        <constraint firstAttribute="width" constant="60" id="Xgj-Jd-ifU"/>
-                                                    </constraints>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pec-t8-8zE" userLabel="Shadow View">
+                                                    <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                </view>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rZ5-Nz-XnI">
+                                                    <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="65" id="77l-Qd-Esn"/>
-                                                <constraint firstItem="rZ5-Nz-XnI" firstAttribute="centerX" secondItem="KXK-K4-TsM" secondAttribute="centerX" id="I1g-9V-bKM"/>
-                                                <constraint firstItem="rZ5-Nz-XnI" firstAttribute="centerY" secondItem="KXK-K4-TsM" secondAttribute="centerY" id="SEH-v0-4wK"/>
+                                                <constraint firstAttribute="width" secondItem="KXK-K4-TsM" secondAttribute="height" multiplier="1:1" id="7FV-wi-nZv"/>
+                                                <constraint firstAttribute="bottom" secondItem="pec-t8-8zE" secondAttribute="bottom" id="EAY-Fe-twq"/>
+                                                <constraint firstItem="pec-t8-8zE" firstAttribute="leading" secondItem="KXK-K4-TsM" secondAttribute="leading" id="SfW-pz-LMA"/>
+                                                <constraint firstItem="rZ5-Nz-XnI" firstAttribute="top" secondItem="KXK-K4-TsM" secondAttribute="top" id="Su0-DC-COS"/>
+                                                <constraint firstItem="pec-t8-8zE" firstAttribute="top" secondItem="KXK-K4-TsM" secondAttribute="top" id="U37-uv-uVf"/>
+                                                <constraint firstAttribute="bottom" secondItem="rZ5-Nz-XnI" secondAttribute="bottom" id="VeK-7B-Iv3"/>
+                                                <constraint firstAttribute="trailing" secondItem="rZ5-Nz-XnI" secondAttribute="trailing" id="Yhx-ss-DFQ"/>
                                                 <constraint firstAttribute="width" constant="65" id="c7A-Kk-nUk"/>
+                                                <constraint firstItem="rZ5-Nz-XnI" firstAttribute="leading" secondItem="KXK-K4-TsM" secondAttribute="leading" id="iBh-m4-yHS"/>
+                                                <constraint firstAttribute="trailing" secondItem="pec-t8-8zE" secondAttribute="trailing" id="kJm-5F-l9N"/>
                                             </constraints>
+                                            <connections>
+                                                <outlet property="avatarImageView" destination="rZ5-Nz-XnI" id="L0i-Ce-SMy"/>
+                                                <outlet property="shadowView" destination="pec-t8-8zE" id="zxi-14-96Q"/>
+                                            </connections>
                                         </view>
                                     </subviews>
                                     <constraints>
@@ -390,7 +405,6 @@
                                 <connections>
                                     <outlet property="FriendStartImageView" destination="rZ5-Nz-XnI" id="d9k-aw-NPd"/>
                                     <outlet property="FriendStartLabel" destination="0iK-yM-wcd" id="wCV-Vz-PX1"/>
-                                    <outlet property="avatarView" destination="KXK-K4-TsM" id="nK9-Fd-n0S"/>
                                     <segue destination="vtO-WD-38u" kind="show" identifier="Show friend" id="OhC-8m-PYx"/>
                                 </connections>
                             </tableViewCell>
@@ -429,14 +443,16 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fh3-JF-Jk6">
-                                            <rect key="frame" x="25" y="25" width="150" height="150"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="200" id="OPc-qX-gX5"/>
+                                                <constraint firstAttribute="width" secondItem="fh3-JF-Jk6" secondAttribute="height" multiplier="1:1" id="hNX-wd-vDd"/>
+                                            </constraints>
                                         </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="fh3-JF-Jk6" secondAttribute="bottom" constant="25" id="3gK-Nk-5jF"/>
-                                        <constraint firstItem="fh3-JF-Jk6" firstAttribute="top" secondItem="KZF-1l-5Qu" secondAttribute="top" constant="25" id="IQa-oG-V3y"/>
-                                        <constraint firstAttribute="trailing" secondItem="fh3-JF-Jk6" secondAttribute="trailing" constant="25" id="d4y-Sg-d3A"/>
-                                        <constraint firstItem="fh3-JF-Jk6" firstAttribute="leading" secondItem="KZF-1l-5Qu" secondAttribute="leading" constant="25" id="fLf-FN-fhU"/>
+                                        <constraint firstItem="fh3-JF-Jk6" firstAttribute="centerY" secondItem="KZF-1l-5Qu" secondAttribute="centerY" id="IWL-c6-fqf"/>
+                                        <constraint firstItem="fh3-JF-Jk6" firstAttribute="centerX" secondItem="KZF-1l-5Qu" secondAttribute="centerX" id="v1O-Oq-DRQ"/>
                                     </constraints>
                                 </collectionViewCellContentView>
                                 <size key="customSize" width="200" height="200"/>

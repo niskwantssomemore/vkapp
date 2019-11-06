@@ -10,5 +10,4 @@ import UIKit
 
 class FriendCell: UICollectionViewCell {
     @IBOutlet var friendImageView: UIImageView!
-    
 }

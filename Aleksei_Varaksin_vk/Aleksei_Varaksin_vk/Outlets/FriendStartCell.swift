@@ -11,8 +11,4 @@ import UIKit
 class FriendStartCell: UITableViewCell {
     @IBOutlet var FriendStartImageView: UIImageView!
     @IBOutlet var FriendStartLabel: UILabel!
-    @IBOutlet var avatarView: AvatarView!
-    override func awakeFromNib() {
-        FriendStartImageView.asCircle()
-    }
 }

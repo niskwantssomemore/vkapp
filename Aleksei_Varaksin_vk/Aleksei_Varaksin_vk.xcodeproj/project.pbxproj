@@ -59,12 +59,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4152095C2368D2CD0045840E /* Model */ = {
+		4152095C2368D2CD0045840E /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				41D075CE2363279600470998 /* Group.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		4152095D2368D3020045840E /* Outlets */ = {
@@ -76,6 +76,14 @@
 				41D075CC2363213C00470998 /* GroupCell.swift */,
 			);
 			path = Outlets;
+			sourceTree = "<group>";
+		};
+		415CF3C32372E4D900453A71 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				41D83251236D9F66007AD966 /* AvatarView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		41CD6502235B8AE000DD3359 = {
@@ -99,11 +107,11 @@
 			children = (
 				41CD651C235B8AE100DD3359 /* Info.plist */,
 				41E10EB0236DD76F00F6A27D /* Apple */,
-				41EF7309236342980047E0B5 /* Controller */,
+				41EF7309236342980047E0B5 /* Controllers */,
 				41CD6514235B8AE000DD3359 /* Main.storyboard */,
-				41D83251236D9F66007AD966 /* AvatarView.swift */,
+				415CF3C32372E4D900453A71 /* Views */,
 				4152095D2368D3020045840E /* Outlets */,
-				4152095C2368D2CD0045840E /* Model */,
+				4152095C2368D2CD0045840E /* Models */,
 				41CD6517235B8AE100DD3359 /* Assets.xcassets */,
 			);
 			path = Aleksei_Varaksin_vk;
@@ -119,7 +127,7 @@
 			path = Apple;
 			sourceTree = "<group>";
 		};
-		41EF7309236342980047E0B5 /* Controller */ = {
+		41EF7309236342980047E0B5 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				41CD6512235B8AE000DD3359 /* LoginController.swift */,
@@ -129,7 +137,7 @@
 				41FBFC31236847CE001685D8 /* FriendStartController.swift */,
 				41D075C823631C6900470998 /* FavouriteController.swift */,
 			);
-			path = Controller;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
