@@ -174,6 +174,7 @@
                     <connections>
                         <segue destination="hrm-Xd-pUo" kind="relationship" relationship="viewControllers" id="szd-Cw-BTA"/>
                         <segue destination="lIq-5C-sbz" kind="relationship" relationship="viewControllers" id="8yx-Wm-CIm"/>
+                        <segue destination="whA-bC-6Ry" kind="relationship" relationship="viewControllers" id="7jR-tX-5nJ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wo7-9L-ZNb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -196,7 +197,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" highlighted="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9zt-eS-q13">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9zt-eS-q13">
                                             <rect key="frame" x="30" y="15" width="150" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="9zt-eS-q13" secondAttribute="height" multiplier="1:1" id="Jy8-q0-8He"/>
@@ -420,6 +421,113 @@
             </objects>
             <point key="canvasLocation" x="3017.3913043478265" y="844.41964285714278"/>
         </scene>
+        <!--News Controller-->
+        <scene sceneID="GmE-8f-w7D">
+            <objects>
+                <tableViewController id="mSD-Xh-6OY" customClass="NewsController" customModule="Aleksei_Varaksin_vk" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="dkg-dd-034">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsCell" rowHeight="400" id="Q17-3x-vjV" customClass="NewsCell" customModule="Aleksei_Varaksin_vk" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="400"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Q17-3x-vjV" id="etN-v6-Ij1">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Заголовок" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdn-WF-c8y" userLabel="Headline">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="20"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HTV-Ym-Q6D" userLabel="Like Button">
+                                            <rect key="frame" x="0.0" y="360" width="64" height="40"/>
+                                            <state key="normal" title="Button" image="heart" catalog="system"/>
+                                        </button>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LI3-nu-bmY" userLabel="News photo">
+                                            <rect key="frame" x="0.0" y="20" width="414" height="330"/>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4bU-4L-C8i" userLabel="Comment Button">
+                                            <rect key="frame" x="74" y="360" width="64" height="40"/>
+                                            <state key="normal" title="Button" image="message" catalog="system"/>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wU9-5u-mko" userLabel="Repost Button">
+                                            <rect key="frame" x="148" y="360" width="64" height="40"/>
+                                            <state key="normal" title="Button" image="repeat" catalog="system"/>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="eye" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RPh-mC-anM" userLabel="ViewsLabel">
+                                            <rect key="frame" x="372" y="371" width="42" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="RPh-mC-anM" firstAttribute="leading" secondItem="wU9-5u-mko" secondAttribute="trailing" constant="160" id="5Jy-S4-IrU"/>
+                                        <constraint firstItem="LI3-nu-bmY" firstAttribute="leading" secondItem="etN-v6-Ij1" secondAttribute="leading" id="6Ng-FA-WaO"/>
+                                        <constraint firstItem="HTV-Ym-Q6D" firstAttribute="leading" secondItem="etN-v6-Ij1" secondAttribute="leading" id="7uL-Q8-tRZ"/>
+                                        <constraint firstItem="RPh-mC-anM" firstAttribute="centerY" secondItem="wU9-5u-mko" secondAttribute="centerY" id="DiA-5W-MNV"/>
+                                        <constraint firstAttribute="trailing" secondItem="LI3-nu-bmY" secondAttribute="trailing" id="JPB-1n-Cjt"/>
+                                        <constraint firstItem="wU9-5u-mko" firstAttribute="height" secondItem="4bU-4L-C8i" secondAttribute="height" id="Jeb-N2-Pnf"/>
+                                        <constraint firstAttribute="trailing" secondItem="HTV-Ym-Q6D" secondAttribute="trailing" constant="350" id="Jq5-AX-mXr"/>
+                                        <constraint firstItem="rdn-WF-c8y" firstAttribute="top" secondItem="etN-v6-Ij1" secondAttribute="top" id="K2g-V9-RMO"/>
+                                        <constraint firstItem="wU9-5u-mko" firstAttribute="width" secondItem="4bU-4L-C8i" secondAttribute="width" id="KRu-fr-iPf"/>
+                                        <constraint firstItem="wU9-5u-mko" firstAttribute="leading" secondItem="4bU-4L-C8i" secondAttribute="trailing" constant="10" id="LtZ-Um-XOS"/>
+                                        <constraint firstItem="4bU-4L-C8i" firstAttribute="leading" secondItem="HTV-Ym-Q6D" secondAttribute="trailing" constant="10" id="Rzk-kR-Grn"/>
+                                        <constraint firstAttribute="bottom" secondItem="LI3-nu-bmY" secondAttribute="bottom" constant="50" id="Tu3-XQ-fYT"/>
+                                        <constraint firstItem="HTV-Ym-Q6D" firstAttribute="top" secondItem="LI3-nu-bmY" secondAttribute="bottom" constant="10" id="ZDm-d9-TSb"/>
+                                        <constraint firstAttribute="trailing" secondItem="RPh-mC-anM" secondAttribute="trailing" id="ZoH-Md-Q6x"/>
+                                        <constraint firstAttribute="bottom" secondItem="HTV-Ym-Q6D" secondAttribute="bottom" id="bc8-uN-Ogx"/>
+                                        <constraint firstAttribute="trailing" secondItem="rdn-WF-c8y" secondAttribute="trailing" id="cPx-6N-T6s"/>
+                                        <constraint firstItem="rdn-WF-c8y" firstAttribute="leading" secondItem="etN-v6-Ij1" secondAttribute="leading" id="hp3-oh-R9n"/>
+                                        <constraint firstItem="4bU-4L-C8i" firstAttribute="height" secondItem="HTV-Ym-Q6D" secondAttribute="height" id="nbL-H4-Q5Y"/>
+                                        <constraint firstItem="LI3-nu-bmY" firstAttribute="top" secondItem="rdn-WF-c8y" secondAttribute="bottom" id="oQ3-i7-ToJ"/>
+                                        <constraint firstItem="4bU-4L-C8i" firstAttribute="width" secondItem="HTV-Ym-Q6D" secondAttribute="width" id="pK4-AJ-kkH"/>
+                                        <constraint firstItem="4bU-4L-C8i" firstAttribute="centerY" secondItem="HTV-Ym-Q6D" secondAttribute="centerY" id="sjs-h3-7rm"/>
+                                        <constraint firstItem="wU9-5u-mko" firstAttribute="centerY" secondItem="4bU-4L-C8i" secondAttribute="centerY" id="uVF-8K-AoU"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="CommentButton" destination="4bU-4L-C8i" id="ogW-Mt-qm0"/>
+                                    <outlet property="HeadlineLabel" destination="rdn-WF-c8y" id="7FI-YY-fzg"/>
+                                    <outlet property="LikeButton" destination="HTV-Ym-Q6D" id="gV4-wJ-JQ3"/>
+                                    <outlet property="NewsImageView" destination="LI3-nu-bmY" id="IMa-oE-dul"/>
+                                    <outlet property="RepostButton" destination="wU9-5u-mko" id="JCn-wm-7eU"/>
+                                    <outlet property="ViewsLabel" destination="RPh-mC-anM" id="44X-wN-wFn"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="mSD-Xh-6OY" id="YAI-NB-3aF"/>
+                            <outlet property="delegate" destination="mSD-Xh-6OY" id="2wG-wT-dwa"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Uaw-J8-waY"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dPA-wU-Wnh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3173.913043478261" y="1510.7142857142856"/>
+        </scene>
+        <!--Новости-->
+        <scene sceneID="hnv-tc-Xqx">
+            <objects>
+                <navigationController id="whA-bC-6Ry" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Новости" image="tray.full" catalog="system" id="aAN-7k-TBX"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nOk-61-IO3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="mSD-Xh-6OY" kind="relationship" relationship="rootViewController" id="qX0-Hh-fyQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mm6-RN-qnm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1572" y="1512"/>
+        </scene>
         <!--Friend Controller-->
         <scene sceneID="h9y-36-yXv">
             <objects>
@@ -474,8 +582,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="heart" catalog="system" width="64" height="54"/>
         <image name="iconfinder_vkontakte_313078" width="512" height="512"/>
+        <image name="message" catalog="system" width="64" height="56"/>
         <image name="person.2" catalog="system" width="64" height="40"/>
         <image name="person.3" catalog="system" width="72" height="35"/>
+        <image name="repeat" catalog="system" width="64" height="48"/>
+        <image name="tray.full" catalog="system" width="64" height="44"/>
     </resources>
 </document>

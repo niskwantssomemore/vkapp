@@ -1,48 +1,46 @@
 //
-//  FavouriteController.swift
+//  NewsController.swift
 //  Aleksei_Varaksin_vk
 //
-//  Created by Aleksei Niskarav on 25/10/2019.
+//  Created by Aleksei Niskarav on 09/11/2019.
 //  Copyright © 2019 Aleksei Niskarav. All rights reserved.
 //
 
 import UIKit
 
-class FavouriteController: UITableViewController {
+class NewsController: UITableViewController {
 
-    var groups = [
-    Group(image: UIImage(named: "groupgeek")!, name: "Geekbrains"),
-    Group(image: UIImage(named: "groupgeek")!, name: "Studio 21"),
-    Group(image: UIImage(named: "groupgeek")!, name: "Школа 21")
-    ]
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: true)
+
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return groups.count
+        // #warning Incomplete implementation, return the number of rows
+        return 0
     }
-    
+
+    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as? GroupCell else { preconditionFailure("GroupCell cannot be dequeued") }
-        let groupimage = groups[indexPath.row].image
-        let groupname = groups[indexPath.row].name
-        cell.groupnameLabel.text = groupname
-        cell.groupImageView.image = groupimage
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+
+        // Configure the cell...
+
         return cell
     }
+    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -52,13 +50,17 @@ class FavouriteController: UITableViewController {
     }
     */
 
-
+    /*
+    // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            groups.remove(at: indexPath.row)
+            // Delete the row from the data source
             tableView.deleteRows(at: [indexPath], with: .fade)
-        }
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }    
     }
+    */
 
     /*
     // Override to support rearranging the table view.
@@ -84,14 +86,5 @@ class FavouriteController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    @IBAction func addSelectedGroup(segue: UIStoryboardSegue) {
-        if let sourceVC = segue.source as? AllController,
-            let indexPath = sourceVC.tableView.indexPathForSelectedRow {
-            let group = sourceVC.groups[indexPath.row]
-            if !groups.contains(where: { $0.name == group.name}) {
-                groups.append(group)
-                tableView.reloadData()
-            }
-        }
-    }
+
 }
