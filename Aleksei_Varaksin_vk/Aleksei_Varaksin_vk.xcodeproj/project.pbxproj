@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4184DF3F235F4137006E7E4A /* UiViewController+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4184DF3E235F4137006E7E4A /* UiViewController+ext.swift */; };
+		41B34CF12376CE450077FEC1 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B34CF02376CE450077FEC1 /* Person.swift */; };
 		41CD650F235B8AE000DD3359 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD650E235B8AE000DD3359 /* AppDelegate.swift */; };
 		41CD6511235B8AE000DD3359 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD6510235B8AE000DD3359 /* SceneDelegate.swift */; };
 		41CD6513235B8AE000DD3359 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD6512235B8AE000DD3359 /* LoginController.swift */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		4184DF3E235F4137006E7E4A /* UiViewController+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiViewController+ext.swift"; sourceTree = "<group>"; };
+		41B34CF02376CE450077FEC1 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		41CD650B235B8AE000DD3359 /* Aleksei_Varaksin_vk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aleksei_Varaksin_vk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41CD650E235B8AE000DD3359 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		41CD6510235B8AE000DD3359 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				41D075CE2363279600470998 /* Group.swift */,
+				41B34CF02376CE450077FEC1 /* Person.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41B34CF12376CE450077FEC1 /* Person.swift in Sources */,
 				41FBFC32236847CE001685D8 /* FriendStartController.swift in Sources */,
 				41EF730823633CE40047E0B5 /* FriendCell.swift in Sources */,
 				41D075CD2363213C00470998 /* GroupCell.swift in Sources */,

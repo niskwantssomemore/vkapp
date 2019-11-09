@@ -10,19 +10,34 @@ import UIKit
 
 class FriendStartController: UITableViewController {
     var friends = [
-    Group(image: UIImage(named: "friendInternet")!, name: "John Wall"),
-    Group(image: UIImage(named: "friendInternet")!, name: "Timofey Mozgov"),
-    Group(image: UIImage(named: "friendInternet")!, name: "Steven Adams")
+    Person(image: UIImage(named: "friendInternet")!, name: "John", surname: "Wall"),
+    Person(image: UIImage(named: "friendInternet")!, name: "Timofey", surname: "Mozgov"),
+    Person(image: UIImage(named: "friendInternet")!, name: "Steven", surname: "Adams")
     ]
 
+    var filteredPersons = [Character: [Person]]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.filteredPersons = sort(friends: friends)
+    }
+    
+    private func sort(friends: [Person]) -> [Character: [Person]] {
+        var personDict = [Character : [Person]]()
+        
+        friends
+            .sorted { $0.surname < $1.surname}
+            .forEach { person in
+            guard let firstChar = person.surname.first else { return }
+            if var thisCharPersons = personDict[firstChar] {
+                thisCharPersons.append(person)
+                personDict[firstChar] = thisCharPersons
+            } else {
+                personDict[firstChar] = [person]
+            }
+        }
+        return personDict
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -33,21 +48,26 @@ class FriendStartController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+        return filteredPersons.keys.count
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let firstChar = filteredPersons.keys.sorted()[section]
+        return String(firstChar)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return friends.count
+        let keysSorted = filteredPersons.keys.sorted()
+        return filteredPersons[keysSorted[section]]?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendStartCell", for: indexPath) as? FriendStartCell else { preconditionFailure("FriendStartCell cannot be dequeued") }
-        let friendimage = friends[indexPath.row].image
-        let friendname = friends[indexPath.row].name
-        cell.FriendStartLabel.text = friendname
-        cell.FriendStartImageView.image = friendimage
+        let firstChar = filteredPersons.keys.sorted()[indexPath.section]
+        let friends = filteredPersons[firstChar]!
+        let friend: Person = friends[indexPath.row]
+        cell.FriendStartLabel.text = "\(friend.name) \(friend.surname)"
+        cell.FriendStartImageView.image = friend.image
             
         return cell
     }
