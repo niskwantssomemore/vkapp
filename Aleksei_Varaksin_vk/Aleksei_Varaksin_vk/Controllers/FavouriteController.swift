@@ -9,14 +9,22 @@
 import UIKit
 
 class FavouriteController: UITableViewController {
-
+    @IBOutlet var searchBar: UISearchBar! {
+        didSet {
+            searchBar.delegate = self
+        }
+    }
+    
     var groups = [
     Group(image: UIImage(named: "groupgeek")!, name: "Geekbrains"),
     Group(image: UIImage(named: "groupgeek")!, name: "Studio 21"),
     Group(image: UIImage(named: "groupgeek")!, name: "Школа 21")
     ]
+    
+    var filteredGroups = [Group]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        filteredGroups = groups
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -32,13 +40,13 @@ class FavouriteController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return groups.count
+        return filteredGroups.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as? GroupCell else { preconditionFailure("GroupCell cannot be dequeued") }
-        let groupimage = groups[indexPath.row].image
-        let groupname = groups[indexPath.row].name
+        let groupimage = filteredGroups[indexPath.row].image
+        let groupname = filteredGroups[indexPath.row].name
         cell.groupnameLabel.text = groupname
         cell.groupImageView.image = groupimage
         return cell
@@ -56,6 +64,7 @@ class FavouriteController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             groups.remove(at: indexPath.row)
+            filteredGroups.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
@@ -90,8 +99,19 @@ class FavouriteController: UITableViewController {
             let group = sourceVC.groups[indexPath.row]
             if !groups.contains(where: { $0.name == group.name}) {
                 groups.append(group)
+                filteredGroups = groups
                 tableView.reloadData()
             }
         }
+    }
+}
+extension FavouriteController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            filteredGroups = groups
+        } else {
+            filteredGroups = groups.filter { $0.name.contains(searchText) }
+        }
+        tableView.reloadData()
     }
 }
