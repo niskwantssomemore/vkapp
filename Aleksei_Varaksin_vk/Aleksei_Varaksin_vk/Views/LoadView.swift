@@ -11,9 +11,9 @@ import UIKit
 class LoadView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.layer.borderWidth = 1.0
-        self.frame.size.width = 25
-        self.frame.size.height = 25
+        self.layer.borderWidth = 0.5
+        self.frame.size.width = 20
+        self.frame.size.height = 20
         self.layer.borderColor = UIColor.black.cgColor
         self.layer.backgroundColor = UIColor.white.cgColor
         self.layer.cornerRadius = self.frame.size.width / 2

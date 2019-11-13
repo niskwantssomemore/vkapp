@@ -36,11 +36,11 @@ class LoginController: UIViewController {
         
         for indicator in loadIndicators {
             if let loadindicator = indicator {
-                UIView.animate(withDuration: 0.3, delay: 0, options: [.repeat,.autoreverse], animations: {
+                UIView.animate(withDuration: 0.5, delay: 0, options: [.repeat,.autoreverse], animations: {
                     self.loadanimations(loadindicator, delay: CFTimeInterval(self.delay))
                 }, completion: nil)
             }
-            self.delay += 0.2
+            self.delay += 0.5
         }
         self.delay = 0
     }
@@ -50,10 +50,10 @@ class LoginController: UIViewController {
         animation.beginTime = CACurrentMediaTime() + delay
         animation.fromValue = 1
         animation.toValue = 0
-        animation.duration = 0.5
+        animation.duration = 1
         animation.fillMode = .removed
         animation.autoreverses = true
-        animation.repeatCount = .infinity
+        animation.repeatCount = 5
         sender.layer.add(animation, forKey: nil)
     }
     
