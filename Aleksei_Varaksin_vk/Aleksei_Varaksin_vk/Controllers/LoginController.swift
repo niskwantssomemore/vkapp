@@ -19,12 +19,44 @@ class LoginController: UIViewController {
     @IBOutlet var PasswordLabel: UILabel!
     @IBOutlet var LoginLabel: UILabel!
     @IBOutlet var VKLabel: UILabel!
+    @IBOutlet var loadIndicator1: LoadView!
+    @IBOutlet var loadIndicator2: LoadView!
+    @IBOutlet var loadIndicator3: LoadView!
+    
+    var delay: Double = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
         view.addGestureRecognizer(tapGR)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let loadIndicators = [loadIndicator1, loadIndicator2, loadIndicator3]
+        
+        for indicator in loadIndicators {
+            if let loadindicator = indicator {
+                UIView.animate(withDuration: 0.3, delay: 0, options: [.repeat,.autoreverse], animations: {
+                    self.loadanimations(loadindicator, delay: CFTimeInterval(self.delay))
+                }, completion: nil)
+            }
+            self.delay += 0.2
+        }
+        self.delay = 0
+    }
+    
+    private func loadanimations(_ sender: UIView, delay: CFTimeInterval) {
+        let animation = CABasicAnimation(keyPath: "opacity")
+        animation.beginTime = CACurrentMediaTime() + delay
+        animation.fromValue = 1
+        animation.toValue = 0
+        animation.duration = 0.5
+        animation.fillMode = .removed
+        animation.autoreverses = true
+        animation.repeatCount = .infinity
+        sender.layer.add(animation, forKey: nil)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(willShowKeyboard(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(willHideKeyboard(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
