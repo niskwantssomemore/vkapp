@@ -53,7 +53,7 @@ class LoginController: UIViewController {
         animation.duration = 1
         animation.fillMode = .removed
         animation.autoreverses = true
-        animation.repeatCount = 5
+        animation.repeatCount = .infinity
         sender.layer.add(animation, forKey: nil)
     }
     

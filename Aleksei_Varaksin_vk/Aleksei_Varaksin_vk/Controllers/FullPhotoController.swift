@@ -14,13 +14,14 @@ class FullPhotoController: UIViewController {
     var currentImage = 0
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.isModalInPresentation = true
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture))
         swipeRight.direction = UISwipeGestureRecognizer.Direction.right
         self.view.addGestureRecognizer(swipeRight)
-
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture))
         swipeLeft.direction = UISwipeGestureRecognizer.Direction.left
         self.view.addGestureRecognizer(swipeLeft)
+        PhotoImageView.image = UIImage(named: imageNames[currentImage])
     }
     @objc private func respondToSwipeGesture(gesture: UIGestureRecognizer) {
 
@@ -31,16 +32,16 @@ class FullPhotoController: UIViewController {
             case UISwipeGestureRecognizer.Direction.left:
                 if currentImage == imageNames.count - 1 {
                     currentImage = 0
-
-                }else{
+                } else
+                {
                     currentImage += 1
                 }
                 PhotoImageView.image = UIImage(named: imageNames[currentImage])
-
             case UISwipeGestureRecognizer.Direction.right:
                 if currentImage == 0 {
                     currentImage = imageNames.count - 1
-                }else{
+                } else
+                {
                     currentImage -= 1
                 }
                 PhotoImageView.image = UIImage(named: imageNames[currentImage])
@@ -48,9 +49,5 @@ class FullPhotoController: UIViewController {
                 break
             }
         }
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }

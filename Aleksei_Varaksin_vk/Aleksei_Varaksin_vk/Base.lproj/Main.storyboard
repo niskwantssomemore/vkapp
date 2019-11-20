@@ -187,7 +187,7 @@
                         <outlet property="loadIndicator2" destination="7ju-eF-mfW" id="NSH-kp-hds"/>
                         <outlet property="loadIndicator3" destination="oLC-6R-HzX" id="TVg-yN-NVH"/>
                         <outlet property="scrollView" destination="dlZ-5d-E9v" id="eIf-0R-OZp"/>
-                        <segue destination="uDo-Le-wKz" kind="show" identifier="Login Segue" id="gVM-sA-yle"/>
+                        <segue destination="uDo-Le-wKz" kind="presentation" identifier="Login Segue" modalPresentationStyle="fullScreen" id="gVM-sA-yle"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -219,7 +219,7 @@
             <objects>
                 <tableViewController id="jI5-05-fdx" customClass="FavouriteController" customModule="Aleksei_Varaksin_vk" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="PD9-Nu-Zzt">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" id="e9U-JD-fil">
@@ -238,7 +238,7 @@
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9zt-eS-q13">
                                             <rect key="frame" x="30" y="15" width="150" height="50"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" secondItem="9zt-eS-q13" secondAttribute="height" multiplier="1:1" id="Jy8-q0-8He"/>
+                                                <constraint firstAttribute="width" secondItem="9zt-eS-q13" secondAttribute="height" multiplier="3:1" id="fFn-0m-PvQ"/>
                                                 <constraint firstAttribute="width" constant="150" id="tyU-8Q-NoJ"/>
                                             </constraints>
                                         </imageView>
@@ -289,7 +289,7 @@
             <objects>
                 <tableViewController id="8Cf-cD-kCa" customClass="AllController" customModule="Aleksei_Varaksin_vk" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ekk-qt-IKE">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
@@ -303,8 +303,8 @@
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="v2C-Fi-a65">
                                             <rect key="frame" x="30" y="15" width="150" height="50"/>
                                             <constraints>
+                                                <constraint firstAttribute="width" secondItem="v2C-Fi-a65" secondAttribute="height" multiplier="3:1" id="1AX-01-1Cc"/>
                                                 <constraint firstAttribute="width" constant="150" id="1aC-yV-LkB"/>
-                                                <constraint firstAttribute="width" secondItem="v2C-Fi-a65" secondAttribute="height" multiplier="1:1" id="MaQ-Xc-ngT"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HSE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QCb-hZ-4Vl">
@@ -349,7 +349,7 @@
                     <tabBarItem key="tabBarItem" title="Группы" image="person.3" catalog="system" id="VaO-An-U38"/>
                     <navigationItem key="navigationItem" id="Mf4-vn-9I9"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="t5P-pU-JDc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -367,7 +367,7 @@
                     <tabBarItem key="tabBarItem" title="Друзья" image="person.2" catalog="system" id="DXo-Oo-JLE"/>
                     <navigationItem key="navigationItem" id="PZl-bC-9yS"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ppS-QI-TfX">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -383,7 +383,7 @@
             <objects>
                 <tableViewController id="xH2-vd-LNE" customClass="FriendStartController" customModule="Aleksei_Varaksin_vk" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="tPc-9Y-mCo">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="NoZ-QO-Why">
@@ -467,7 +467,7 @@
             <objects>
                 <tableViewController id="mSD-Xh-6OY" customClass="NewsController" customModule="Aleksei_Varaksin_vk" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="dkg-dd-034">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
@@ -558,7 +558,7 @@
                 <navigationController id="whA-bC-6Ry" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Новости" image="tray.full" catalog="system" id="aAN-7k-TBX"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nOk-61-IO3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -574,7 +574,7 @@
             <objects>
                 <collectionViewController id="vtO-WD-38u" customClass="FriendController" customModule="Aleksei_Varaksin_vk" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Gmq-JV-yGa">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rzD-6F-DkO">
@@ -615,7 +615,13 @@
                             <outlet property="delegate" destination="vtO-WD-38u" id="vP8-RG-ETN"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="2Ij-m8-WCZ"/>
+                    <navigationItem key="navigationItem" id="2Ij-m8-WCZ">
+                        <barButtonItem key="rightBarButtonItem" title="Full screen" id="d6M-R0-ZeA">
+                            <connections>
+                                <segue destination="9aL-vL-xxb" kind="show" id="bkv-Tw-NAe"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ssH-6o-Fwv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -630,7 +636,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l8D-mT-iOK">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="676"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -642,13 +648,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Gur-py-Fx1"/>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="5on-mG-RCK"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="PhotoImageView" destination="l8D-mT-iOK" id="ZIB-aS-4Ym"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O4d-BT-HUH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4418" y="857"/>
+            <point key="canvasLocation" x="4490" y="848"/>
         </scene>
     </scenes>
     <resources>
