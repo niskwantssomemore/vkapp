@@ -621,6 +621,35 @@
             </objects>
             <point key="canvasLocation" x="3740.579710144928" y="848.4375"/>
         </scene>
+        <!--Full Photo Controller-->
+        <scene sceneID="QBV-04-Xad">
+            <objects>
+                <viewController id="9aL-vL-xxb" customClass="FullPhotoController" customModule="Aleksei_Varaksin_vk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ert-Or-Rxy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l8D-mT-iOK">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="l8D-mT-iOK" firstAttribute="leading" secondItem="Gur-py-Fx1" secondAttribute="leading" id="AbU-TT-Wmi"/>
+                            <constraint firstItem="l8D-mT-iOK" firstAttribute="top" secondItem="Gur-py-Fx1" secondAttribute="top" id="JUR-nv-mLB"/>
+                            <constraint firstItem="Gur-py-Fx1" firstAttribute="trailing" secondItem="l8D-mT-iOK" secondAttribute="trailing" id="PII-fw-ZNz"/>
+                            <constraint firstItem="Gur-py-Fx1" firstAttribute="bottom" secondItem="l8D-mT-iOK" secondAttribute="bottom" id="SJT-Yi-jhz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Gur-py-Fx1"/>
+                    </view>
+                    <connections>
+                        <outlet property="PhotoImageView" destination="l8D-mT-iOK" id="ZIB-aS-4Ym"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O4d-BT-HUH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4418" y="857"/>
+        </scene>
     </scenes>
     <resources>
         <image name="heart" catalog="system" width="64" height="54"/>
