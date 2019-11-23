@@ -41,15 +41,13 @@ class PushAnimation: NSObject, UIViewControllerAnimatedTransitioning {
                                                         let translation = CGAffineTransform(translationX: -100 , y: 0)
                                                         let scale = CGAffineTransform(scaleX: 0.8, y: 0.8)
                                                         source.view.transform = scale.concatenating(translation)
-                                                        
                                     })
                                     UIView.addKeyframe(withRelativeStartTime: 0,
-                                                       relativeDuration: 0.8,
+                                                       relativeDuration: 0.5,
                                                        animations: {
                                                         let translation = CGAffineTransform(translationX: 0 , y: 0)
                                                         let rotation = CGAffineTransform(rotationAngle: 0)
                                                         destination.view.transform = rotation.concatenating(translation)
-                                                        
                                     })
         }) { finished in
             if finished && !transitionContext.transitionWasCancelled {

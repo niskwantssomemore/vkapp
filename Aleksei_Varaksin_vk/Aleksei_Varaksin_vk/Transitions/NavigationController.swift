@@ -20,7 +20,7 @@ class NavigationController: UINavigationController, UINavigationControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate = self
-        let edgePanGR = UIPanGestureRecognizer(target: self, action: #selector(handleScreenEdgeGesture(_:)))
+        let edgePanGR = UIPanGestureRecognizer(target: self, action: #selector(handleEdgeGesture(_:)))
         view.addGestureRecognizer(edgePanGR)
     }
     
@@ -44,7 +44,7 @@ class NavigationController: UINavigationController, UINavigationControllerDelega
             return nil
         }
     }
-    @objc func handleScreenEdgeGesture(_ recognizer: UIScreenEdgePanGestureRecognizer) {
+    @objc func handleEdgeGesture(_ recognizer: UIScreenEdgePanGestureRecognizer) {
         switch recognizer.state {
         case .began:
             interactiveTransition.hasStarted = true

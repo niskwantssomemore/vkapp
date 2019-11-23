@@ -389,7 +389,19 @@
                         <view key="tableHeaderView" contentMode="scaleToFill" id="NoZ-QO-Why">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="VYh-as-b4j">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </searchBar>
+                            </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="VYh-as-b4j" secondAttribute="trailing" id="4iL-pd-orp"/>
+                                <constraint firstAttribute="bottom" secondItem="VYh-as-b4j" secondAttribute="bottom" id="6FH-yU-Ets"/>
+                                <constraint firstItem="VYh-as-b4j" firstAttribute="top" secondItem="NoZ-QO-Why" secondAttribute="top" id="pNG-xl-JRs"/>
+                                <constraint firstItem="VYh-as-b4j" firstAttribute="leading" secondItem="NoZ-QO-Why" secondAttribute="leading" id="v1G-Wn-wof"/>
+                            </constraints>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendStartCell" rowHeight="80" id="Saq-FZ-w7N" customClass="FriendStartCell" customModule="Aleksei_Varaksin_vk" customModuleProvider="target">
@@ -457,6 +469,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="RPQ-nH-mmw"/>
+                    <connections>
+                        <outlet property="searchBar" destination="VYh-as-b4j" id="qWQ-nq-V3f"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hbu-k6-Ged" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

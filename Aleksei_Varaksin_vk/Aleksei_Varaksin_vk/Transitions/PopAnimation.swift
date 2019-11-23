@@ -35,16 +35,14 @@ class PopAnimation: NSObject, UIViewControllerAnimatedTransitioning {
                                 options: .calculationModePaced,
                                 animations: {
                                     UIView.addKeyframe(withRelativeStartTime: 0,
-                                                       relativeDuration: 0.8,
+                                                       relativeDuration: 0.5,
                                                        animations: {
                                                         let translation = CGAffineTransform(translationX: 0, y: 0)
                                                         let scale = CGAffineTransform(scaleX: 1, y: 1)
                                                         destination.view.transform = scale.concatenating(translation)
                                     })
-                                    
-                                    
                                     UIView.addKeyframe(withRelativeStartTime: 0,
-                                                       relativeDuration: 0.8,
+                                                       relativeDuration: 0.5,
                                                        animations: {
                                                         let translation = CGAffineTransform(translationX: width/2 + height/2, y: -width/2)
                                                         let rotation = CGAffineTransform(rotationAngle: -90 * .pi/180)
@@ -52,7 +50,7 @@ class PopAnimation: NSObject, UIViewControllerAnimatedTransitioning {
                                     })
         }) { finished in
             if finished && !transitionContext.transitionWasCancelled {
-                destination.view.transform = .identity
+                source.view.transform = .identity
             }
             transitionContext.completeTransition(finished && !transitionContext.transitionWasCancelled)
         }

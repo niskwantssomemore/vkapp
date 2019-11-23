@@ -9,6 +9,11 @@
 import UIKit
 
 class FriendStartController: UITableViewController {
+    @IBOutlet var searchBar: UISearchBar! {
+        didSet {
+            searchBar.delegate = self
+        }
+    }
     var friends = [
     Person(image: UIImage(named: "friendInternet")!, name: "John", surname: "Wall"),
     Person(image: UIImage(named: "friendInternet")!, name: "Timofey", surname: "Mozgov"),
@@ -16,11 +21,12 @@ class FriendStartController: UITableViewController {
     ]
 
     var filteredPersons = [Character: [Person]]()
+    var filteredSearch = [Person]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.filteredPersons = sort(friends: friends)
+        filteredPersons = sort(friends: friends)
     }
     
     private func sort(friends: [Person]) -> [Character: [Person]] {
@@ -125,5 +131,18 @@ class FriendStartController: UITableViewController {
             let friendname = friends[indexPath.row].name
             destinationVC.title = friendname
         }
+    }
+}
+
+extension FriendStartController: UISearchBarDelegate {
+        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+            searchBar.placeholder = " Search..."
+           if searchText.isEmpty {
+                filteredSearch = friends
+            } else {
+                filteredSearch = friends.filter{ $0.name.contains(searchText)}
+            }
+        filteredPersons = sort(friends: filteredSearch)
+        self.tableView.reloadData()
     }
 }
