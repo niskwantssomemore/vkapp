@@ -345,7 +345,7 @@
         <!--Группы-->
         <scene sceneID="RC5-Cp-TJ3">
             <objects>
-                <navigationController id="lIq-5C-sbz" sceneMemberID="viewController">
+                <navigationController id="lIq-5C-sbz" customClass="NavigationController" customModule="Aleksei_Varaksin_vk" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Группы" image="person.3" catalog="system" id="VaO-An-U38"/>
                     <navigationItem key="navigationItem" id="Mf4-vn-9I9"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="t5P-pU-JDc">
@@ -363,7 +363,7 @@
         <!--Друзья-->
         <scene sceneID="7wt-9v-M9W">
             <objects>
-                <navigationController id="hrm-Xd-pUo" sceneMemberID="viewController">
+                <navigationController id="hrm-Xd-pUo" customClass="NavigationController" customModule="Aleksei_Varaksin_vk" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Друзья" image="person.2" catalog="system" id="DXo-Oo-JLE"/>
                     <navigationItem key="navigationItem" id="PZl-bC-9yS"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ppS-QI-TfX">
@@ -555,7 +555,7 @@
         <!--Новости-->
         <scene sceneID="hnv-tc-Xqx">
             <objects>
-                <navigationController id="whA-bC-6Ry" sceneMemberID="viewController">
+                <navigationController id="whA-bC-6Ry" customClass="NavigationController" customModule="Aleksei_Varaksin_vk" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Новости" image="tray.full" catalog="system" id="aAN-7k-TBX"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nOk-61-IO3">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

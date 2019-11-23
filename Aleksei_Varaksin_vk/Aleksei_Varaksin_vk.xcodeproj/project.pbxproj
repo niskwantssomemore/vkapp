@@ -12,6 +12,10 @@
 		4195447E23854A35000570AF /* FullPhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4195447D23854A35000570AF /* FullPhotoController.swift */; };
 		419B20CA2377553A00F5217E /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419B20C92377553A00F5217E /* NewsCell.swift */; };
 		419B20CC2377580D00F5217E /* NewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419B20CB2377580D00F5217E /* NewsController.swift */; };
+		419C8D2F2389856800D17609 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419C8D2E2389856800D17609 /* NavigationController.swift */; };
+		419C8D32238985F900D17609 /* PushAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419C8D31238985F900D17609 /* PushAnimation.swift */; };
+		419C8D34238986AD00D17609 /* PopAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419C8D33238986AD00D17609 /* PopAnimation.swift */; };
+		419C8D362389870900D17609 /* InteractiveAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419C8D352389870900D17609 /* InteractiveAnimation.swift */; };
 		41B34CF12376CE450077FEC1 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B34CF02376CE450077FEC1 /* Person.swift */; };
 		41CD650F235B8AE000DD3359 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD650E235B8AE000DD3359 /* AppDelegate.swift */; };
 		41CD6511235B8AE000DD3359 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD6510235B8AE000DD3359 /* SceneDelegate.swift */; };
@@ -37,6 +41,10 @@
 		4195447D23854A35000570AF /* FullPhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullPhotoController.swift; sourceTree = "<group>"; };
 		419B20C92377553A00F5217E /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		419B20CB2377580D00F5217E /* NewsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsController.swift; sourceTree = "<group>"; };
+		419C8D2E2389856800D17609 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		419C8D31238985F900D17609 /* PushAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushAnimation.swift; sourceTree = "<group>"; };
+		419C8D33238986AD00D17609 /* PopAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopAnimation.swift; sourceTree = "<group>"; };
+		419C8D352389870900D17609 /* InteractiveAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveAnimation.swift; sourceTree = "<group>"; };
 		41B34CF02376CE450077FEC1 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		41CD650B235B8AE000DD3359 /* Aleksei_Varaksin_vk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aleksei_Varaksin_vk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41CD650E235B8AE000DD3359 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +107,17 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		419C8D302389857A00D17609 /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				419C8D2E2389856800D17609 /* NavigationController.swift */,
+				419C8D352389870900D17609 /* InteractiveAnimation.swift */,
+				419C8D33238986AD00D17609 /* PopAnimation.swift */,
+				419C8D31238985F900D17609 /* PushAnimation.swift */,
+			);
+			path = Transitions;
+			sourceTree = "<group>";
+		};
 		41CD6502235B8AE000DD3359 = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				41CD651C235B8AE100DD3359 /* Info.plist */,
+				419C8D302389857A00D17609 /* Transitions */,
 				41E10EB0236DD76F00F6A27D /* Apple */,
 				41EF7309236342980047E0B5 /* Controllers */,
 				41CD6514235B8AE000DD3359 /* Main.storyboard */,
@@ -228,13 +248,16 @@
 			files = (
 				41B34CF12376CE450077FEC1 /* Person.swift in Sources */,
 				41FBFC32236847CE001685D8 /* FriendStartController.swift in Sources */,
+				419C8D34238986AD00D17609 /* PopAnimation.swift in Sources */,
 				41EF730823633CE40047E0B5 /* FriendCell.swift in Sources */,
 				41D075CD2363213C00470998 /* GroupCell.swift in Sources */,
 				4184DF3F235F4137006E7E4A /* UiViewController+ext.swift in Sources */,
 				41CD6513235B8AE000DD3359 /* LoginController.swift in Sources */,
+				419C8D32238985F900D17609 /* PushAnimation.swift in Sources */,
 				419B20CA2377553A00F5217E /* NewsCell.swift in Sources */,
 				41D075CF2363279600470998 /* Group.swift in Sources */,
 				41EF7304236338C70047E0B5 /* BasicGroupCell.swift in Sources */,
+				419C8D362389870900D17609 /* InteractiveAnimation.swift in Sources */,
 				41CD650F235B8AE000DD3359 /* AppDelegate.swift in Sources */,
 				41CD6511235B8AE000DD3359 /* SceneDelegate.swift in Sources */,
 				41D83252236D9F66007AD966 /* AvatarView.swift in Sources */,
@@ -243,6 +266,7 @@
 				419B20CC2377580D00F5217E /* NewsController.swift in Sources */,
 				41EF730623633CC80047E0B5 /* FriendController.swift in Sources */,
 				41FBFC382368492B001685D8 /* FriendStartCell.swift in Sources */,
+				419C8D2F2389856800D17609 /* NavigationController.swift in Sources */,
 				41D075C923631C6900470998 /* FavouriteController.swift in Sources */,
 				41D075CB23631D8300470998 /* AllController.swift in Sources */,
 			);
