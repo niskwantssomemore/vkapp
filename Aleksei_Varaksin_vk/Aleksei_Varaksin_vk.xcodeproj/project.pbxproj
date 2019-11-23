@@ -15,7 +15,6 @@
 		419C8D2F2389856800D17609 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419C8D2E2389856800D17609 /* NavigationController.swift */; };
 		419C8D32238985F900D17609 /* PushAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419C8D31238985F900D17609 /* PushAnimation.swift */; };
 		419C8D34238986AD00D17609 /* PopAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419C8D33238986AD00D17609 /* PopAnimation.swift */; };
-		419C8D362389870900D17609 /* InteractiveAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419C8D352389870900D17609 /* InteractiveAnimation.swift */; };
 		41B34CF12376CE450077FEC1 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B34CF02376CE450077FEC1 /* Person.swift */; };
 		41CD650F235B8AE000DD3359 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD650E235B8AE000DD3359 /* AppDelegate.swift */; };
 		41CD6511235B8AE000DD3359 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD6510235B8AE000DD3359 /* SceneDelegate.swift */; };
@@ -44,7 +43,6 @@
 		419C8D2E2389856800D17609 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		419C8D31238985F900D17609 /* PushAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushAnimation.swift; sourceTree = "<group>"; };
 		419C8D33238986AD00D17609 /* PopAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopAnimation.swift; sourceTree = "<group>"; };
-		419C8D352389870900D17609 /* InteractiveAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveAnimation.swift; sourceTree = "<group>"; };
 		41B34CF02376CE450077FEC1 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		41CD650B235B8AE000DD3359 /* Aleksei_Varaksin_vk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aleksei_Varaksin_vk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41CD650E235B8AE000DD3359 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -111,7 +109,6 @@
 			isa = PBXGroup;
 			children = (
 				419C8D2E2389856800D17609 /* NavigationController.swift */,
-				419C8D352389870900D17609 /* InteractiveAnimation.swift */,
 				419C8D33238986AD00D17609 /* PopAnimation.swift */,
 				419C8D31238985F900D17609 /* PushAnimation.swift */,
 			);
@@ -257,7 +254,6 @@
 				419B20CA2377553A00F5217E /* NewsCell.swift in Sources */,
 				41D075CF2363279600470998 /* Group.swift in Sources */,
 				41EF7304236338C70047E0B5 /* BasicGroupCell.swift in Sources */,
-				419C8D362389870900D17609 /* InteractiveAnimation.swift in Sources */,
 				41CD650F235B8AE000DD3359 /* AppDelegate.swift in Sources */,
 				41CD6511235B8AE000DD3359 /* SceneDelegate.swift in Sources */,
 				41D83252236D9F66007AD966 /* AvatarView.swift in Sources */,

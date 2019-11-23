@@ -8,13 +8,20 @@
 
 import UIKit
 
+class CustomInteractiveTransition: UIPercentDrivenInteractiveTransition {
+    var hasStarted = false
+    var shouldFinish = false
+}
+
 class NavigationController: UINavigationController, UINavigationControllerDelegate {
     
-    let interactiveTransition = InteractiveAnimation()
+    let interactiveTransition = CustomInteractiveTransition()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate = self
+        let edgePanGR = UIPanGestureRecognizer(target: self, action: #selector(handleScreenEdgeGesture(_:)))
+        view.addGestureRecognizer(edgePanGR)
     }
     
     func navigationController(_ navigationController: UINavigationController,
@@ -23,16 +30,39 @@ class NavigationController: UINavigationController, UINavigationControllerDelega
             return interactiveTransition.hasStarted ? interactiveTransition : nil
     }
     
-    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        if (operation == .push) {
-            interactiveTransition.viewController = toVC
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation,
+                              from fromVC: UIViewController,
+                              to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        switch operation {
+        case .push:
             return PushAnimation()
-        } else if (operation == .pop) {
-            if navigationController.viewControllers.first != toVC {
-                interactiveTransition.viewController = toVC
-            }
+        case .pop:
             return PopAnimation()
+        case .none:
+            return nil
+        @unknown default:
+            return nil
         }
-        return nil
+    }
+    @objc func handleScreenEdgeGesture(_ recognizer: UIScreenEdgePanGestureRecognizer) {
+        switch recognizer.state {
+        case .began:
+            interactiveTransition.hasStarted = true
+            self.popViewController(animated: true)
+        case .changed:
+            let translation = recognizer.translation(in: recognizer.view)
+            let relativeTranslation = translation.x / (recognizer.view?.bounds.width ?? 1)
+            let progress = max(0, min(1, relativeTranslation))
+            
+            interactiveTransition.update(progress)
+            interactiveTransition.shouldFinish = progress > 0.33
+        case .ended:
+            interactiveTransition.hasStarted = false
+            interactiveTransition.shouldFinish ? interactiveTransition.finish() : interactiveTransition.cancel()
+        case .cancelled:
+            interactiveTransition.hasStarted = false
+            interactiveTransition.cancel()
+        default: return
+        }
     }
 }
