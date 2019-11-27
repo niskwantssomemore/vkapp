@@ -140,7 +140,7 @@ extension FriendStartController: UISearchBarDelegate {
            if searchText.isEmpty {
                 filteredSearch = friends
             } else {
-                filteredSearch = friends.filter{ $0.name.contains(searchText)}
+            filteredSearch = friends.filter{ $0.name.contains(searchText) || $0.surname.contains(searchText)}
             }
         filteredPersons = sort(friends: filteredSearch)
         self.tableView.reloadData()

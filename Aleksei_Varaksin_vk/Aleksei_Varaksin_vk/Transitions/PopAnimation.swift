@@ -51,6 +51,8 @@ class PopAnimation: NSObject, UIViewControllerAnimatedTransitioning {
         }) { finished in
             if finished && !transitionContext.transitionWasCancelled {
                 source.view.transform = .identity
+            } else if transitionContext.transitionWasCancelled {
+                destination.view.transform = .identity
             }
             transitionContext.completeTransition(finished && !transitionContext.transitionWasCancelled)
         }
