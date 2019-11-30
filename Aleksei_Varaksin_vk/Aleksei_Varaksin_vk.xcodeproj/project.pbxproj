@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		414922BC237C10EA004F1487 /* LoadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414922BB237C10EA004F1487 /* LoadView.swift */; };
+		4175C42B239266230016A260 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4175C42A239266230016A260 /* Session.swift */; };
 		4184DF3F235F4137006E7E4A /* UiViewController+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4184DF3E235F4137006E7E4A /* UiViewController+ext.swift */; };
-		4195447E23854A35000570AF /* FullPhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4195447D23854A35000570AF /* FullPhotoController.swift */; };
 		419B20CA2377553A00F5217E /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419B20C92377553A00F5217E /* NewsCell.swift */; };
 		419B20CC2377580D00F5217E /* NewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419B20CB2377580D00F5217E /* NewsController.swift */; };
 		419C8D2F2389856800D17609 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419C8D2E2389856800D17609 /* NavigationController.swift */; };
@@ -36,8 +36,8 @@
 
 /* Begin PBXFileReference section */
 		414922BB237C10EA004F1487 /* LoadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadView.swift; sourceTree = "<group>"; };
+		4175C42A239266230016A260 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		4184DF3E235F4137006E7E4A /* UiViewController+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiViewController+ext.swift"; sourceTree = "<group>"; };
-		4195447D23854A35000570AF /* FullPhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullPhotoController.swift; sourceTree = "<group>"; };
 		419B20C92377553A00F5217E /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		419B20CB2377580D00F5217E /* NewsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsController.swift; sourceTree = "<group>"; };
 		419C8D2E2389856800D17609 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
@@ -105,6 +105,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		4175C42C2392663E0016A260 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				4175C42A239266230016A260 /* Session.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		419C8D302389857A00D17609 /* Transitions */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +147,7 @@
 				41E10EB0236DD76F00F6A27D /* Apple */,
 				41EF7309236342980047E0B5 /* Controllers */,
 				41CD6514235B8AE000DD3359 /* Main.storyboard */,
+				4175C42C2392663E0016A260 /* Data */,
 				415CF3C32372E4D900453A71 /* Views */,
 				4152095D2368D3020045840E /* Outlets */,
 				4152095C2368D2CD0045840E /* Models */,
@@ -160,7 +169,6 @@
 		41EF7309236342980047E0B5 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4195447D23854A35000570AF /* FullPhotoController.swift */,
 				41CD6512235B8AE000DD3359 /* LoginController.swift */,
 				4184DF3E235F4137006E7E4A /* UiViewController+ext.swift */,
 				41EF730523633CC80047E0B5 /* FriendController.swift */,
@@ -257,11 +265,11 @@
 				41CD650F235B8AE000DD3359 /* AppDelegate.swift in Sources */,
 				41CD6511235B8AE000DD3359 /* SceneDelegate.swift in Sources */,
 				41D83252236D9F66007AD966 /* AvatarView.swift in Sources */,
-				4195447E23854A35000570AF /* FullPhotoController.swift in Sources */,
 				414922BC237C10EA004F1487 /* LoadView.swift in Sources */,
 				419B20CC2377580D00F5217E /* NewsController.swift in Sources */,
 				41EF730623633CC80047E0B5 /* FriendController.swift in Sources */,
 				41FBFC382368492B001685D8 /* FriendStartCell.swift in Sources */,
+				4175C42B239266230016A260 /* Session.swift in Sources */,
 				419C8D2F2389856800D17609 /* NavigationController.swift in Sources */,
 				41D075C923631C6900470998 /* FavouriteController.swift in Sources */,
 				41D075CB23631D8300470998 /* AllController.swift in Sources */,
