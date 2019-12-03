@@ -622,6 +622,7 @@
                                 <size key="customSize" width="200" height="200"/>
                                 <connections>
                                     <outlet property="friendImageView" destination="fh3-JF-Jk6" id="BSS-QG-Rlh"/>
+                                    <segue destination="2do-4x-Y0f" kind="show" identifier="Show Big Photo" id="iYN-yL-ski"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -635,6 +636,44 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ssH-6o-Fwv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3740.579710144928" y="848.4375"/>
+        </scene>
+        <!--Big Photo Controller-->
+        <scene sceneID="CmT-yz-XnY">
+            <objects>
+                <viewController id="2do-4x-Y0f" customClass="BigPhotoController" customModule="Aleksei_Varaksin_vk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="e3N-7p-u4T">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1ci-DM-szS" userLabel="Small Photo Image View">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VI5-a0-LWX" userLabel="Big Photo Image View">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="JBz-6R-1Qb" firstAttribute="bottom" secondItem="1ci-DM-szS" secondAttribute="bottom" id="0mx-ZB-qrT"/>
+                            <constraint firstItem="JBz-6R-1Qb" firstAttribute="trailing" secondItem="1ci-DM-szS" secondAttribute="trailing" id="7nD-kC-WJf"/>
+                            <constraint firstItem="JBz-6R-1Qb" firstAttribute="trailing" secondItem="VI5-a0-LWX" secondAttribute="trailing" id="Be6-Tl-lhx"/>
+                            <constraint firstItem="VI5-a0-LWX" firstAttribute="top" secondItem="JBz-6R-1Qb" secondAttribute="top" id="DFh-7R-PcV"/>
+                            <constraint firstItem="1ci-DM-szS" firstAttribute="top" secondItem="JBz-6R-1Qb" secondAttribute="top" id="KZ6-No-U1I"/>
+                            <constraint firstItem="1ci-DM-szS" firstAttribute="leading" secondItem="JBz-6R-1Qb" secondAttribute="leading" id="YUQ-hH-VTI"/>
+                            <constraint firstItem="JBz-6R-1Qb" firstAttribute="bottom" secondItem="VI5-a0-LWX" secondAttribute="bottom" id="Yqd-Mw-1Lu"/>
+                            <constraint firstItem="VI5-a0-LWX" firstAttribute="leading" secondItem="JBz-6R-1Qb" secondAttribute="leading" id="pIw-NQ-jf4"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="JBz-6R-1Qb"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="YaT-eo-lse"/>
+                    <connections>
+                        <outlet property="additionalImageView" destination="1ci-DM-szS" id="rV3-QW-efi"/>
+                        <outlet property="bigPhotoImageView" destination="VI5-a0-LWX" id="jqb-BP-FXI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yog-Os-LjK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4458" y="848"/>
         </scene>
     </scenes>
     <resources>

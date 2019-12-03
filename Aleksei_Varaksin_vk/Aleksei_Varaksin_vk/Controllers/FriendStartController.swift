@@ -16,8 +16,11 @@ class FriendStartController: UITableViewController {
     }
     var friends = [
     Person(image: UIImage(named: "friendInternet")!, name: "John", surname: "Wall"),
-    Person(image: UIImage(named: "friendInternet")!, name: "Timofey", surname: "Mozgov"),
-    Person(image: UIImage(named: "friendInternet")!, name: "Steven", surname: "Adams")
+    Person(image: UIImage(named: "david1")!, name: "Timofey", surname: "Mozgov", photos: [
+    UIImage(named: "david2")!,
+    UIImage(named: "david3")!]),
+    Person(image: UIImage(named: "david4")!, name: "Steven", surname: "Adams", photos: [
+    UIImage(named: "david5")!])
     ]
 
     var filteredPersons = [Character: [Person]]()
@@ -75,16 +78,6 @@ class FriendStartController: UITableViewController {
             
         return cell
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "Show friend",
-            let destinationVC = segue.destination as? FriendController,
-            let indexPath = tableView.indexPathForSelectedRow
-        {
-            let friendname = friends[indexPath.row].name
-            destinationVC.title = friendname
-        }
-    }
 }
 
 extension FriendStartController: UISearchBarDelegate {
@@ -97,5 +90,20 @@ extension FriendStartController: UISearchBarDelegate {
             }
         filteredPersons = sort(friends: filteredSearch)
         self.tableView.reloadData()
+    }
+}
+
+extension FriendStartController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Show friend",
+            let allPhotosVC = segue.destination as? FriendController,
+            let selectedCellindexPath = tableView.indexPathForSelectedRow {
+            
+            let firstChar = filteredPersons.keys.sorted()[selectedCellindexPath.section]
+            let photos = filteredPersons[firstChar]!
+            let selectedfriend = photos[selectedCellindexPath.row]
+            
+            allPhotosVC.friendImages = selectedfriend.photos
+        }
     }
 }
