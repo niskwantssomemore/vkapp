@@ -1,0 +1,6 @@
+framework module Pods_Aleksei_Varaksin_vk {
+  umbrella header "Pods-Aleksei_Varaksin_vk-umbrella.h"
+
+  export *
+  module * { export * }
+}
