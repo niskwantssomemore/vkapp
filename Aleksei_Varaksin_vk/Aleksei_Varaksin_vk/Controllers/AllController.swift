@@ -11,9 +11,9 @@ import UIKit
 class AllController: UITableViewController {
 
     let groups = [
-    Group(image: UIImage(named: "groupgeek")!, name: "HSE"),
-    Group(image: UIImage(named: "groupgeek")!, name: "Moscow"),
-    Group(image: UIImage(named: "groupgeek")!, name: "Sports.ru")
+    Groups(image: UIImage(named: "groupgeek")!, name: "HSE"),
+    Groups(image: UIImage(named: "groupgeek")!, name: "Moscow"),
+    Groups(image: UIImage(named: "groupgeek")!, name: "Sports.ru")
     ]
     override func viewDidLoad() {
         super.viewDidLoad()

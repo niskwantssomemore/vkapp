@@ -16,12 +16,12 @@ class FavouriteController: UITableViewController {
     }
     
     var groups = [
-    Group(image: UIImage(named: "groupgeek")!, name: "Geekbrains"),
-    Group(image: UIImage(named: "groupgeek")!, name: "Studio 21"),
-    Group(image: UIImage(named: "groupgeek")!, name: "Школа 21")
+    Groups(image: UIImage(named: "groupgeek")!, name: "Geekbrains"),
+    Groups(image: UIImage(named: "groupgeek")!, name: "Studio 21"),
+    Groups(image: UIImage(named: "groupgeek")!, name: "Школа 21")
     ]
     
-    var filteredGroups = [Group]()
+    var filteredGroups = [Groups]()
     override func viewDidLoad() {
         super.viewDidLoad()
         filteredGroups = groups

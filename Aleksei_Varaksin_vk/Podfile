@@ -7,5 +7,7 @@ target 'Aleksei_Varaksin_vk' do
 
   # Pods for Aleksei_Varaksin_vk
   pod 'Alamofire', '~> 5.0.0-rc.3'
+  pod 'Kingfisher', '~> 5.11.0'
+  pod 'SwiftyJSON', '~> 5.0.0'
 
 end

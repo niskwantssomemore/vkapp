@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Group {
+class Groups {
     let image: UIImage?
     let name: String
     
