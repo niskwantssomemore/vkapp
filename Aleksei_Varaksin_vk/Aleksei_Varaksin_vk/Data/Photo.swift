@@ -1,4 +1,4 @@
-//
+
 //  Photo.swift
 //  Aleksei_Varaksin_vk
 //
@@ -7,3 +7,4 @@
 //
 
 import Foundation
+import SwiftyJSON

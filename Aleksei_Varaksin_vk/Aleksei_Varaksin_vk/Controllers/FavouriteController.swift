@@ -15,16 +15,24 @@ class FavouriteController: UITableViewController {
         }
     }
     
-    var groups = [
-    Groups(image: UIImage(named: "groupgeek")!, name: "Geekbrains"),
-    Groups(image: UIImage(named: "groupgeek")!, name: "Studio 21"),
-    Groups(image: UIImage(named: "groupgeek")!, name: "Школа 21")
-    ]
-    
-    var filteredGroups = [Groups]()
+    private var groups = [Group]()
+    private let networkService = NetworkService()
+    var filteredGroups = [Group]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        filteredGroups = groups
+        networkService.groupuser() { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case let .success(group):
+                self.groups = group
+                self.filteredGroups = group
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            case let .failure(error):
+                print(error)
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -42,10 +50,8 @@ class FavouriteController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as? GroupCell else { preconditionFailure("GroupCell cannot be dequeued") }
-        let groupimage = filteredGroups[indexPath.row].image
-        let groupname = filteredGroups[indexPath.row].name
-        cell.groupnameLabel.text = groupname
-        cell.groupImageView.image = groupimage
+        let group = filteredGroups[indexPath.row]
+        cell.configure(with: group)
         return cell
     }
 
@@ -57,17 +63,17 @@ class FavouriteController: UITableViewController {
         }
     }
 
-    @IBAction func addSelectedGroup(segue: UIStoryboardSegue) {
-        if let sourceVC = segue.source as? AllController,
-            let indexPath = sourceVC.tableView.indexPathForSelectedRow {
-            let group = sourceVC.groups[indexPath.row]
-            if !groups.contains(where: { $0.name == group.name}) {
-                groups.append(group)
-                filteredGroups = groups
-                tableView.reloadData()
-            }
-        }
-    }
+//    @IBAction func addSelectedGroup(segue: UIStoryboardSegue) {
+//        if let sourceVC = segue.source as? AllController,
+//            let indexPath = sourceVC.tableView.indexPathForSelectedRow {
+//            let group = sourceVC.groups[indexPath.row]
+//            if !groups.contains(where: { $0.name == group.name}) {
+//                groups.append(group)
+//                filteredGroups = groups
+//                tableView.reloadData()
+//            }
+//        }
+//    }
 }
 extension FavouriteController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
