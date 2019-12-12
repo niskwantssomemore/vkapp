@@ -174,6 +174,25 @@
 			path = Aleksei_Varaksin_vk;
 			sourceTree = "<group>";
 		};
+		41DA4CBD23A2A90900C4826B /* Groups */ = {
+			isa = PBXGroup;
+			children = (
+				41D075CA23631D8300470998 /* AllController.swift */,
+				41D075C823631C6900470998 /* FavouriteController.swift */,
+			);
+			path = Groups;
+			sourceTree = "<group>";
+		};
+		41DA4CBE23A2A91D00C4826B /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				41EF730523633CC80047E0B5 /* FriendController.swift */,
+				41FBFC31236847CE001685D8 /* FriendStartController.swift */,
+				41BDEB532396A1B100F3395A /* BigPhotoController.swift */,
+			);
+			path = Friends;
+			sourceTree = "<group>";
+		};
 		41E10EB0236DD76F00F6A27D /* Apple */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,12 +207,9 @@
 			isa = PBXGroup;
 			children = (
 				4184DF3E235F4137006E7E4A /* UiViewController+ext.swift */,
-				41EF730523633CC80047E0B5 /* FriendController.swift */,
-				41D075CA23631D8300470998 /* AllController.swift */,
-				41FBFC31236847CE001685D8 /* FriendStartController.swift */,
-				41D075C823631C6900470998 /* FavouriteController.swift */,
+				41DA4CBE23A2A91D00C4826B /* Friends */,
+				41DA4CBD23A2A90900C4826B /* Groups */,
 				419B20CB2377580D00F5217E /* NewsController.swift */,
-				41BDEB532396A1B100F3395A /* BigPhotoController.swift */,
 				419B8C8B2397C2EE0075031F /* VKLoginController.swift */,
 			);
 			path = Controllers;

@@ -17,6 +17,29 @@ class NetworkService {
         let session = Alamofire.Session(configuration: config)
         return session
     }()
+    public func frienduser(completion: ((Swift.Result<[User], Error>) -> Void)? = nil) {
+        let baseUrl = "https://api.vk.com"
+        let path = "/method/friends.get"
+    let params: Parameters = [
+            "access_token": Session.shared.token,
+            "order": "name",
+            "fields": "photo_200_orig",
+            "v": "5.103"
+        ]
+
+        NetworkService.session.request(baseUrl + path, method: .get, parameters: params).responseJSON { response in
+            switch response.result {
+            case let .success(data):
+                let json = JSON(data)
+                let friendJSONs = json["response"]["items"].arrayValue
+                let friend = friendJSONs.map { User(from: $0) }
+                completion?(.success(friend))
+
+            case let .failure(error):
+                completion?(.failure(error))
+            }
+        }
+    }
     public func groupuser(completion: ((Swift.Result<[Group], Error>) -> Void)? = nil) {
             let baseUrl = "https://api.vk.com"
             let path = "/method/groups.get"

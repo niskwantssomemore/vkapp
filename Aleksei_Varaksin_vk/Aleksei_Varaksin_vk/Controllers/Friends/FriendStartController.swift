@@ -14,31 +14,36 @@ class FriendStartController: UITableViewController {
             searchBar.delegate = self
         }
     }
-    var friends = [
-    Person(image: UIImage(named: "friendInternet")!, name: "John", surname: "Wall"),
-    Person(image: UIImage(named: "david1")!, name: "Timofey", surname: "Mozgov", photos: [
-    UIImage(named: "david2")!,
-    UIImage(named: "david3")!]),
-    Person(image: UIImage(named: "david4")!, name: "Steven", surname: "Adams", photos: [
-    UIImage(named: "david5")!])
-    ]
-
-    var filteredPersons = [Character: [Person]]()
-    var filteredSearch = [Person]()
+    private let networkService = NetworkService()
+    private var friends = [User]()
+    var filteredPersons = [Character: [User]]()
+    var filteredFriends = [User]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        filteredPersons = sort(friends: friends)
+        networkService.frienduser() { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case let .success(friend):
+                self.friends = friend
+                self.filteredFriends = friend
+                self.filteredPersons = self.sort(friends: self.friends)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            case let .failure(error):
+                print(error)
+            }
+        }
     }
     
-    private func sort(friends: [Person]) -> [Character: [Person]] {
-        var personDict = [Character : [Person]]()
+    private func sort(friends: [User]) -> [Character: [User]] {
+        var personDict = [Character : [User]]()
         
         friends
-            .sorted { $0.surname < $1.surname}
+            .sorted { $0.last_name < $1.last_name}
             .forEach { person in
-            guard let firstChar = person.surname.first else { return }
+            guard let firstChar = person.last_name.first else { return }
             if var thisCharPersons = personDict[firstChar] {
                 thisCharPersons.append(person)
                 personDict[firstChar] = thisCharPersons
@@ -72,9 +77,8 @@ class FriendStartController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendStartCell", for: indexPath) as? FriendStartCell else { preconditionFailure("FriendStartCell cannot be dequeued") }
         let firstChar = filteredPersons.keys.sorted()[indexPath.section]
         let friends = filteredPersons[firstChar]!
-        let friend: Person = friends[indexPath.row]
-        cell.FriendStartLabel.text = "\(friend.name) \(friend.surname)"
-        cell.FriendStartImageView.image = friend.image
+        let friend: User = friends[indexPath.row]
+        cell.configure(with: friend)
             
         return cell
     }
@@ -84,26 +88,26 @@ extension FriendStartController: UISearchBarDelegate {
         func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
             searchBar.placeholder = " Search..."
            if searchText.isEmpty {
-                filteredSearch = friends
+                filteredFriends = friends
             } else {
-            filteredSearch = friends.filter{ $0.name.contains(searchText) || $0.surname.contains(searchText)}
+            filteredFriends = friends.filter{ $0.first_name.contains(searchText) || $0.last_name.contains(searchText)}
             }
-        filteredPersons = sort(friends: filteredSearch)
+        filteredPersons = sort(friends: filteredFriends)
         self.tableView.reloadData()
     }
 }
 
-extension FriendStartController {
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "Show friend",
-            let allPhotosVC = segue.destination as? FriendController,
-            let selectedCellindexPath = tableView.indexPathForSelectedRow {
-            
-            let firstChar = filteredPersons.keys.sorted()[selectedCellindexPath.section]
-            let photos = filteredPersons[firstChar]!
-            let selectedfriend = photos[selectedCellindexPath.row]
-            
-            allPhotosVC.friendImages = selectedfriend.photos
-        }
-    }
-}
+//extension FriendStartController {
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "Show friend",
+//            let allPhotosVC = segue.destination as? FriendController,
+//            let selectedCellindexPath = tableView.indexPathForSelectedRow {
+//
+//            let firstChar = filteredPersons.keys.sorted()[selectedCellindexPath.section]
+//            let photos = filteredPersons[firstChar]!
+//            let selectedfriend = photos[selectedCellindexPath.row]
+//
+//            allPhotosVC.friendImages = selectedfriend.photos
+//        }
+//    }
+//}
