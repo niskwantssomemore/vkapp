@@ -8,3 +8,15 @@
 
 import Foundation
 import SwiftyJSON
+
+class Photo {
+    let id: Int
+    let name: String
+    let image: String
+    
+    init(from json: JSON) {
+        self.id = json["id"].intValue
+        self.name = json["name"].stringValue
+        self.image = json["photo_200"].stringValue
+    }
+}

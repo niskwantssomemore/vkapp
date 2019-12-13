@@ -8,15 +8,24 @@
 
 import UIKit
 
-class AllController: UITableViewController {
+class AllGroupsController: UITableViewController {
 
-    let groups = [
-    Groups(image: UIImage(named: "groupgeek")!, name: "HSE"),
-    Groups(image: UIImage(named: "groupgeek")!, name: "Moscow"),
-    Groups(image: UIImage(named: "groupgeek")!, name: "Sports.ru")
-    ]
+    public var groups = [Group]()
+    private let networkService = NetworkService()
     override func viewDidLoad() {
         super.viewDidLoad()
+        networkService.grouprecomend() { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case let .success(group):
+                self.groups = group
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            case let .failure(error):
+                print(error)
+            }
+        }
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -33,10 +42,8 @@ class AllController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "BasicGroupCell", for: indexPath) as? BasicGroupCell else { preconditionFailure("BasicGroupCell cannot be dequeued") }
-        let groupimage = groups[indexPath.row].image
-        let groupname = groups[indexPath.row].name
-        cell.basicgroupnameLabel.text = groupname
-        cell.basicgroupImageView.image = groupimage
+        let group = groups[indexPath.row]
+        cell.configure(with: group)
 
         return cell
     }

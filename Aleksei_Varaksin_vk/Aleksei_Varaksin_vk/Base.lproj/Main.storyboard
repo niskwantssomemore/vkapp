@@ -28,10 +28,10 @@
             </objects>
             <point key="canvasLocation" x="1573" y="142"/>
         </scene>
-        <!--Favourite Controller-->
+        <!--Added Groups Controller-->
         <scene sceneID="ElR-3f-V4P">
             <objects>
-                <tableViewController id="jI5-05-fdx" customClass="FavouriteController" customModule="Aleksei_Varaksin_vk" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="jI5-05-fdx" customClass="AddedGroupsController" customModule="Aleksei_Varaksin_vk" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="PD9-Nu-Zzt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -98,10 +98,10 @@
             </objects>
             <point key="canvasLocation" x="3102.898550724638" y="-534.375"/>
         </scene>
-        <!--All Controller-->
+        <!--All Groups Controller-->
         <scene sceneID="eRi-Pt-lVc">
             <objects>
-                <tableViewController id="8Cf-cD-kCa" customClass="AllController" customModule="Aleksei_Varaksin_vk" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="8Cf-cD-kCa" customClass="AllGroupsController" customModule="Aleksei_Varaksin_vk" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ekk-qt-IKE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

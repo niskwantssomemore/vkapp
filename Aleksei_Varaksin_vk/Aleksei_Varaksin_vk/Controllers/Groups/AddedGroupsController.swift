@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FavouriteController: UITableViewController {
+class AddedGroupsController: UITableViewController {
     @IBOutlet var searchBar: UISearchBar! {
         didSet {
             searchBar.delegate = self
@@ -63,19 +63,19 @@ class FavouriteController: UITableViewController {
         }
     }
 
-//    @IBAction func addSelectedGroup(segue: UIStoryboardSegue) {
-//        if let sourceVC = segue.source as? AllController,
-//            let indexPath = sourceVC.tableView.indexPathForSelectedRow {
-//            let group = sourceVC.groups[indexPath.row]
-//            if !groups.contains(where: { $0.name == group.name}) {
-//                groups.append(group)
-//                filteredGroups = groups
-//                tableView.reloadData()
-//            }
-//        }
-//    }
+    @IBAction func addSelectedGroup(segue: UIStoryboardSegue) {
+        if let sourceVC = segue.source as? AllGroupsController,
+            let indexPath = sourceVC.tableView.indexPathForSelectedRow {
+            let group = sourceVC.groups[indexPath.row]
+            if !groups.contains(where: { $0.name == group.name}) {
+                groups.append(group)
+                filteredGroups = groups
+                tableView.reloadData()
+            }
+        }
+    }
 }
-extension FavouriteController: UISearchBarDelegate {
+extension AddedGroupsController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
             filteredGroups = groups

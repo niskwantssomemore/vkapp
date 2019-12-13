@@ -11,4 +11,9 @@ import UIKit
 class BasicGroupCell: UITableViewCell {
     @IBOutlet var basicgroupImageView: UIImageView!
     @IBOutlet var basicgroupnameLabel: UILabel!
+    
+    public func configure(with group: Group) {
+        basicgroupnameLabel.text = "\(group.name)"
+        basicgroupImageView.kf.setImage(with: URL(string: group.image))
+    }
 }

@@ -66,7 +66,6 @@ extension VKLoginController: WKNavigationDelegate {
         
         Session.shared.token = token
         performSegue(withIdentifier: "Run the App", sender: nil)
-//        NetworkService.loadFriends(token: token)
 //        NetworkService.loadPhotos(token: token, owner_id: "1")
         
         decisionHandler(.cancel)

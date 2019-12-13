@@ -62,23 +62,28 @@ class NetworkService {
                 }
             }
         }
-//    static func loadFriends(token: String) {
-//        let baseUrl = "https://api.vk.com"
-//        let path = "/method/friends.get"
-//        
-//        let params: Parameters = [
-//            "access_token": token,
-//            "extended": 1,
-//            "v": "5.103",
-//            "fields" : "domain"
-//        ]
-//        
-//        NetworkService.session.request(baseUrl + path, method: .get, parameters: params).responseJSON { response in
-//            guard let json = response.value else { return }
-//            
-//            print(json)
-//        }
-//    }
+    public func grouprecomend(completion: ((Swift.Result<[Group], Error>) -> Void)? = nil) {
+        let baseUrl = "https://api.vk.com"
+        let path = "/method/groups.getCatalog"
+    let params: Parameters = [
+            "access_token": Session.shared.token,
+            "category_id": 1,
+            "v": "5.103"
+        ]
+        
+        NetworkService.session.request(baseUrl + path, method: .get, parameters: params).responseJSON { response in
+            switch response.result {
+            case let .success(data):
+                let json = JSON(data)
+                let groupJSONs = json["response"]["items"].arrayValue
+                let group = groupJSONs.map { Group(from: $0) }
+                completion?(.success(group))
+                
+            case let .failure(error):
+                completion?(.failure(error))
+            }
+        }
+    }
 //    static func loadPhotos(token: String, owner_id: String) {
 //        let baseUrl = "https://api.vk.com"
 //        let path = "/method/photos.getAll"
