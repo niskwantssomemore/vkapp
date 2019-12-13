@@ -97,17 +97,17 @@ extension FriendStartController: UISearchBarDelegate {
     }
 }
 
-//extension FriendStartController {
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "Show friend",
-//            let allPhotosVC = segue.destination as? FriendController,
-//            let selectedCellindexPath = tableView.indexPathForSelectedRow {
-//
-//            let firstChar = filteredPersons.keys.sorted()[selectedCellindexPath.section]
-//            let photos = filteredPersons[firstChar]!
-//            let selectedfriend = photos[selectedCellindexPath.row]
-//
-//            allPhotosVC.friendImages = selectedfriend.photos
-//        }
-//    }
-//}
+extension FriendStartController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Show friend",
+            let allPhotosVC = segue.destination as? FriendController,
+            let selectedCellindexPath = tableView.indexPathForSelectedRow {
+
+            let firstChar = filteredPersons.keys.sorted()[selectedCellindexPath.section]
+            let photos = filteredPersons[firstChar]!
+            let selectedfriend = photos[selectedCellindexPath.row]
+
+            allPhotosVC.friendId = selectedfriend.id
+        }
+    }
+}

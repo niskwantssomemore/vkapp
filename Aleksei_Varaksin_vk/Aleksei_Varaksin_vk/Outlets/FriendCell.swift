@@ -10,4 +10,8 @@ import UIKit
 
 class FriendCell: UICollectionViewCell {
     @IBOutlet var friendImageView: UIImageView!
+    
+    public func configure(with photo: Photo) {
+        friendImageView.kf.setImage(with: URL(string: photo.image))
+    }
 }

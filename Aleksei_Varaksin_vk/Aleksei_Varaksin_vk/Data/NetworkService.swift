@@ -101,4 +101,29 @@ class NetworkService {
 //            print(json)
 //        }
 //    }
+    public func friendphotos(for id: Int, completion: ((Swift.Result<[Photo], Error>) -> Void)? = nil) {
+        let baseUrl = "https://api.vk.com"
+        let path = "/method/photos.getAll"
+    let params: Parameters = [
+            "access_token": Session.shared.token,
+            "owner_id": id,
+            "extended": 1,
+            "photo_sizes": 1,
+            "no_service_albums": 0,
+            "v": "5.103"
+        ]
+        
+        NetworkService.session.request(baseUrl + path, method: .get, parameters: params).responseJSON { response in
+            switch response.result {
+            case let .success(data):
+                let json = JSON(data)
+                let photoJSONs = json["response"]["items"].arrayValue
+                let photo = photoJSONs.map { Photo(from: $0) }
+                completion?(.success(photo))
+                
+            case let .failure(error):
+                completion?(.failure(error))
+            }
+        }
+    }
 }

@@ -12,10 +12,24 @@ private let reuseIdentifier = "Cell"
 
 class FriendController: UICollectionViewController {
     
-    public var friendImages = [UIImage]()
+    public var friendId = Int()
+    private let networkService = NetworkService()
+    public var friendImages = [Photo]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        networkService.friendphotos(for: friendId) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case let .success(photo):
+                self.friendImages = photo
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            case let .failure(error):
+                print(error)
+            }
+        }
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
 
@@ -30,7 +44,8 @@ class FriendController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendCell", for: indexPath) as? FriendCell else { preconditionFailure("FriendCell cannot be dequeued") }
-        cell.friendImageView.image = friendImages[indexPath.item]
+        let photo = friendImages[indexPath.row]
+        cell.configure(with: photo)
         
         return cell
     }
@@ -50,14 +65,14 @@ extension FriendController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension FriendController {
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "Show Big Photo",
-            let selectedPhotoIndexPath = collectionView.indexPathsForSelectedItems?.first,
-            let bigPhotoVC = segue.destination as? BigPhotoController {
-            bigPhotoVC.photos = friendImages
-            bigPhotoVC.selectedPhotoIndex = selectedPhotoIndexPath.item
-            collectionView.deselectItem(at: selectedPhotoIndexPath, animated: true)
-        }
-    }
-}
+//extension FriendController {
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "Show Big Photo",
+//            let selectedPhotoIndexPath = collectionView.indexPathsForSelectedItems?.first,
+//            let bigPhotoVC = segue.destination as? BigPhotoController {
+//            bigPhotoVC.photos = friendImages
+//            bigPhotoVC.selectedPhotoIndex = selectedPhotoIndexPath.item
+//            collectionView.deselectItem(at: selectedPhotoIndexPath, animated: true)
+//        }
+//    }
+//}
