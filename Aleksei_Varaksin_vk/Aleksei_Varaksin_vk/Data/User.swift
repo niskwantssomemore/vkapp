@@ -19,6 +19,6 @@ class User {
         self.id = json["id"].intValue
         self.first_name = json["first_name"].stringValue
         self.last_name = json["last_name"].stringValue
-        self.photo_200_orig = json["photo_200"].stringValue
+        self.photo_200_orig = json["photo_200_orig"].stringValue
     }
 }

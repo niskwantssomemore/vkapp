@@ -84,23 +84,6 @@ class NetworkService {
             }
         }
     }
-//    static func loadPhotos(token: String, owner_id: String) {
-//        let baseUrl = "https://api.vk.com"
-//        let path = "/method/photos.getAll"
-//
-//        let params: Parameters = [
-//            "access_token": token,
-//            "owner_id": owner_id,
-//            "extended": 1,
-//            "v": "5.92",
-//        ]
-//
-//        NetworkService.session.request(baseUrl + path, method: .get, parameters: params).responseJSON { response in
-//            guard let json = response.value else { return }
-//
-//            print(json)
-//        }
-//    }
     public func friendphotos(for id: Int, completion: ((Swift.Result<[Photo], Error>) -> Void)? = nil) {
         let baseUrl = "https://api.vk.com"
         let path = "/method/photos.getAll"

@@ -54,9 +54,6 @@ extension VKLoginController: WKNavigationDelegate {
                 dict[key] = value
                 return dict
         }
-        
-        print(params)
-        
         guard let token = params["access_token"],
             let userIdString = params["user_id"],
             let _ = Int(userIdString) else {
