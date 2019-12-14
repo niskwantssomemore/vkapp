@@ -9,5 +9,6 @@ target 'Aleksei_Varaksin_vk' do
   pod 'Alamofire', '~> 5.0.0-rc.3'
   pod 'Kingfisher', '~> 5.11.0'
   pod 'SwiftyJSON', '~> 5.0.0'
+  pod 'RealmSwift', '~> 4.1.1'
 
 end
