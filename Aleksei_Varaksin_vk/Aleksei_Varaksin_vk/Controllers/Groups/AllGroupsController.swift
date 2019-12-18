@@ -9,7 +9,14 @@
 import UIKit
 
 class AllGroupsController: UITableViewController {
-
+    
+    @IBOutlet var searchBar: UISearchBar! {
+        didSet {
+            searchBar.delegate = self
+            searchBar.placeholder = "Search"
+            searchBar.showsCancelButton = false
+        }
+    }
     public var groups = [Group]()
     private let networkService = NetworkService()
     override func viewDidLoad() {
@@ -47,5 +54,26 @@ class AllGroupsController: UITableViewController {
 
         return cell
     }
-
+}
+extension AllGroupsController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchBarFilter(search: searchText)
+    }
+    
+    private func searchBarFilter(search text: String) {
+        networkService.groupsearch(search: text) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case let .success(group):
+                self.groups = group
+                guard !group.isEmpty else { return }
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            case let .failure(error):
+                print(error)
+            }
+        }
+        tableView.reloadData()
+    }
 }

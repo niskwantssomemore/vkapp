@@ -109,4 +109,29 @@ class NetworkService {
             }
         }
     }
+    
+    public func groupsearch(search: String, completion: ((Result<[Group], Error>) -> Void)? = nil) {
+        let baseUrl = "https://api.vk.com"
+        let path = "/method/groups.search"
+        let params: Parameters = [
+            "access_token": Session.shared.token,
+            "q": search,
+            "count": 20,
+            "type": "group, page",
+            "v": "5.103"
+        ]
+        
+        NetworkService.session.request(baseUrl + path, method: .get, parameters: params).responseJSON { response in
+            switch response.result {
+            case let .success(data):
+                let json = JSON(data)
+                let groupJSONs = json["response"]["items"].arrayValue
+                let group = groupJSONs.map { Group(from: $0) }
+                completion?(.success(group))
+                
+            case let .failure(error):
+                completion?(.failure(error))
+            }
+        }
+    }
 }
