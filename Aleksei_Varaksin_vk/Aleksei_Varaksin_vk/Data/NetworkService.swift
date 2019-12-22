@@ -134,4 +134,36 @@ class NetworkService {
             }
         }
     }
+    public func groupadd(groupId: Int) {
+        let baseUrl = "https://api.vk.com"
+        let path = "/method/groups.join"
+    let params: Parameters = [
+            "access_token": Session.shared.token,
+            "group_id": groupId,
+            "v": "5.103"
+        ]
+        
+        NetworkService.session.request(baseUrl + path, method: .get, parameters: params).responseJSON { response in
+            switch response.result {
+            case .success(_): break
+            case .failure(_): break
+            }
+        }
+    }
+    public func groupremove(groupId: Int) {
+        let baseUrl = "https://api.vk.com"
+        let path = "/method/groups.leave"
+    let params: Parameters = [
+            "access_token": Session.shared.token,
+            "group_id": groupId,
+            "v": "5.103"
+        ]
+        
+        NetworkService.session.request(baseUrl + path, method: .get, parameters: params).responseJSON { response in
+            switch response.result {
+            case .success(_): break
+            case .failure(_): break
+            }
+        }
+    }
 }

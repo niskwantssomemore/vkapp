@@ -23,4 +23,7 @@ class User: Object {
         self.last_name = json["last_name"].stringValue
         self.photo_200_orig = json["photo_200_orig"].stringValue
     }
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class AllGroupsController: UITableViewController {
     
@@ -18,13 +19,18 @@ class AllGroupsController: UITableViewController {
         }
     }
     public var groups = [Group]()
+    private lazy var myRecommendGroups: Results<Group> = try! Realm(configuration: RealmService.deleteIfMigration).objects(Group.self)
     private let networkService = NetworkService()
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         networkService.grouprecomend() { [weak self] result in
             guard let self = self else { return }
             switch result {
             case let .success(group):
+                try? RealmService.save(items: group, configuration: RealmService.deleteIfMigration, update: .all)
                 self.groups = group
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
@@ -38,15 +44,12 @@ class AllGroupsController: UITableViewController {
         super.viewDidAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return groups.count
     }
-
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "BasicGroupCell", for: indexPath) as? BasicGroupCell else { preconditionFailure("BasicGroupCell cannot be dequeued") }
         let group = groups[indexPath.row]
@@ -59,7 +62,6 @@ extension AllGroupsController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchBarFilter(search: searchText)
     }
-    
     private func searchBarFilter(search text: String) {
         networkService.groupsearch(search: text) { [weak self] result in
             guard let self = self else { return }

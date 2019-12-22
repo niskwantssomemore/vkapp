@@ -7,21 +7,20 @@
 //
 
 import UIKit
+import Kingfisher
 
 class BigPhotoController: UIViewController {
     enum AnimationDirection {
         case left
         case right
-    }
-    
+    }    
     @IBOutlet var bigPhotoImageView: UIImageView! {
         didSet {
             bigPhotoImageView.isUserInteractionEnabled = true
         }
     }
     @IBOutlet var additionalImageView: UIImageView!
-    
-    public var photos: [UIImage] = []
+    public var photos: [Photo] = []
     public var selectedPhotoIndex: Int = 0
     private var propertyAnimator: UIViewPropertyAnimator!
     private var animationDirection: AnimationDirection = .left
@@ -30,7 +29,7 @@ class BigPhotoController: UIViewController {
         super.viewDidLoad()
 
         guard !photos.isEmpty else { return }
-        bigPhotoImageView.image = photos[selectedPhotoIndex]
+        bigPhotoImageView.kf.setImage(with: URL(string: photos[selectedPhotoIndex].image))
         
         let leftSwipeGR = UISwipeGestureRecognizer(target: self, action: #selector(photoSwipedLeft(_:)))
         leftSwipeGR.direction = .left
@@ -42,39 +41,36 @@ class BigPhotoController: UIViewController {
         let panGR = UIPanGestureRecognizer(target: self, action: #selector(viewPanned(_:)))
         view.addGestureRecognizer(panGR)
     }
-    
     @objc func photoSwipedLeft(_ swipeGestureRecognizer: UISwipeGestureRecognizer) {
         guard selectedPhotoIndex + 1 <= photos.count - 1 else { return }
         
         additionalImageView.transform = CGAffineTransform(translationX: 1.3*self.additionalImageView.bounds.width, y: 150).concatenating(CGAffineTransform(scaleX: 1.3, y: 1.3))
-        additionalImageView.image = photos[selectedPhotoIndex + 1]
+        additionalImageView.kf.setImage(with: URL(string: photos[selectedPhotoIndex + 1].image))
         UIView.animate(withDuration: 0.7, delay: 0, options: .curveEaseInOut, animations: {
             self.bigPhotoImageView.transform = CGAffineTransform(translationX: -1.5*self.bigPhotoImageView.bounds.width, y: -100).concatenating(CGAffineTransform(scaleX: 0.6, y: 0.6))
             self.additionalImageView.transform = .identity
         }) { _ in
             self.selectedPhotoIndex += 1
-            self.bigPhotoImageView.image = self.photos[self.selectedPhotoIndex]
+            self.bigPhotoImageView.kf.setImage(with: URL(string: self.photos[self.selectedPhotoIndex].image))
             self.bigPhotoImageView.transform = .identity
             self.additionalImageView.image = nil
         }
     }
-    
     @objc func photoSwipedRight(_ swipeGestureRecognizer: UISwipeGestureRecognizer) {
         guard selectedPhotoIndex >= 1 else { return }
         
         additionalImageView.transform = CGAffineTransform(translationX: -1.3*self.additionalImageView.bounds.width, y: 150).concatenating(CGAffineTransform(scaleX: 1.3, y: 1.3))
-        additionalImageView.image = photos[selectedPhotoIndex - 1]
+        additionalImageView.kf.setImage(with: URL(string: photos[selectedPhotoIndex - 1].image))
         UIView.animate(withDuration: 0.7, delay: 0, options: .curveEaseInOut, animations: {
             self.bigPhotoImageView.transform = CGAffineTransform(translationX: 1.5*self.bigPhotoImageView.bounds.width, y: -100).concatenating(CGAffineTransform(scaleX: 0.6, y: 0.6))
             self.additionalImageView.transform = .identity
         }) { _ in
             self.selectedPhotoIndex -= 1
-            self.bigPhotoImageView.image = self.photos[self.selectedPhotoIndex]
+            self.bigPhotoImageView.kf.setImage(with: URL(string: self.photos[self.selectedPhotoIndex].image))
             self.bigPhotoImageView.transform = .identity
             self.additionalImageView.image = nil
         }
-    }
-    
+    }    
     @objc func viewPanned(_ panGestureRecognizer: UIPanGestureRecognizer) {
         switch panGestureRecognizer.state {
         case .began:
@@ -83,7 +79,7 @@ class BigPhotoController: UIViewController {
                 
                 animationDirection = .right
                 additionalImageView.transform = CGAffineTransform(translationX: -1.3*self.additionalImageView.bounds.width, y: 150).concatenating(CGAffineTransform(scaleX: 1.3, y: 1.3))
-                additionalImageView.image = photos[selectedPhotoIndex - 1]
+                additionalImageView.kf.setImage(with: URL(string: photos[selectedPhotoIndex - 1].image))
                 propertyAnimator = UIViewPropertyAnimator(duration: 0.7, curve: .easeInOut, animations: {
                     self.bigPhotoImageView.transform = CGAffineTransform(translationX: 1.5*self.bigPhotoImageView.bounds.width, y: -100).concatenating(CGAffineTransform(scaleX: 0.6, y: 0.6))
                     self.additionalImageView.transform = .identity
@@ -92,7 +88,7 @@ class BigPhotoController: UIViewController {
                     switch position {
                     case .end:
                         self.selectedPhotoIndex -= 1
-                        self.bigPhotoImageView.image = self.photos[self.selectedPhotoIndex]
+                        self.bigPhotoImageView.kf.setImage(with: URL(string: self.photos[self.selectedPhotoIndex].image))
                         self.bigPhotoImageView.transform = .identity
                         self.additionalImageView.image = nil
                     case .start:
@@ -107,7 +103,7 @@ class BigPhotoController: UIViewController {
                 guard selectedPhotoIndex + 1 <= photos.count - 1 else { return }
                 
                 animationDirection = .left
-                additionalImageView.image = photos[selectedPhotoIndex + 1]
+                additionalImageView.kf.setImage(with: URL(string: photos[selectedPhotoIndex + 1].image))
                 additionalImageView.transform = CGAffineTransform(translationX: 1.3*self.additionalImageView.bounds.width, y: 150).concatenating(CGAffineTransform(scaleX: 1.3, y: 1.3))
                 propertyAnimator = UIViewPropertyAnimator(duration: 0.7, curve: .easeInOut, animations: {
                     self.bigPhotoImageView.transform = CGAffineTransform(translationX: -1.5*self.bigPhotoImageView.bounds.width, y: -100).concatenating(CGAffineTransform(scaleX: 0.6, y: 0.6))
@@ -117,7 +113,7 @@ class BigPhotoController: UIViewController {
                     switch position {
                     case .end:
                         self.selectedPhotoIndex += 1
-                        self.bigPhotoImageView.image = self.photos[self.selectedPhotoIndex]
+                        self.bigPhotoImageView.kf.setImage(with: URL(string: self.photos[self.selectedPhotoIndex].image))
                         self.bigPhotoImageView.transform = .identity
                         self.additionalImageView.image = nil
                     case .start:
@@ -141,6 +137,7 @@ class BigPhotoController: UIViewController {
             }
         case .ended:
             guard let propertyAnimator = self.propertyAnimator else { return }
+            bigPhotoImageView.isUserInteractionEnabled = false
             if propertyAnimator.fractionComplete > 0.33 {
                 propertyAnimator.continueAnimation(withTimingParameters: nil, durationFactor: 0.5)
             } else {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class FriendStartController: UITableViewController {
     @IBOutlet var searchBar: UISearchBar! {
@@ -15,16 +16,21 @@ class FriendStartController: UITableViewController {
         }
     }
     private let networkService = NetworkService()
+    private lazy var myGroups: Results<User> = try! Realm(configuration: RealmService.deleteIfMigration).objects(User.self)
     private var friends = [User]()
     var filteredPersons = [Character: [User]]()
     var filteredFriends = [User]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         networkService.frienduser() { [weak self] result in
             guard let self = self else { return }
             switch result {
             case let .success(friend):
+                try? RealmService.save(items: friend, configuration: RealmService.deleteIfMigration, update: .all)
                 self.friends = friend
                 self.filteredFriends = friend
                 self.filteredPersons = self.sort(friends: self.friends)
@@ -36,7 +42,6 @@ class FriendStartController: UITableViewController {
             }
         }
     }
-    
     private func sort(friends: [User]) -> [Character: [User]] {
         var personDict = [Character : [User]]()
         
@@ -53,26 +58,21 @@ class FriendStartController: UITableViewController {
         }
         return personDict
     }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return filteredPersons.keys.count
     }
-    
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let firstChar = filteredPersons.keys.sorted()[section]
         return String(firstChar)
     }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let keysSorted = filteredPersons.keys.sorted()
         return filteredPersons[keysSorted[section]]?.count ?? 0
     }
-
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendStartCell", for: indexPath) as? FriendStartCell else { preconditionFailure("FriendStartCell cannot be dequeued") }
         let firstChar = filteredPersons.keys.sorted()[indexPath.section]
@@ -83,7 +83,6 @@ class FriendStartController: UITableViewController {
         return cell
     }
 }
-
 extension FriendStartController: UISearchBarDelegate {
         func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
             searchBar.placeholder = " Search..."
@@ -96,7 +95,6 @@ extension FriendStartController: UISearchBarDelegate {
         self.tableView.reloadData()
     }
 }
-
 extension FriendStartController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Show friend",

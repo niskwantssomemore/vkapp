@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class AddedGroupsController: UITableViewController {
     @IBOutlet var searchBar: UISearchBar! {
@@ -16,14 +17,16 @@ class AddedGroupsController: UITableViewController {
     }
     
     private var groups = [Group]()
-    private let networkService = NetworkService()
     var filteredGroups = [Group]()
+    private lazy var myGroups: Results<Group> = try! Realm(configuration: RealmService.deleteIfMigration).objects(Group.self)
+    private let networkService = NetworkService()
     override func viewDidLoad() {
         super.viewDidLoad()
         networkService.groupuser() { [weak self] result in
             guard let self = self else { return }
             switch result {
             case let .success(group):
+                try? RealmService.save(items: group, configuration: RealmService.deleteIfMigration, update: .all)
                 self.groups = group
                 self.filteredGroups = group
                 DispatchQueue.main.async {
@@ -34,40 +37,37 @@ class AddedGroupsController: UITableViewController {
             }
         }
     }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredGroups.count
     }
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as? GroupCell else { preconditionFailure("GroupCell cannot be dequeued") }
         let group = filteredGroups[indexPath.row]
         cell.configure(with: group)
         return cell
     }
-
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            let group = groups[indexPath.row]
+            networkService.groupremove(groupId: group.id)
             groups.remove(at: indexPath.row)
             filteredGroups.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
-
     @IBAction func addSelectedGroup(segue: UIStoryboardSegue) {
         if let sourceVC = segue.source as? AllGroupsController,
             let indexPath = sourceVC.tableView.indexPathForSelectedRow {
             let group = sourceVC.groups[indexPath.row]
-            if !groups.contains(where: { $0.name == group.name}) {
+            if !groups.contains(where: { $0.id == group.id}) {
+                networkService.groupadd(groupId: group.id)
                 groups.append(group)
                 filteredGroups = groups
                 tableView.reloadData()

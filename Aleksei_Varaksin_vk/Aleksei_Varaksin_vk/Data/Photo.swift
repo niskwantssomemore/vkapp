@@ -19,4 +19,7 @@ class Photo: Object {
         self.id = json["id"].intValue
         self.image = json["sizes"][3]["url"].stringValue
     }
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 }
