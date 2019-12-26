@@ -13,6 +13,7 @@ import RealmSwift
 class Photo: Object {
     @objc dynamic var id = 0
     @objc dynamic var image = ""
+    var owner = LinkingObjects(fromType: User.self, property: "photos")
     
     required convenience init(from json: JSON) {
         self.init()

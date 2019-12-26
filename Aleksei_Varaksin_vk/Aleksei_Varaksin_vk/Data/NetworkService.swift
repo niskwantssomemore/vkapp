@@ -17,7 +17,7 @@ class NetworkService {
         let session = Alamofire.Session(configuration: config)
         return session
     }()
-    public func frienduser(completion: ((Swift.Result<[User], Error>) -> Void)? = nil) {
+    public func frienduser(photos: [Photo] = [], completion: @escaping ([User]) -> Void) {
         let baseUrl = "https://api.vk.com"
         let path = "/method/friends.get"
     let params: Parameters = [
@@ -32,11 +32,11 @@ class NetworkService {
             case let .success(data):
                 let json = JSON(data)
                 let friendJSONs = json["response"]["items"].arrayValue
-                let friend = friendJSONs.map { User(from: $0) }
-                completion?(.success(friend))
+                let friend = friendJSONs.map { User(from: $0, photos: photos) }
+                completion(friend)
 
             case let .failure(error):
-                completion?(.failure(error))
+                print(error)
             }
         }
     }
@@ -84,7 +84,7 @@ class NetworkService {
             }
         }
     }
-    public func friendphotos(for id: Int, completion: ((Swift.Result<[Photo], Error>) -> Void)? = nil) {
+    public func friendphotos(for id: Int, completion: @escaping ([Photo]) -> Void) {
         let baseUrl = "https://api.vk.com"
         let path = "/method/photos.getAll"
     let params: Parameters = [
@@ -100,12 +100,18 @@ class NetworkService {
             switch response.result {
             case let .success(data):
                 let json = JSON(data)
-                let photoJSONs = json["response"]["items"].arrayValue
-                let photo = photoJSONs.map { Photo(from: $0) }
-                completion?(.success(photo))
+                var photos = json["response"]["items"].arrayValue.map { json in return Photo(from: json)}
+                var sortPhoto: [Photo] = []
+                for photo in photos {
+                    if photo.image != "" {
+                        sortPhoto.append(photo)
+                    }
+                }
+                photos = sortPhoto
+                completion(photos)
                 
             case let .failure(error):
-                completion?(.failure(error))
+                print(error)
             }
         }
     }

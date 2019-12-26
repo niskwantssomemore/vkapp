@@ -16,84 +16,90 @@ class FriendStartController: UITableViewController {
         }
     }
     private let networkService = NetworkService()
-    private lazy var myGroups: Results<User> = try! Realm(configuration: RealmService.deleteIfMigration).objects(User.self)
-    private var friends = [User]()
+    var myFriends: Results<User>?
+    var notificationToken: NotificationToken?
     var filteredPersons = [Character: [User]]()
-    var filteredFriends = [User]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        networkService.frienduser() { [weak self] result in
+        myFriends = RealmService.get(User.self)
+        notificationToken = myFriends?.observe { [weak self] changes in
             guard let self = self else { return }
-            switch result {
-            case let .success(friend):
-                try? RealmService.save(items: friend, configuration: RealmService.deleteIfMigration, update: .all)
-                self.friends = friend
-                self.filteredFriends = friend
-                self.filteredPersons = self.sort(friends: self.friends)
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            case let .failure(error):
+            switch changes {
+            case .initial(_):
+                self.tableView.reloadData()
+            case .update(_, _, _, _):
+                self.tableView.reloadData()
+            case .error(let error):
                 print(error)
             }
         }
-    }
-    private func sort(friends: [User]) -> [Character: [User]] {
-        var personDict = [Character : [User]]()
-        
-        friends
-            .sorted { $0.last_name < $1.last_name}
-            .forEach { person in
-            guard let firstChar = person.last_name.first else { return }
-            if var thisCharPersons = personDict[firstChar] {
-                thisCharPersons.append(person)
-                personDict[firstChar] = thisCharPersons
-            } else {
-                personDict[firstChar] = [person]
+        networkService.frienduser() { myFriends in
+            RealmService.save(items: myFriends)
+            DispatchQueue.main.async {
+                self.tableView?.reloadData()
             }
         }
-        return personDict
     }
+//    private func sort(friends: [User]) -> [Character: [User]] {
+//        var personDict = [Character : [User]]()
+//
+//        friends
+//            .sorted { $0.last_name < $1.last_name}
+//            .forEach { person in
+//            guard let firstChar = person.last_name.first else { return }
+//            if var thisCharPersons = personDict[firstChar] {
+//                thisCharPersons.append(person)
+//                personDict[firstChar] = thisCharPersons
+//            } else {
+//                personDict[firstChar] = [person]
+//            }
+//        }
+//        return personDict
+//    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return filteredPersons.keys.count
-    }
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let firstChar = filteredPersons.keys.sorted()[section]
-        return String(firstChar)
-    }
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        return filteredPersons.keys.count
+//    }
+//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        let firstChar = filteredPersons.keys.sorted()[section]
+//        return String(firstChar)
+//    }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let keysSorted = filteredPersons.keys.sorted()
-        return filteredPersons[keysSorted[section]]?.count ?? 0
+//        let keysSorted = filteredPersons.keys.sorted()
+//        return filteredPersons[keysSorted[section]]?.count ?? 0
+        return myFriends?.count ?? 0
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendStartCell", for: indexPath) as? FriendStartCell else { preconditionFailure("FriendStartCell cannot be dequeued") }
-        let firstChar = filteredPersons.keys.sorted()[indexPath.section]
-        let friends = filteredPersons[firstChar]!
-        let friend: User = friends[indexPath.row]
-        cell.configure(with: friend)
+//        let firstChar = filteredPersons.keys.sorted()[indexPath.section]
+//        let friends = filteredPersons[firstChar]!
+//        let friend: User = friends[indexPath.row]
+//        cell.configure(with: friend)
+        if let users = myFriends {
+            cell.configure(with: users[indexPath.row])
+        }
             
         return cell
     }
 }
 extension FriendStartController: UISearchBarDelegate {
-        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-            searchBar.placeholder = " Search..."
-           if searchText.isEmpty {
-                filteredFriends = friends
-            } else {
-            filteredFriends = friends.filter{ $0.first_name.contains(searchText) || $0.last_name.contains(searchText)}
-            }
-        filteredPersons = sort(friends: filteredFriends)
-        self.tableView.reloadData()
-    }
+//        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//            searchBar.placeholder = " Search..."
+//           if searchText.isEmpty {
+//                filteredFriends = friends
+//            } else {
+//            filteredFriends = friends.filter{ $0.first_name.contains(searchText) || $0.last_name.contains(searchText)}
+//            }
+//        filteredPersons = sort(friends: filteredFriends)
+//        self.tableView.reloadData()
+//    }
 }
 extension FriendStartController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -101,11 +107,12 @@ extension FriendStartController {
             let allPhotosVC = segue.destination as? FriendController,
             let selectedCellindexPath = tableView.indexPathForSelectedRow {
 
-            let firstChar = filteredPersons.keys.sorted()[selectedCellindexPath.section]
-            let photos = filteredPersons[firstChar]!
-            let selectedfriend = photos[selectedCellindexPath.row]
-
-            allPhotosVC.friendId = selectedfriend.id
+//            let firstChar = filteredPersons.keys.sorted()[selectedCellindexPath.section]
+//            let photos = filteredPersons[firstChar]!
+//            let selectedfriend = photos[selectedCellindexPath.row]
+            if let users = myFriends {
+                allPhotosVC.friendId = users[selectedCellindexPath.row].id
+            }
         }
     }
 }

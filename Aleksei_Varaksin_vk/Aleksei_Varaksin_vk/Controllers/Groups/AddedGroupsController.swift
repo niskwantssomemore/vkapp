@@ -26,7 +26,7 @@ class AddedGroupsController: UITableViewController {
             guard let self = self else { return }
             switch result {
             case let .success(group):
-                try? RealmService.save(items: group, configuration: RealmService.deleteIfMigration, update: .all)
+//                try? RealmService.save(items: group, configuration: RealmService.deleteIfMigration, update: .all)
                 self.groups = group
                 self.filteredGroups = group
                 DispatchQueue.main.async {

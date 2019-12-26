@@ -30,7 +30,7 @@ class AllGroupsController: UITableViewController {
             guard let self = self else { return }
             switch result {
             case let .success(group):
-                try? RealmService.save(items: group, configuration: RealmService.deleteIfMigration, update: .all)
+//                try? RealmService.save(items: group, configuration: RealmService.deleteIfMigration, update: .all)
                 self.groups = group
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
