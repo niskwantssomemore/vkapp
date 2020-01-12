@@ -33,7 +33,7 @@
 		41EF7304236338C70047E0B5 /* BasicGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EF7303236338C70047E0B5 /* BasicGroupCell.swift */; };
 		41EF730623633CC80047E0B5 /* FriendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EF730523633CC80047E0B5 /* FriendController.swift */; };
 		41EF730823633CE40047E0B5 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EF730723633CE40047E0B5 /* FriendCell.swift */; };
-		41FBFC32236847CE001685D8 /* FriendStartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FBFC31236847CE001685D8 /* FriendStartController.swift */; };
+		41FBFC32236847CE001685D8 /* AllFriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FBFC31236847CE001685D8 /* AllFriendsController.swift */; };
 		41FBFC382368492B001685D8 /* FriendStartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FBFC372368492B001685D8 /* FriendStartCell.swift */; };
 		CE93B9C5845C27C9EA33F749 /* Pods_Aleksei_Varaksin_vk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D16F26664D2BC022D0D21D71 /* Pods_Aleksei_Varaksin_vk.framework */; };
 /* End PBXBuildFile section */
@@ -68,7 +68,7 @@
 		41EF7303236338C70047E0B5 /* BasicGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicGroupCell.swift; sourceTree = "<group>"; };
 		41EF730523633CC80047E0B5 /* FriendController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendController.swift; sourceTree = "<group>"; };
 		41EF730723633CE40047E0B5 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
-		41FBFC31236847CE001685D8 /* FriendStartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendStartController.swift; sourceTree = "<group>"; };
+		41FBFC31236847CE001685D8 /* AllFriendsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFriendsController.swift; sourceTree = "<group>"; };
 		41FBFC372368492B001685D8 /* FriendStartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendStartCell.swift; sourceTree = "<group>"; };
 		5B667860E8AE2E6B01690D26 /* Pods-Aleksei_Varaksin_vk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aleksei_Varaksin_vk.release.xcconfig"; path = "Target Support Files/Pods-Aleksei_Varaksin_vk/Pods-Aleksei_Varaksin_vk.release.xcconfig"; sourceTree = "<group>"; };
 		D16F26664D2BC022D0D21D71 /* Pods_Aleksei_Varaksin_vk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Aleksei_Varaksin_vk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -176,7 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				41EF730523633CC80047E0B5 /* FriendController.swift */,
-				41FBFC31236847CE001685D8 /* FriendStartController.swift */,
+				41FBFC31236847CE001685D8 /* AllFriendsController.swift */,
 				41BDEB532396A1B100F3395A /* BigPhotoController.swift */,
 			);
 			path = Friends;
@@ -336,7 +336,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41FBFC32236847CE001685D8 /* FriendStartController.swift in Sources */,
+				41FBFC32236847CE001685D8 /* AllFriendsController.swift in Sources */,
 				419C8D34238986AD00D17609 /* PopAnimation.swift in Sources */,
 				41694343239FF45200B1D479 /* User.swift in Sources */,
 				41EF730823633CE40047E0B5 /* FriendCell.swift in Sources */,

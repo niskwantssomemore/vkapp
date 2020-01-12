@@ -9,16 +9,18 @@
 import UIKit
 import RealmSwift
 
-class FriendStartController: UITableViewController {
+class AllFriendsController: UITableViewController {
     @IBOutlet var searchBar: UISearchBar! {
         didSet {
+            searchBar.placeholder = " Search..."
             searchBar.delegate = self
         }
     }
     private let networkService = NetworkService()
     var myFriends: Results<User>?
+    var filteredFriends: Results<User>?
     var notificationToken: NotificationToken?
-    var filteredPersons = [Character: [User]]()
+    var firstLettersArray = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,9 +31,11 @@ class FriendStartController: UITableViewController {
         notificationToken = myFriends?.observe { [weak self] changes in
             guard let self = self else { return }
             switch changes {
-            case .initial(_):
-                self.tableView.reloadData()
-            case .update(_, _, _, _):
+            case .initial, .update:
+                let searchText = self.searchBar.text ?? ""
+                guard let filteredFriends = self.updateFilteredFriends(searchText: searchText) else { return }
+                self.filteredFriends = filteredFriends
+                self.firstLettersArray = self.prepareFirstLettersArray(filteredFriends: filteredFriends)
                 self.tableView.reloadData()
             case .error(let error):
                 print(error)
@@ -39,69 +43,52 @@ class FriendStartController: UITableViewController {
         }
         networkService.frienduser() { myFriends in
             RealmService.save(items: myFriends)
-            DispatchQueue.main.async {
-                self.tableView?.reloadData()
-            }
         }
     }
-//    private func sort(friends: [User]) -> [Character: [User]] {
-//        var personDict = [Character : [User]]()
-//
-//        friends
-//            .sorted { $0.last_name < $1.last_name}
-//            .forEach { person in
-//            guard let firstChar = person.last_name.first else { return }
-//            if var thisCharPersons = personDict[firstChar] {
-//                thisCharPersons.append(person)
-//                personDict[firstChar] = thisCharPersons
-//            } else {
-//                personDict[firstChar] = [person]
-//            }
-//        }
-//        return personDict
-//    }
+    fileprivate func updateFilteredFriends(searchText: String) -> Results<User>? {
+        if !searchText.isEmpty {
+            return RealmService.get(User.self)?.filter("last_name CONTAINS[cd] %@ OR first_name CONTAINS[cd] %@ ", searchText, searchText).sorted(byKeyPath: "last_name")
+        } else {
+            return RealmService.get(User.self)?.sorted(byKeyPath: "last_name")
+        }
+    }
+    fileprivate func prepareFirstLettersArray(filteredFriends: Results<User>) -> [String] {
+        let firstLetters = filteredFriends.compactMap { $0.last_name.first }.map { String($0) }
+        return Array(Set(firstLetters)).sorted()
+    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        return filteredPersons.keys.count
-//    }
-//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        let firstChar = filteredPersons.keys.sorted()[section]
-//        return String(firstChar)
-//    }
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return firstLettersArray.count
+    }
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        firstLettersArray[section]
+    }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        let keysSorted = filteredPersons.keys.sorted()
-//        return filteredPersons[keysSorted[section]]?.count ?? 0
-        return myFriends?.count ?? 0
+        let firstLetter = firstLettersArray[section]
+        return filteredFriends?.filter("last_name BEGINSWITH[cd] %@", firstLetter).count ?? 0
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendStartCell", for: indexPath) as? FriendStartCell else { preconditionFailure("FriendStartCell cannot be dequeued") }
-//        let firstChar = filteredPersons.keys.sorted()[indexPath.section]
-//        let friends = filteredPersons[firstChar]!
-//        let friend: User = friends[indexPath.row]
-//        cell.configure(with: friend)
-        if let users = myFriends {
+        let firstLetter = firstLettersArray[indexPath.section]
+        if let users = filteredFriends?.filter("last_name BEGINSWITH[cd] %@", firstLetter) {
             cell.configure(with: users[indexPath.row])
         }
             
         return cell
     }
 }
-extension FriendStartController: UISearchBarDelegate {
-//        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//            searchBar.placeholder = " Search..."
-//           if searchText.isEmpty {
-//                filteredFriends = friends
-//            } else {
-//            filteredFriends = friends.filter{ $0.first_name.contains(searchText) || $0.last_name.contains(searchText)}
-//            }
-//        filteredPersons = sort(friends: filteredFriends)
-//        self.tableView.reloadData()
-//    }
+extension AllFriendsController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard let filteredFriends = updateFilteredFriends(searchText: searchText) else { return }
+        self.filteredFriends = filteredFriends
+        firstLettersArray = prepareFirstLettersArray(filteredFriends: filteredFriends)
+        tableView.reloadData()
+    }
 }
-extension FriendStartController {
+extension AllFriendsController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Show friend",
             let allPhotosVC = segue.destination as? FriendController,
