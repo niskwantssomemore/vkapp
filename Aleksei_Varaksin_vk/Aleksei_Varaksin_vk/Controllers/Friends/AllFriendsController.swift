@@ -94,10 +94,8 @@ extension AllFriendsController {
             let allPhotosVC = segue.destination as? FriendController,
             let selectedCellindexPath = tableView.indexPathForSelectedRow {
 
-//            let firstChar = filteredPersons.keys.sorted()[selectedCellindexPath.section]
-//            let photos = filteredPersons[firstChar]!
-//            let selectedfriend = photos[selectedCellindexPath.row]
-            if let users = myFriends {
+            let firstChar = firstLettersArray[selectedCellindexPath.section]
+            if let users = filteredFriends?.filter("last_name BEGINSWITH[cd] %@", firstChar) {
                 allPhotosVC.friendId = users[selectedCellindexPath.row].id
             }
         }

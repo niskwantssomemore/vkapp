@@ -91,14 +91,14 @@ extension FriendController: UICollectionViewDelegateFlowLayout {
         return 0
     }
 }
-//extension FriendController {
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "Show Big Photo",
-//            let selectedPhotoIndexPath = collectionView.indexPathsForSelectedItems?.first,
-//            let bigPhotoVC = segue.destination as? BigPhotoController {
-//            bigPhotoVC.
-//            bigPhotoVC.selectedPhotoIndex = selectedPhotoIndexPath.item
-//            collectionView.deselectItem(at: selectedPhotoIndexPath, animated: true)
-//        }
-//    }
-//}
+extension FriendController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Show Big Photo",
+            let selectedPhotoIndexPath = collectionView.indexPathsForSelectedItems?.first,
+            let bigPhotoVC = segue.destination as? BigPhotoController {
+            bigPhotoVC.photos = Array(photos!)
+            bigPhotoVC.selectedPhotoIndex = selectedPhotoIndexPath.item
+            collectionView.deselectItem(at: selectedPhotoIndexPath, animated: true)
+        }
+    }
+}
