@@ -37,7 +37,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" id="e9U-JD-fil">
-                            <rect key="frame" x="0.0" y="0.0" width="228" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
@@ -107,7 +107,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" id="9fe-of-1wC">
-                            <rect key="frame" x="0.0" y="0.0" width="228" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
@@ -470,9 +470,44 @@
                                                 <constraint firstAttribute="width" secondItem="fh3-JF-Jk6" secondAttribute="height" multiplier="1:1" id="hNX-wd-vDd"/>
                                             </constraints>
                                         </imageView>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PX8-Rq-7Ro" customClass="LikeControl" customModule="Aleksei_Varaksin_vk" customModuleProvider="target">
+                                            <rect key="frame" x="120" y="170" width="75" height="25"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="4f4-8O-chw">
+                                                    <rect key="frame" x="50" y="1.5" width="25" height="22.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="25" id="7jE-ge-zHT"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C6j-vH-k9U">
+                                                    <rect key="frame" x="0.0" y="0.0" width="45" height="25"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="75" id="6p3-JL-uct"/>
+                                                <constraint firstAttribute="width" secondItem="PX8-Rq-7Ro" secondAttribute="height" multiplier="3:1" id="HnM-Zz-rPa"/>
+                                                <constraint firstAttribute="bottom" secondItem="4f4-8O-chw" secondAttribute="bottom" id="fmY-mw-55B"/>
+                                                <constraint firstItem="4f4-8O-chw" firstAttribute="top" secondItem="PX8-Rq-7Ro" secondAttribute="top" id="irL-2t-HDU"/>
+                                                <constraint firstAttribute="bottom" secondItem="C6j-vH-k9U" secondAttribute="bottom" id="oFw-Vg-VuP"/>
+                                                <constraint firstItem="4f4-8O-chw" firstAttribute="leading" secondItem="C6j-vH-k9U" secondAttribute="trailing" constant="5" id="pAz-As-FHb"/>
+                                                <constraint firstItem="C6j-vH-k9U" firstAttribute="leading" secondItem="PX8-Rq-7Ro" secondAttribute="leading" id="t62-mE-2Gp"/>
+                                                <constraint firstItem="C6j-vH-k9U" firstAttribute="top" secondItem="PX8-Rq-7Ro" secondAttribute="top" id="vrM-2n-vC8"/>
+                                                <constraint firstAttribute="trailing" secondItem="4f4-8O-chw" secondAttribute="trailing" id="yuX-pr-45M"/>
+                                            </constraints>
+                                            <connections>
+                                                <outlet property="likeCounter" destination="C6j-vH-k9U" id="1NZ-Lr-AyR"/>
+                                                <outlet property="likeImage" destination="4f4-8O-chw" id="feB-ZY-yMp"/>
+                                            </connections>
+                                        </view>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="fh3-JF-Jk6" firstAttribute="centerY" secondItem="KZF-1l-5Qu" secondAttribute="centerY" id="IWL-c6-fqf"/>
+                                        <constraint firstAttribute="bottom" secondItem="PX8-Rq-7Ro" secondAttribute="bottom" constant="5" id="OUt-a5-VQF"/>
+                                        <constraint firstAttribute="trailing" secondItem="PX8-Rq-7Ro" secondAttribute="trailing" constant="5" id="dJJ-fC-Xkf"/>
                                         <constraint firstItem="fh3-JF-Jk6" firstAttribute="centerX" secondItem="KZF-1l-5Qu" secondAttribute="centerX" id="v1O-Oq-DRQ"/>
                                     </constraints>
                                 </collectionViewCellContentView>

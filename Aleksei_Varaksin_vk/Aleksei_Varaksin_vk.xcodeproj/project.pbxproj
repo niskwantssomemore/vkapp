@@ -13,6 +13,7 @@
 		4175C42B239266230016A260 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4175C42A239266230016A260 /* Session.swift */; };
 		4184DF3F235F4137006E7E4A /* UiViewController+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4184DF3E235F4137006E7E4A /* UiViewController+ext.swift */; };
 		418B602123AEF00D00BF31DD /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418B602023AEF00D00BF31DD /* RealmService.swift */; };
+		41925C2E23CE7FDE00739126 /* LikeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41925C2D23CE7FDE00739126 /* LikeControl.swift */; };
 		419B20CA2377553A00F5217E /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419B20C92377553A00F5217E /* NewsCell.swift */; };
 		419B20CC2377580D00F5217E /* NewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419B20CB2377580D00F5217E /* NewsController.swift */; };
 		419B8C8C2397C2EE0075031F /* VKLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419B8C8B2397C2EE0075031F /* VKLoginController.swift */; };
@@ -46,6 +47,7 @@
 		4175C42A239266230016A260 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		4184DF3E235F4137006E7E4A /* UiViewController+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiViewController+ext.swift"; sourceTree = "<group>"; };
 		418B602023AEF00D00BF31DD /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
+		41925C2D23CE7FDE00739126 /* LikeControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeControl.swift; sourceTree = "<group>"; };
 		419B20C92377553A00F5217E /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		419B20CB2377580D00F5217E /* NewsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsController.swift; sourceTree = "<group>"; };
 		419B8C8B2397C2EE0075031F /* VKLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKLoginController.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				41EF730523633CC80047E0B5 /* FriendController.swift */,
+				41925C2D23CE7FDE00739126 /* LikeControl.swift */,
 				41FBFC31236847CE001685D8 /* AllFriendsController.swift */,
 				41BDEB532396A1B100F3395A /* BigPhotoController.swift */,
 			);
@@ -358,6 +361,7 @@
 				41FBFC382368492B001685D8 /* FriendStartCell.swift in Sources */,
 				4175C42B239266230016A260 /* Session.swift in Sources */,
 				419C8D2F2389856800D17609 /* NavigationController.swift in Sources */,
+				41925C2E23CE7FDE00739126 /* LikeControl.swift in Sources */,
 				41D075C923631C6900470998 /* AddedGroupsController.swift in Sources */,
 				41D075CB23631D8300470998 /* AllGroupsController.swift in Sources */,
 				418B602123AEF00D00BF31DD /* RealmService.swift in Sources */,
