@@ -140,6 +140,42 @@ class NetworkService {
             }
         }
     }
+    public func likeadd(liketype: String, ownerId: Int, itemId: Int) {
+        let baseUrl = "https://api.vk.com"
+        let path = "/method/likes.add"
+    let params: Parameters = [
+            "access_token": Session.shared.token,
+            "type": liketype,
+            "owner_id": ownerId,
+            "item_id": itemId,
+            "v": "5.103"
+        ]
+        
+        NetworkService.session.request(baseUrl + path, method: .get, parameters: params).responseJSON { response in
+            switch response.result {
+            case .success(_): break
+            case .failure(_): break
+            }
+        }
+    }
+    public func likeremove(liketype: String, ownerId: Int, itemId: Int) {
+        let baseUrl = "https://api.vk.com"
+        let path = "/method/likes.delete"
+    let params: Parameters = [
+            "access_token": Session.shared.token,
+            "type": liketype,
+            "owner_id": ownerId,
+            "item_id": itemId,
+            "v": "5.103"
+        ]
+        
+        NetworkService.session.request(baseUrl + path, method: .get, parameters: params).responseJSON { response in
+            switch response.result {
+            case .success(_): break
+            case .failure(_): break
+            }
+        }
+    }
     public func groupadd(groupId: Int) {
         let baseUrl = "https://api.vk.com"
         let path = "/method/groups.join"

@@ -10,8 +10,10 @@ import UIKit
 
 class FriendCell: UICollectionViewCell {
     @IBOutlet var friendImageView: UIImageView!
+    @IBOutlet var LikeControl: LikeControl!
     
     public func configure(with photo: Photo) {
         friendImageView.kf.setImage(with: URL(string: photo.image))
+        LikeControl.likeCounter.text = "\(photo.user_likes)"
     }
 }

@@ -28,16 +28,17 @@ class LikeControl: UIControl {
     }
     @objc private func tapOnLike() {
         isLiked.toggle()
+        let likes2 = Int(likeCounter.text!)
         if isLiked {
             UIView.transition(with: likeImage, duration: 0.5, options: .transitionFlipFromBottom, animations: {
                 self.likeImage.image = UIImage(systemName: "heart.fill")
-                self.likes += 1
+                self.likes = likes2! + 1
                 self.likeCounter.text = "\(self.likes)"
             }, completion: nil)
         } else {
             UIView.transition(with: likeImage, duration: 0.5, options: .transitionFlipFromTop, animations: {
                 self.likeImage.image = UIImage(systemName: "heart")
-                self.likes -= 1
+                self.likes = likes2! - 1
                 self.likeCounter.text = "\(self.likes)"
             }, completion: nil)
         }
