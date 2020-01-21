@@ -14,6 +14,10 @@ class FriendCell: UICollectionViewCell {
     
     public func configure(with photo: Photo) {
         friendImageView.kf.setImage(with: URL(string: photo.image))
-        LikeControl.likeCounter.text = "\(photo.user_likes)"
+        LikeControl.likeCounter.text = "\(photo.countlikes)"
+        if (photo.isliked == 1) {
+            LikeControl.isLiked = true
+            LikeControl.isLikedsymbol()
+        }
     }
 }

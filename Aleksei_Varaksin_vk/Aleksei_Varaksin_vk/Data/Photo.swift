@@ -13,14 +13,16 @@ import RealmSwift
 class Photo: Object {
     @objc dynamic var id = 0
     @objc dynamic var image = ""
-    @objc dynamic var user_likes = 0
+    @objc dynamic var countlikes = 0
+    @objc dynamic var isliked = 0
     var owner = LinkingObjects(fromType: User.self, property: "photos")
     
     required convenience init(from json: JSON) {
         self.init()
         self.id = json["id"].intValue
         self.image = json["sizes"][3]["url"].stringValue
-        self.user_likes = json["likes"]["count"].intValue
+        self.countlikes = json["likes"]["count"].intValue
+        self.isliked = json["likes"]["user_likes"].intValue
     }
     override static func primaryKey() -> String? {
         return "id"

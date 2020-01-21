@@ -15,11 +15,18 @@ class LikeControl: UIControl {
     var likes = 0
     override init(frame: CGRect) {
         super.init(frame:frame)
+        isLikedsymbol()
         setupGestureRecognzer()
     }
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        isLikedsymbol()
         setupGestureRecognzer()
+    }
+    public func isLikedsymbol () {
+        if isLiked == true {
+            likeImage.image = UIImage(systemName: "heart.fill")
+        }
     }
     private func setupGestureRecognzer() {
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(tapOnLike))
