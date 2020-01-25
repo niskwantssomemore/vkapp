@@ -12,6 +12,7 @@ import RealmSwift
 
 class Photo: Object {
     @objc dynamic var id = 0
+    @objc dynamic var ownerId = 0
     @objc dynamic var image = ""
     @objc dynamic var countlikes = 0
     @objc dynamic var isliked = 0
@@ -20,6 +21,7 @@ class Photo: Object {
     required convenience init(from json: JSON) {
         self.init()
         self.id = json["id"].intValue
+        self.ownerId = json["owner_id"].intValue
         self.image = json["sizes"][3]["url"].stringValue
         self.countlikes = json["likes"]["count"].intValue
         self.isliked = json["likes"]["user_likes"].intValue

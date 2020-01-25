@@ -156,8 +156,10 @@ class NetworkService {
         
         NetworkService.session.request(baseUrl + path, method: .get, parameters: params).responseJSON { response in
             switch response.result {
-            case .success(_): break
-            case .failure(_): break
+//            case .success(_): break
+//            case .failure(_): break
+                case .success(_): print(response)
+                case .failure(_): print(response)
             }
         }
     }

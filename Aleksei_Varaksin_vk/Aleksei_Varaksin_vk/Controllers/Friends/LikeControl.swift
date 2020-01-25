@@ -11,6 +11,9 @@ import UIKit
 class LikeControl: UIControl {
     @IBOutlet var likeImage: UIImageView!
     @IBOutlet var likeCounter: UILabel!
+    private let networkService = NetworkService()
+    var owner: Int = 0
+    var item: Int = 0
     var isLiked = false
     var likes = 0
     override init(frame: CGRect) {
@@ -41,12 +44,14 @@ class LikeControl: UIControl {
                 self.likeImage.image = UIImage(systemName: "heart.fill")
                 self.likes = likes2! + 1
                 self.likeCounter.text = "\(self.likes)"
+                self.networkService.likeadd(liketype: "photo", ownerId: self.owner, itemId: self.item)
             }, completion: nil)
         } else {
             UIView.transition(with: likeImage, duration: 0.5, options: .transitionFlipFromTop, animations: {
                 self.likeImage.image = UIImage(systemName: "heart")
                 self.likes = likes2! - 1
                 self.likeCounter.text = "\(self.likes)"
+                self.networkService.likeremove(liketype: "photo", ownerId: self.owner, itemId: self.item)
             }, completion: nil)
         }
     }
