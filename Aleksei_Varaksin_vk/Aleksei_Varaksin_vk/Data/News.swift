@@ -24,6 +24,7 @@ class News: Object {
     @objc dynamic var countReposts = 0
     @objc dynamic var isReposted = 0
     @objc dynamic var totalViews = 0
+    @objc dynamic var newsHeader = ""
     
     required convenience init(from json: JSON) {
         self.init()

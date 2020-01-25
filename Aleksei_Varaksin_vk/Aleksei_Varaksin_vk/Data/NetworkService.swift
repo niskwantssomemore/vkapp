@@ -17,6 +17,9 @@ class NetworkService {
         let session = Alamofire.Session(configuration: config)
         return session
     }()
+    private var news = [News]()
+    private var friends = [User]()
+    private var groups = [Group]()
     public func frienduser(photos: [Photo] = [], completion: @escaping ([User]) -> Void) {
         let baseUrl = "https://api.vk.com"
         let path = "/method/friends.get"
@@ -205,6 +208,50 @@ class NetworkService {
             switch response.result {
             case .success(_): break
             case .failure(_): break
+            }
+        }
+    }
+    public func getnews(completion: (([News]?, Error?) -> Void)? = nil ) {
+        DispatchQueue.global(qos: .utility).async {
+            let baseUrl = "https://api.vk.com"
+            let path = "/method/newsfeed.get"
+            let params: Parameters = [
+                "access_token": Session.shared.token,
+                "filters": "post, photo",
+                "max_photos": "1",
+                "v": "5.103"
+            ]
+            
+            NetworkService.session.request(baseUrl + path, method: .get, parameters: params).responseJSON { response in
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    self.news = json["response"]["items"].arrayValue.map { News(from: $0)}
+                    self.friends = json["response"]["profiles"].arrayValue.map { User(from: $0)}
+                    self.groups = json["response"]["groups"].arrayValue.map { Group(from: $0)}
+                    self.news = (self.news.filter { $0.newsText != "" || $0.imageURLstring != "" })
+                    self.checksource()
+                    completion?(self.news, nil)
+                case .failure(let error):
+                    completion?(nil, error)
+                }
+            }
+        }
+    }
+    public func checksource() {
+        for post in self.news {
+            if post.sourceId > 0 {
+                let index = friends.firstIndex(where: { (item) -> Bool in
+                    item.id == post.sourceId
+                })
+                post.newsHeader = "\(friends[index!].first_name) \(friends[index!].last_name)"
+                post.newsPhoto = friends[index!].photo_200_orig
+            } else {
+                let index = groups.firstIndex(where: { (item) -> Bool in
+                    item.id == post.sourceId * -1
+                })
+                post.newsHeader = groups[index!].name
+                post.newsPhoto = groups[index!].image
             }
         }
     }
