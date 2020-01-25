@@ -19,6 +19,7 @@ class AllGroupsController: UITableViewController {
         }
     }
     public var groups = [Group]()
+    let q = OperationQueue()
     private lazy var myRecommendGroups: Results<Group> = try! Realm(configuration: RealmService.deleteIfMigration).objects(Group.self)
     private let networkService = NetworkService()
     override func viewDidLoad() {
@@ -26,19 +27,25 @@ class AllGroupsController: UITableViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        networkService.grouprecomend() { [weak self] result in
+        let operation = NetworkFetchOperation()
+        operation.completionBlock = { [weak self] in
             guard let self = self else { return }
-            switch result {
-            case let .success(group):
+            self.groups = operation.groups
+        }
+        q.addOperation(operation)
+//        networkService.grouprecomend() { [weak self] result in
+//            guard let self = self else { return }
+//            switch result {
+//            case let .success(group):
 //                try? RealmService.save(items: group, configuration: RealmService.deleteIfMigration, update: .all)
-                self.groups = group
+//                self.groups = group
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
-            case let .failure(error):
-                print(error)
-            }
-        }
+//            case let .failure(error):
+//                print(error)
+//            }
+//        }
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
