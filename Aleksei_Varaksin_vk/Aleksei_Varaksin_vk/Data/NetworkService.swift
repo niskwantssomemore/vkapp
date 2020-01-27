@@ -11,10 +11,10 @@ import Alamofire
 import SwiftyJSON
 
 class NetworkService {
-    static let session: Alamofire.Session = {
+    static let session: Alamofire.SessionManager = {
         let config = URLSessionConfiguration.default
         config.timeoutIntervalForRequest = 20
-        let session = Alamofire.Session(configuration: config)
+        let session = Alamofire.SessionManager(configuration: config)
         return session
     }()
     private var news = [News]()
@@ -119,7 +119,7 @@ class NetworkService {
         }
     }
     
-    public func groupsearch(search: String, completion: ((Result<[Group], Error>) -> Void)? = nil) {
+    public func groupsearch(search: String, completion: ((Swift.Result<[Group], Error>) -> Void)? = nil) {
         let baseUrl = "https://api.vk.com"
         let path = "/method/groups.search"
         let params: Parameters = [
