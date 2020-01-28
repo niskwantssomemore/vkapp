@@ -17,9 +17,6 @@ class NetworkService {
         let session = Alamofire.SessionManager(configuration: config)
         return session
     }()
-    private var news = [News]()
-    private var friends = [User]()
-    private var groups = [Group]()
     public func frienduser(photos: [Photo] = [], completion: @escaping ([User]) -> Void) {
         let baseUrl = "https://api.vk.com"
         let path = "/method/friends.get"
@@ -213,7 +210,7 @@ class NetworkService {
             }
         }
     }
-    public func getnews(completion: (([News]?, Error?) -> Void)? = nil ) {
+    public func getnews(completion: (([News]?, Error?) -> Void)? = nil) {
         DispatchQueue.global(qos: .utility).async {
             let baseUrl = "https://api.vk.com"
             let path = "/method/newsfeed.get"
@@ -228,20 +225,21 @@ class NetworkService {
                 switch response.result {
                 case .success(let value):
                     let json = JSON(value)
-                    self.news = json["response"]["items"].arrayValue.map { News(from: $0)}
-                    self.friends = json["response"]["profiles"].arrayValue.map { User(from: $0)}
-                    self.groups = json["response"]["groups"].arrayValue.map { Group(from: $0)}
-                    self.news = (self.news.filter { $0.newsText != "" || $0.imageURLstring != "" })
-                    self.checksource()
-                    completion?(self.news, nil)
+                    var news = json["response"]["items"].arrayValue.map { News(from: $0)}
+                    let friends = json["response"]["profiles"].arrayValue.map { User(from: $0)}
+                    let groups = json["response"]["groups"].arrayValue.map { Group(from: $0)}
+                    news = (news.filter { $0.newsText != "" || $0.imageURLstring != "" })
+                    self.checksource(news: news, friends: friends, groups: groups)
+                    print(friends)
+                    completion?(news, nil)
                 case .failure(let error):
                     completion?(nil, error)
                 }
             }
         }
     }
-    public func checksource() {
-        for post in self.news {
+    public func checksource(news: [News], friends: [User], groups: [Group]) {
+        for post in news {
             if post.sourceId > 0 {
                 let index = friends.firstIndex(where: { (item) -> Bool in
                     item.id == post.sourceId

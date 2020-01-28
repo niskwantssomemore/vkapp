@@ -10,8 +10,10 @@ import UIKit
 
 class NewsController: UITableViewController {
 
+    private let networkService = NetworkService()
     override func viewDidLoad() {
         super.viewDidLoad()
+        networkService.getnews()
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
