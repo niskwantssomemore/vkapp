@@ -9,19 +9,48 @@
 import UIKit
 
 class NewsController: UITableViewController {
-
     private let networkService = NetworkService()
+    var newsList = [News]()
+    private let photoService = PhotoService()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        networkService.getnews()
+        networkService.getNewsList() { (result, err)  in
+            if (err == nil && result != nil) {
+                self.newsList = result!
+                self.tableView.reloadData()
+            }
+        }
     }
-
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
+        return newsList.count
     }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 3
     }
-
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var newsCell: News?
+        if newsList.indices.contains(indexPath.section) {
+            newsCell = newsList[indexPath.section]
+        }
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell", for: indexPath) as! HeaderCell
+            if let news = newsCell {
+                cell.configure(with: news, indexPath: indexPath, using: photoService)
+            }
+            return cell
+        } else if indexPath.row == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ImageCell", for: indexPath) as! ImageCell
+            if let news = newsCell {
+                cell.configure(with: news, indexPath: indexPath, using: photoService)
+            }
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LikeCell", for: indexPath) as! LikeCell
+            if let news = newsCell {
+                cell.configure(with: news, indexPath: indexPath)
+            }
+            return cell
+        }
+    }
 }

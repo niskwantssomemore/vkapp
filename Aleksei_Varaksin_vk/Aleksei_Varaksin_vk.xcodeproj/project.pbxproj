@@ -33,6 +33,10 @@
 		41D075CD2363213C00470998 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D075CC2363213C00470998 /* GroupCell.swift */; };
 		41D3369B23D7B55C00198942 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D3369A23D7B55C00198942 /* News.swift */; };
 		41D83252236D9F66007AD966 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D83251236D9F66007AD966 /* AvatarView.swift */; };
+		41DDAAC123E5DFCE005AC9F9 /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DDAAC023E5DFCE005AC9F9 /* PhotoService.swift */; };
+		41DDAAC323E5E702005AC9F9 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DDAAC223E5E702005AC9F9 /* HeaderCell.swift */; };
+		41DDAAC723E5E72E005AC9F9 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DDAAC623E5E72E005AC9F9 /* ImageCell.swift */; };
+		41DDAAC923E5E74A005AC9F9 /* LikeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DDAAC823E5E74A005AC9F9 /* LikeCell.swift */; };
 		41EF7304236338C70047E0B5 /* BasicGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EF7303236338C70047E0B5 /* BasicGroupCell.swift */; };
 		41EF730623633CC80047E0B5 /* FriendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EF730523633CC80047E0B5 /* FriendController.swift */; };
 		41EF730823633CE40047E0B5 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EF730723633CE40047E0B5 /* FriendCell.swift */; };
@@ -71,6 +75,10 @@
 		41D075CC2363213C00470998 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		41D3369A23D7B55C00198942 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		41D83251236D9F66007AD966 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
+		41DDAAC023E5DFCE005AC9F9 /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
+		41DDAAC223E5E702005AC9F9 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HeaderCell.swift; path = Aleksei_Varaksin_vk/Data/HeaderCell.swift; sourceTree = SOURCE_ROOT; };
+		41DDAAC623E5E72E005AC9F9 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageCell.swift; path = Aleksei_Varaksin_vk/Data/ImageCell.swift; sourceTree = SOURCE_ROOT; };
+		41DDAAC823E5E74A005AC9F9 /* LikeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LikeCell.swift; path = Aleksei_Varaksin_vk/Data/LikeCell.swift; sourceTree = SOURCE_ROOT; };
 		41EF7303236338C70047E0B5 /* BasicGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicGroupCell.swift; sourceTree = "<group>"; };
 		41EF730523633CC80047E0B5 /* FriendController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendController.swift; sourceTree = "<group>"; };
 		41EF730723633CE40047E0B5 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
@@ -116,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				4175C42A239266230016A260 /* Session.swift */,
+				41DDAAC023E5DFCE005AC9F9 /* PhotoService.swift */,
 				418B602023AEF00D00BF31DD /* RealmService.swift */,
 				41694342239FF45200B1D479 /* User.swift */,
 				41694344239FF46900B1D479 /* Photo.swift */,
@@ -131,6 +140,9 @@
 		418CA56F23D3CA1C003DBB29 /* NewsCell */ = {
 			isa = PBXGroup;
 			children = (
+				41DDAAC223E5E702005AC9F9 /* HeaderCell.swift */,
+				41DDAAC623E5E72E005AC9F9 /* ImageCell.swift */,
+				41DDAAC823E5E74A005AC9F9 /* LikeCell.swift */,
 			);
 			path = NewsCell;
 			sourceTree = "<group>";
@@ -360,14 +372,18 @@
 				41D075CD2363213C00470998 /* GroupCell.swift in Sources */,
 				41A916C223DCF78900C754DC /* NetworkFetchOperation.swift in Sources */,
 				41A916C423DCF7D500C754DC /* AsyncOperation.swift in Sources */,
+				41DDAAC923E5E74A005AC9F9 /* LikeCell.swift in Sources */,
+				41DDAAC123E5DFCE005AC9F9 /* PhotoService.swift in Sources */,
 				41694345239FF46900B1D479 /* Photo.swift in Sources */,
 				419B8C8E2397C9600075031F /* NetworkService.swift in Sources */,
 				4184DF3F235F4137006E7E4A /* UiViewController+ext.swift in Sources */,
 				41694347239FF48300B1D479 /* Group.swift in Sources */,
+				41DDAAC723E5E72E005AC9F9 /* ImageCell.swift in Sources */,
 				41BDEB542396A1B100F3395A /* BigPhotoController.swift in Sources */,
 				419C8D32238985F900D17609 /* PushAnimation.swift in Sources */,
 				41EF7304236338C70047E0B5 /* BasicGroupCell.swift in Sources */,
 				41CD650F235B8AE000DD3359 /* AppDelegate.swift in Sources */,
+				41DDAAC323E5E702005AC9F9 /* HeaderCell.swift in Sources */,
 				41CD6511235B8AE000DD3359 /* SceneDelegate.swift in Sources */,
 				41D83252236D9F66007AD966 /* AvatarView.swift in Sources */,
 				419B8C8C2397C2EE0075031F /* VKLoginController.swift in Sources */,

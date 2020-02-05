@@ -20,6 +20,7 @@ class AllFriendsController: UITableViewController {
     var myFriends: Results<User>?
     var filteredFriends: Results<User>?
     var notificationToken: NotificationToken?
+    private let photoService = PhotoService()
     var firstLettersArray = [String]()
     
     override func viewDidLoad() {
@@ -74,7 +75,7 @@ class AllFriendsController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendStartCell", for: indexPath) as? FriendStartCell else { preconditionFailure("FriendStartCell cannot be dequeued") }
         let firstLetter = firstLettersArray[indexPath.section]
         if let users = filteredFriends?.filter("last_name BEGINSWITH[cd] %@", firstLetter) {
-            cell.configure(with: users[indexPath.row])
+            cell.configure(with: users[indexPath.row], using: photoService)
         }
             
         return cell

@@ -10,53 +10,50 @@ import Foundation
 import SwiftyJSON
 import RealmSwift
 
-class News: Object {
-    @objc dynamic var postId = 0
-    @objc dynamic var sourceId = 0
-    @objc dynamic var newsPhoto = ""
-    @objc dynamic var newsText = ""
-    @objc dynamic var imageURLstring = ""
-    @objc dynamic var imageHeight = 0
-    @objc dynamic var imageWidth = 0
-    @objc dynamic var countLikes = 0
-    @objc dynamic var isLiked = 0
-    @objc dynamic var countComments = 0
-    @objc dynamic var countReposts = 0
-    @objc dynamic var isReposted = 0
-    @objc dynamic var totalViews = 0
-    @objc dynamic var newsHeader = ""
-    
-    required convenience init(from json: JSON) {
-        self.init()
-        self.postId = json["post_id"].intValue
-        self.sourceId = json["source_id"].intValue
-        self.newsPhoto = json["photo_100"].stringValue
-        self.newsText = json["text"].stringValue
-        self.countLikes = json["likes"]["count"].intValue
-        self.isLiked = json["likes"]["user_likes"].intValue
-        self.countComments = json["comments"]["count"].intValue
-        self.countReposts = json["reposts"]["count"].intValue
-        self.isReposted = json["reposts"]["user_reposted"].intValue
-        self.totalViews = json["views"]["count"].intValue
-        if json["type"] == "post" {
-            for size in json["attachments"][0]["photo"]["sizes"].arrayValue {
-                if size["type"].stringValue == "x" {
-                    self.imageURLstring = size["url"].stringValue
-                    self.imageWidth = size["width"].intValue
-                    self.imageHeight = size["height"].intValue
-                }
-            }
-        } else {
-            for size in json["photos"]["items"][0]["sizes"].arrayValue {
-                if size["type"].stringValue == "x" {
-                    self.imageURLstring = size["url"].stringValue
-                    self.imageWidth = size["width"].intValue
-                    self.imageHeight = size["height"].intValue
-                }
-            }
-        }
-    }
-    override static func primaryKey() -> String? {
-        return "postId"
+class News {
+//    @objc dynamic var postId = 0
+//    @objc dynamic var sourceId = 0
+//    @objc dynamic var newsPhoto = ""
+//    @objc dynamic var newsText = ""
+//    @objc dynamic var avatar = ""
+//    @objc dynamic var avatarWidth = 0
+//    @objc dynamic var avatarHeight = 0
+//    @objc dynamic var countLikes = 0
+//    @objc dynamic var isLiked = 0
+//    @objc dynamic var countComments = 0
+//    @objc dynamic var countReposts = 0
+//    @objc dynamic var isReposted = 0
+//    @objc dynamic var totalViews = 0
+//    @objc dynamic var newsHeader = ""
+//
+//    required convenience init(from json: JSON) {
+//        self.init()
+//    }
+//    override static func primaryKey() -> String? {
+//        return "postId"
+//    }
+    var title: String
+    var content: String
+    var date: String
+    var picture: String?
+    var likes: Int? = 0
+    var comments: Int? = 0
+    var views: Int? = 0
+    var shared: Int? = 0
+    var isLiked: Bool? = false
+    var isShared: Bool? = false
+    var avatar: String?
+    init (title: String, content: String, date: String, picture: String?, likes: Int, views: Int, comments: Int, shared: Int, isLiked: Bool, avatar: String?, isShared: Bool) {
+        self.title = title
+        self.content = content
+        self.date = date
+        self.picture = picture
+        self.likes = likes
+        self.comments = comments
+        self.views = views
+        self.shared = shared
+        self.isLiked = isLiked
+        self.avatar = avatar
+        self.isShared = isShared
     }
 }

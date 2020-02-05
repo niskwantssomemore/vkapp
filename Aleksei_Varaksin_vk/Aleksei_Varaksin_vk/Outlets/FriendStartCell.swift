@@ -7,14 +7,13 @@
 //
 
 import UIKit
-import Kingfisher
 
 class FriendStartCell: UITableViewCell {
     @IBOutlet var FriendStartImageView: UIImageView!
     @IBOutlet var FriendStartLabel: UILabel!
     
-    public func configure(with friend: User) {
+    public func configure(with friend: User, using photoService: PhotoService) {
         FriendStartLabel.text = "\(friend.first_name) \(friend.last_name)"
-        FriendStartImageView.kf.setImage(with: URL(string: friend.photo_200_orig))
+        photoService.photo(urlString: friend.photo_200_orig).done(on: .main) { [weak self] image in self?.FriendStartImageView.image = image}.catch { print($0.localizedDescription)}
     }
 }

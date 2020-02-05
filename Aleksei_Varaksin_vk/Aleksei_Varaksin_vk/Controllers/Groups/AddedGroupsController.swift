@@ -20,6 +20,7 @@ class AddedGroupsController: UITableViewController {
     var filteredGroups = [Group]()
     private lazy var myGroups: Results<Group> = try! Realm(configuration: RealmService.deleteIfMigration).objects(Group.self)
     private let networkService = NetworkService()
+    private let photoService = PhotoService()
     override func viewDidLoad() {
         super.viewDidLoad()
         networkService.groupuser() { [weak self] result in
@@ -50,7 +51,7 @@ class AddedGroupsController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as? GroupCell else { preconditionFailure("GroupCell cannot be dequeued") }
         let group = filteredGroups[indexPath.row]
-        cell.configure(with: group)
+        cell.configure(with: group, using: photoService)
         return cell
     }
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

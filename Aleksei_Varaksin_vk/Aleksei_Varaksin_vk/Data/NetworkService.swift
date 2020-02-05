@@ -17,6 +17,9 @@ class NetworkService {
         let session = Alamofire.SessionManager(configuration: config)
         return session
     }()
+    private var news = [News]()
+    private var users = [User]()
+    private var groups = [Group]()
     public func frienduser(photos: [Photo] = [], completion: @escaping ([User]) -> Void) {
         let baseUrl = "https://api.vk.com"
         let path = "/method/friends.get"
@@ -153,10 +156,8 @@ class NetworkService {
         
         NetworkService.session.request(baseUrl + path, method: .get, parameters: params).responseJSON { response in
             switch response.result {
-//            case .success(_): break
-//            case .failure(_): break
-                case .success(_): print(response)
-                case .failure(_): print(response)
+            case .success(_): break
+            case .failure(_): break
             }
         }
     }
@@ -210,48 +211,128 @@ class NetworkService {
             }
         }
     }
-    public func getnews(completion: (([News]?, Error?) -> Void)? = nil) {
-        DispatchQueue.global(qos: .utility).async {
-            let baseUrl = "https://api.vk.com"
-            let path = "/method/newsfeed.get"
-            let params: Parameters = [
-                "access_token": Session.shared.token,
-                "filters": "post, photo",
-                "max_photos": "1",
-                "v": "5.103"
-            ]
-            
-            NetworkService.session.request(baseUrl + path, method: .get, parameters: params).responseJSON { response in
-                switch response.result {
-                case .success(let value):
-                    let json = JSON(value)
-                    var news = json["response"]["items"].arrayValue.map { News(from: $0)}
-                    let friends = json["response"]["profiles"].arrayValue.map { User(from: $0)}
-                    let groups = json["response"]["groups"].arrayValue.map { Group(from: $0)}
-                    news = (news.filter { $0.newsText != "" || $0.imageURLstring != "" })
-                    self.checksource(news: news, friends: friends, groups: groups)
-                    print(friends)
-                    completion?(news, nil)
-                case .failure(let error):
-                    completion?(nil, error)
+    public func getnews(from json: JSON, complition: @escaping ([News]) -> Void) {
+        var sourceList = [Int:[[String:String]]]()
+        var NewsList = [News]()
+        guard let items = json["response"]["items"].array else { return complition(NewsList) }
+        let parsingDataGroupDispatch = DispatchGroup()
+        if items.count == 0 {
+            complition(NewsList)
+        }
+        DispatchQueue.global().async(group: parsingDataGroupDispatch) {
+            if let groups = json["response"]["groups"].array,
+                groups.count > 0 {
+                for group in groups {
+                    if let gID = group["id"].int,
+                        let gName = group["name"].string,
+                        let gAvatar = group["photo_50"].string
+                    {
+                        sourceList[gID] = [["name": gName], ["avatar": gAvatar]]
+                    }
+                }
+            }
+            if let profiles = json["response"]["profiles"].array,
+                profiles.count > 0 {
+                for profile in profiles {
+                    if let pID = profile["id"].int,
+                        let pFirstName = profile["first_name"].string,
+                        let pLastName = profile["last_name"].string,
+                        let pAvatar = profile["photo_50"].string
+                    {
+                        sourceList[pID] = [["name": pFirstName + " " + pLastName], ["avatar": pAvatar]]
+                    }
                 }
             }
         }
+        let parsingNewsDispatchGroup = DispatchQueue(label: "parsingNewsQueue")
+        parsingDataGroupDispatch.notify(queue: parsingNewsDispatchGroup) {
+            for item in items {
+                if var sourceId = item["source_id"].int,
+                    let date = item["date"].double,
+                    let text = item["text"].string,
+                    !text.isEmpty
+                {
+                    var title = "Без названия"
+                    var avatar: String?
+                    var picture: String?
+                    if sourceId < 0 {
+                        sourceId = sourceId * -1
+                        if let sObj = sourceList[sourceId],
+                            let sName = sObj[0]["name"],
+                            let sAvatar = sObj[1]["avatar"] {
+                            title = sName
+                            avatar = sAvatar
+                        }
+                    }
+                    if let attachments = item["attachments"].array {
+                        let photos = attachments.filter({ $0["type"].stringValue == "photo" })
+                        var pSizeArray = [JSON]()
+                        if photos.count == 0 {
+                            let pLink = attachments.filter({ $0["type"].stringValue == "link" })
+                            if pLink.count > 0 {
+                                pSizeArray = pLink[0]["link"]["photo"]["sizes"].arrayValue
+                            }
+                        } else {
+                            pSizeArray = photos[0]["photo"]["sizes"].arrayValue
+                        }
+                        if pSizeArray.count > 0 {
+                            let pArr = pSizeArray.filter({ $0["type"].stringValue == "y" || $0["type"].stringValue == "l" || $0["type"].stringValue == "m" || $0["type"].stringValue == "r" })
+                            let pSizeCount = pArr.count
+                            if pSizeCount == 1 {
+                                picture = pArr[0]["url"].stringValue
+                            } else if pSizeCount > 1 {
+                                for i in 0..<pSizeCount {
+                                    picture = pArr[i]["url"].stringValue
+                                    if pArr[i]["type"].stringValue == "y" {
+                                        break
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    let likes = item["likes"]["count"].int ?? 0
+                    let isLiked = (item["likes"]["user_likes"].intValue == 0 ? false : true)
+                    let comments = item["comments"]["count"].int ?? 0
+                    let views = item["views"]["count"].int ?? 0
+                    let shared = item["reposts"]["count"].int ?? 0
+                    let isShared = (item["reposts"]["user_reposted"].intValue == 0 ? false : true)
+                    let humanDate = Date(timeIntervalSince1970: date)
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.timeStyle = .none //Set time style
+                    dateFormatter.dateStyle = DateFormatter.Style.medium //Set date style
+                    dateFormatter.timeZone = .current
+                    let localDate = dateFormatter.string(from: humanDate)
+                    NewsList.append(News(title: title, content: text, date: localDate, picture: picture, likes: likes, views: views, comments: comments, shared: shared, isLiked: isLiked, avatar: avatar, isShared: isShared))
+                }
+            }
+            DispatchQueue.main.async {
+                complition(NewsList)
+            }
+        }
     }
-    public func checksource(news: [News], friends: [User], groups: [Group]) {
-        for post in news {
-            if post.sourceId > 0 {
-                let index = friends.firstIndex(where: { (item) -> Bool in
-                    item.id == post.sourceId
-                })
-                post.newsHeader = "\(friends[index!].first_name) \(friends[index!].last_name)"
-                post.newsPhoto = friends[index!].photo_200_orig
-            } else {
-                let index = groups.firstIndex(where: { (item) -> Bool in
-                    item.id == post.sourceId * -1
-                })
-                post.newsHeader = groups[index!].name
-                post.newsPhoto = groups[index!].image
+    public func getNewsList(completion: @escaping (([News]?, Error?) -> Void) ) {
+        let token = Session.shared.token
+        let baseUrl = "https://api.vk.com"
+        let path = "/method/newsfeed.get"
+        if !token.isEmpty {
+            let params: Parameters = [
+                "access_token": token,
+                "filters": "post",
+                "return_banned": 0,
+                "count": 20,
+                "v": "5.103",
+                "fields":"nickname,photo_50"
+            ]
+            NetworkService.session.request(baseUrl + path, method: .get, parameters: params).responseJSON { response in
+                switch response.result {
+                case let .success(data):
+                    let json = JSON(data)
+                    self.getnews(from: json) { NewsList in
+                        completion(NewsList, nil)
+                    }
+                case let .failure(error):
+                    completion(nil, error)
+                }                
             }
         }
     }

@@ -7,14 +7,13 @@
 //
 
 import UIKit
-import Kingfisher
 
 class GroupCell: UITableViewCell {
     @IBOutlet var groupImageView: UIImageView!
     @IBOutlet var groupnameLabel: UILabel!
     
-    public func configure(with group: Group) {
+    public func configure(with group: Group, using photoService: PhotoService) {
         groupnameLabel.text = "\(group.name)"
-        groupImageView.kf.setImage(with: URL(string: group.image))
+        photoService.photo(urlString: group.image).done(on: .main) { [weak self] image in self?.groupImageView.image = image}.catch { print($0.localizedDescription)}
     }
 }

@@ -17,6 +17,7 @@ class FriendController: UICollectionViewController {
     private let networkService = NetworkService()
     private var photos: Results<Photo>?
     var notificationToken: NotificationToken?
+    private let photoService = PhotoService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,7 +74,7 @@ class FriendController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FriendCell", for: indexPath) as? FriendCell else { preconditionFailure("FriendCell cannot be dequeued") }
         if let photos = photos {
-            cell.configure(with: photos[indexPath.row])
+            cell.configure(with: photos[indexPath.row], using: photoService)
         }
         
         return cell

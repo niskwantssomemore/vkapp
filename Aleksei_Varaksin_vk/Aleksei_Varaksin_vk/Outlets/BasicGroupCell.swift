@@ -12,8 +12,8 @@ class BasicGroupCell: UITableViewCell {
     @IBOutlet var basicgroupImageView: UIImageView!
     @IBOutlet var basicgroupnameLabel: UILabel!
     
-    public func configure(with group: Group) {
+    public func configure(with group: Group, using photoService: PhotoService) {
         basicgroupnameLabel.text = "\(group.name)"
-        basicgroupImageView.kf.setImage(with: URL(string: group.image))
+        photoService.photo(urlString: group.image).done(on: .main) { [weak self] image in self?.basicgroupImageView.image = image}.catch { print($0.localizedDescription)}
     }
 }

@@ -19,6 +19,7 @@ class AllGroupsController: UITableViewController {
         }
     }
     public var groups = [Group]()
+    private let photoService = PhotoService()
     let q = OperationQueue()
     private lazy var myRecommendGroups: Results<Group> = try! Realm(configuration: RealmService.deleteIfMigration).objects(Group.self)
     private let networkService = NetworkService()
@@ -60,8 +61,7 @@ class AllGroupsController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "BasicGroupCell", for: indexPath) as? BasicGroupCell else { preconditionFailure("BasicGroupCell cannot be dequeued") }
         let group = groups[indexPath.row]
-        cell.configure(with: group)
-
+        cell.configure(with: group, using: photoService)
         return cell
     }
 }

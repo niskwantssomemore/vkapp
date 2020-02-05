@@ -12,8 +12,9 @@ class FriendCell: UICollectionViewCell {
     @IBOutlet var friendImageView: UIImageView!
     @IBOutlet var LikeControl: LikeControl!
     
-    public func configure(with photo: Photo) {
-        friendImageView.kf.setImage(with: URL(string: photo.image))
+    public func configure(with photo: Photo, using photoService: PhotoService) {
+//        friendImageView.kf.setImage(with: URL(string: photo.image))
+        photoService.photo(urlString: photo.image).done(on: .main) { [weak self] image in self?.friendImageView.image = image}.catch { print($0.localizedDescription)}
         LikeControl.likeCounter.text = "\(photo.countlikes)"
         LikeControl.owner = photo.ownerId
         LikeControl.item = photo.id
