@@ -53,7 +53,7 @@
                                             <rect key="frame" x="30" y="15" width="150" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="9zt-eS-q13" secondAttribute="height" multiplier="3:1" id="fFn-0m-PvQ"/>
-                                                <constraint firstAttribute="width" constant="150" id="tyU-8Q-NoJ"/>
+                                                <constraint firstAttribute="width" priority="999" constant="150" id="tyU-8Q-NoJ"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Studio 21" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Spi-IA-4Uy">
@@ -269,20 +269,20 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Имя Фамилия" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0iK-yM-wcd">
-                                            <rect key="frame" x="85" y="29.5" width="314" height="21"/>
+                                            <rect key="frame" x="90" y="29.5" width="309" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KXK-K4-TsM" customClass="AvatarView" customModule="Aleksei_Varaksin_vk" customModuleProvider="target">
-                                            <rect key="frame" x="5" y="7.5" width="65" height="65"/>
+                                            <rect key="frame" x="5" y="5" width="70" height="70"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pec-t8-8zE" userLabel="Shadow View">
-                                                    <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 </view>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rZ5-Nz-XnI">
-                                                    <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -294,7 +294,7 @@
                                                 <constraint firstItem="pec-t8-8zE" firstAttribute="top" secondItem="KXK-K4-TsM" secondAttribute="top" id="U37-uv-uVf"/>
                                                 <constraint firstAttribute="bottom" secondItem="rZ5-Nz-XnI" secondAttribute="bottom" id="VeK-7B-Iv3"/>
                                                 <constraint firstAttribute="trailing" secondItem="rZ5-Nz-XnI" secondAttribute="trailing" id="Yhx-ss-DFQ"/>
-                                                <constraint firstAttribute="width" constant="65" id="c7A-Kk-nUk"/>
+                                                <constraint firstAttribute="width" priority="999" constant="70" id="c7A-Kk-nUk"/>
                                                 <constraint firstItem="rZ5-Nz-XnI" firstAttribute="leading" secondItem="KXK-K4-TsM" secondAttribute="leading" id="iBh-m4-yHS"/>
                                                 <constraint firstAttribute="trailing" secondItem="pec-t8-8zE" secondAttribute="trailing" id="kJm-5F-l9N"/>
                                             </constraints>
@@ -305,12 +305,12 @@
                                         </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="KXK-K4-TsM" secondAttribute="bottom" constant="7.5" id="CR3-op-sEo"/>
+                                        <constraint firstAttribute="bottom" secondItem="KXK-K4-TsM" secondAttribute="bottom" constant="5" id="CR3-op-sEo"/>
                                         <constraint firstItem="0iK-yM-wcd" firstAttribute="centerY" secondItem="rZ5-Nz-XnI" secondAttribute="centerY" id="Cy9-x9-2bi"/>
                                         <constraint firstItem="KXK-K4-TsM" firstAttribute="leading" secondItem="MDe-T1-YBa" secondAttribute="leading" constant="5" id="Xgl-jr-sxd"/>
                                         <constraint firstItem="0iK-yM-wcd" firstAttribute="leading" secondItem="KXK-K4-TsM" secondAttribute="trailing" constant="15" id="hVC-wO-4eV"/>
                                         <constraint firstAttribute="trailing" secondItem="0iK-yM-wcd" secondAttribute="trailing" constant="15" id="ocl-jv-gTp"/>
-                                        <constraint firstItem="KXK-K4-TsM" firstAttribute="top" secondItem="MDe-T1-YBa" secondAttribute="top" constant="7.5" id="sJb-ix-wLI"/>
+                                        <constraint firstItem="KXK-K4-TsM" firstAttribute="top" secondItem="MDe-T1-YBa" secondAttribute="top" constant="5" id="sJb-ix-wLI"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
