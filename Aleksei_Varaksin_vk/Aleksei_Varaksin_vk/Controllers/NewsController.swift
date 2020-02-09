@@ -15,10 +15,16 @@ class NewsController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        networkService.getNewsList() { (result, err)  in
-            if (err == nil && result != nil) {
-                self.newsList = result!
-                self.tableView.reloadData()
+        networkService.getNewsList() { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case let .success(news):
+                self.newsList = news
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            case let .failure(error):
+                print(error)
             }
         }
     }

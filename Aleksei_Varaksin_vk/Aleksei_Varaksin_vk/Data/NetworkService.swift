@@ -310,7 +310,7 @@ class NetworkService {
             }
         }
     }
-    public func getNewsList(completion: @escaping (([News]?, Error?) -> Void) ) {
+    public func getNewsList(completion: @escaping ((Swift.Result<[News], Error>) -> Void) ) {
         let token = Session.shared.token
         let baseUrl = "https://api.vk.com"
         let path = "/method/newsfeed.get"
@@ -328,10 +328,10 @@ class NetworkService {
                 case let .success(data):
                     let json = JSON(data)
                     self.getnews(from: json) { NewsList in
-                        completion(NewsList, nil)
+                        completion(.success(NewsList))
                     }
                 case let .failure(error):
-                    completion(nil, error)
+                    completion(.failure(error))
                 }                
             }
         }
