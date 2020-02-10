@@ -23,6 +23,7 @@ class AddedGroupsController: UITableViewController {
     private let photoService = PhotoService()
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.rowHeight = 80
         networkService.groupuser() { [weak self] result in
             guard let self = self else { return }
             switch result {
@@ -49,7 +50,7 @@ class AddedGroupsController: UITableViewController {
         return filteredGroups.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as? GroupCell else { preconditionFailure("GroupCell cannot be dequeued") }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "AddedGroupCell", for: indexPath) as? AddedGroupCell else { preconditionFailure("AddedGroupCell cannot be dequeued") }
         let group = filteredGroups[indexPath.row]
         cell.configure(with: group, using: photoService)
         return cell

@@ -60,7 +60,7 @@ class AllGroupsController: UITableViewController {
         return groups.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "BasicGroupCell", for: indexPath) as? BasicGroupCell else { preconditionFailure("BasicGroupCell cannot be dequeued") }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "AllGroupCell", for: indexPath) as? AllGroupCell else { preconditionFailure("AllGroupCell cannot be dequeued") }
         let group = groups[indexPath.row]
         cell.configure(with: group, using: photoService)
         return cell

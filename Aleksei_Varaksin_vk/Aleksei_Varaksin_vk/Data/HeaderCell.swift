@@ -16,7 +16,7 @@ class HeaderCell: UITableViewCell {
     
     func configure (with newsCell: News, indexPath: IndexPath?, using photoService: PhotoService) {
         hostLabel.text = newsCell.title
-        timeLabel.text = newsCell.date
+        timeLabel.text = String(newsCell.date)
         mainTextLabel.text = newsCell.content
         
         if let avatar = newsCell.avatar {

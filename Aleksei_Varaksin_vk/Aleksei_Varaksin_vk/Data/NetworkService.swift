@@ -296,13 +296,7 @@ class NetworkService {
                     let views = item["views"]["count"].int ?? 0
                     let shared = item["reposts"]["count"].int ?? 0
                     let isShared = (item["reposts"]["user_reposted"].intValue == 0 ? false : true)
-                    let humanDate = Date(timeIntervalSince1970: date)
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.timeStyle = .none //Set time style
-                    dateFormatter.dateStyle = DateFormatter.Style.medium //Set date style
-                    dateFormatter.timeZone = .current
-                    let localDate = dateFormatter.string(from: humanDate)
-                    NewsList.append(News(title: title, content: text, date: localDate, picture: picture, likes: likes, views: views, comments: comments, shared: shared, isLiked: isLiked, avatar: avatar, isShared: isShared))
+                    NewsList.append(News(title: title, content: text, date: date, picture: picture, likes: likes, views: views, comments: comments, shared: shared, isLiked: isLiked, avatar: avatar, isShared: isShared))
                 }
             }
             DispatchQueue.main.async {
@@ -310,12 +304,12 @@ class NetworkService {
             }
         }
     }
-    public func getNewsList(completion: @escaping ((Swift.Result<[News], Error>) -> Void) ) {
+    public func getNewsList(startTime: Double? = nil, startFrom: String? = nil, completion: @escaping ((Swift.Result<[News], Error>) -> Void) ) {
         let token = Session.shared.token
         let baseUrl = "https://api.vk.com"
         let path = "/method/newsfeed.get"
         if !token.isEmpty {
-            let params: Parameters = [
+            var params: Parameters = [
                 "access_token": token,
                 "filters": "post",
                 "return_banned": 0,
@@ -323,6 +317,12 @@ class NetworkService {
                 "v": "5.103",
                 "fields":"nickname,photo_50"
             ]
+            if let startTime = startTime {
+                params.updateValue(String(startTime), forKey: "start_time")
+            }
+            if let startFrom = startFrom {
+               params.updateValue(startFrom, forKey: "start_from")
+            }
             NetworkService.session.request(baseUrl + path, method: .get, parameters: params).responseJSON { response in
                 switch response.result {
                 case let .success(data):

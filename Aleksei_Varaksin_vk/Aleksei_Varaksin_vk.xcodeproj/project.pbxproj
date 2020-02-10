@@ -30,14 +30,14 @@
 		41CD651B235B8AE100DD3359 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41CD6519235B8AE100DD3359 /* LaunchScreen.storyboard */; };
 		41D075C923631C6900470998 /* AddedGroupsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D075C823631C6900470998 /* AddedGroupsController.swift */; };
 		41D075CB23631D8300470998 /* AllGroupsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D075CA23631D8300470998 /* AllGroupsController.swift */; };
-		41D075CD2363213C00470998 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D075CC2363213C00470998 /* GroupCell.swift */; };
+		41D075CD2363213C00470998 /* AddedGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D075CC2363213C00470998 /* AddedGroupCell.swift */; };
 		41D3369B23D7B55C00198942 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D3369A23D7B55C00198942 /* News.swift */; };
 		41D83252236D9F66007AD966 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D83251236D9F66007AD966 /* AvatarView.swift */; };
 		41DDAAC123E5DFCE005AC9F9 /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DDAAC023E5DFCE005AC9F9 /* PhotoService.swift */; };
 		41DDAAC323E5E702005AC9F9 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DDAAC223E5E702005AC9F9 /* HeaderCell.swift */; };
 		41DDAAC723E5E72E005AC9F9 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DDAAC623E5E72E005AC9F9 /* ImageCell.swift */; };
 		41DDAAC923E5E74A005AC9F9 /* LikeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DDAAC823E5E74A005AC9F9 /* LikeCell.swift */; };
-		41EF7304236338C70047E0B5 /* BasicGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EF7303236338C70047E0B5 /* BasicGroupCell.swift */; };
+		41EF7304236338C70047E0B5 /* AllGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EF7303236338C70047E0B5 /* AllGroupCell.swift */; };
 		41EF730623633CC80047E0B5 /* FriendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EF730523633CC80047E0B5 /* FriendController.swift */; };
 		41EF730823633CE40047E0B5 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EF730723633CE40047E0B5 /* FriendCell.swift */; };
 		41FBFC32236847CE001685D8 /* AllFriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FBFC31236847CE001685D8 /* AllFriendsController.swift */; };
@@ -72,14 +72,14 @@
 		41CD651C235B8AE100DD3359 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41D075C823631C6900470998 /* AddedGroupsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddedGroupsController.swift; sourceTree = "<group>"; };
 		41D075CA23631D8300470998 /* AllGroupsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsController.swift; sourceTree = "<group>"; };
-		41D075CC2363213C00470998 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
+		41D075CC2363213C00470998 /* AddedGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddedGroupCell.swift; sourceTree = "<group>"; };
 		41D3369A23D7B55C00198942 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		41D83251236D9F66007AD966 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		41DDAAC023E5DFCE005AC9F9 /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
 		41DDAAC223E5E702005AC9F9 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HeaderCell.swift; path = Aleksei_Varaksin_vk/Data/HeaderCell.swift; sourceTree = SOURCE_ROOT; };
 		41DDAAC623E5E72E005AC9F9 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageCell.swift; path = Aleksei_Varaksin_vk/Data/ImageCell.swift; sourceTree = SOURCE_ROOT; };
 		41DDAAC823E5E74A005AC9F9 /* LikeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LikeCell.swift; path = Aleksei_Varaksin_vk/Data/LikeCell.swift; sourceTree = SOURCE_ROOT; };
-		41EF7303236338C70047E0B5 /* BasicGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicGroupCell.swift; sourceTree = "<group>"; };
+		41EF7303236338C70047E0B5 /* AllGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupCell.swift; sourceTree = "<group>"; };
 		41EF730523633CC80047E0B5 /* FriendController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendController.swift; sourceTree = "<group>"; };
 		41EF730723633CE40047E0B5 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		41FBFC31236847CE001685D8 /* AllFriendsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFriendsController.swift; sourceTree = "<group>"; };
@@ -105,9 +105,8 @@
 			children = (
 				418CA56F23D3CA1C003DBB29 /* NewsCell */,
 				41EF730723633CE40047E0B5 /* FriendCell.swift */,
-				41EF7303236338C70047E0B5 /* BasicGroupCell.swift */,
+				41994D4223F2081300596C0B /* GroupCells */,
 				41FBFC372368492B001685D8 /* FriendStartCell.swift */,
-				41D075CC2363213C00470998 /* GroupCell.swift */,
 			);
 			path = Outlets;
 			sourceTree = "<group>";
@@ -145,6 +144,15 @@
 				41DDAAC823E5E74A005AC9F9 /* LikeCell.swift */,
 			);
 			path = NewsCell;
+			sourceTree = "<group>";
+		};
+		41994D4223F2081300596C0B /* GroupCells */ = {
+			isa = PBXGroup;
+			children = (
+				41EF7303236338C70047E0B5 /* AllGroupCell.swift */,
+				41D075CC2363213C00470998 /* AddedGroupCell.swift */,
+			);
+			path = GroupCells;
 			sourceTree = "<group>";
 		};
 		419C8D302389857A00D17609 /* Transitions */ = {
@@ -369,7 +377,7 @@
 				419C8D34238986AD00D17609 /* PopAnimation.swift in Sources */,
 				41694343239FF45200B1D479 /* User.swift in Sources */,
 				41EF730823633CE40047E0B5 /* FriendCell.swift in Sources */,
-				41D075CD2363213C00470998 /* GroupCell.swift in Sources */,
+				41D075CD2363213C00470998 /* AddedGroupCell.swift in Sources */,
 				41A916C223DCF78900C754DC /* NetworkFetchOperation.swift in Sources */,
 				41A916C423DCF7D500C754DC /* AsyncOperation.swift in Sources */,
 				41DDAAC923E5E74A005AC9F9 /* LikeCell.swift in Sources */,
@@ -381,7 +389,7 @@
 				41DDAAC723E5E72E005AC9F9 /* ImageCell.swift in Sources */,
 				41BDEB542396A1B100F3395A /* BigPhotoController.swift in Sources */,
 				419C8D32238985F900D17609 /* PushAnimation.swift in Sources */,
-				41EF7304236338C70047E0B5 /* BasicGroupCell.swift in Sources */,
+				41EF7304236338C70047E0B5 /* AllGroupCell.swift in Sources */,
 				41CD650F235B8AE000DD3359 /* AppDelegate.swift in Sources */,
 				41DDAAC323E5E702005AC9F9 /* HeaderCell.swift in Sources */,
 				41CD6511235B8AE000DD3359 /* SceneDelegate.swift in Sources */,

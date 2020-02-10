@@ -34,7 +34,7 @@ class News {
 //    }
     var title: String
     var content: String
-    var date: String
+    var date: Double
     var picture: String?
     var likes: Int? = 0
     var comments: Int? = 0
@@ -43,7 +43,7 @@ class News {
     var isLiked: Bool? = false
     var isShared: Bool? = false
     var avatar: String?
-    init (title: String, content: String, date: String, picture: String?, likes: Int, views: Int, comments: Int, shared: Int, isLiked: Bool, avatar: String?, isShared: Bool) {
+    init (title: String, content: String, date: Double, picture: String?, likes: Int, views: Int, comments: Int, shared: Int, isLiked: Bool, avatar: String?, isShared: Bool) {
         self.title = title
         self.content = content
         self.date = date

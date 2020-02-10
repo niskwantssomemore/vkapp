@@ -27,6 +27,27 @@ class NewsController: UITableViewController {
                 print(error)
             }
         }
+        setupRefreshControl()
+    }
+    private func setupRefreshControl() {
+        refreshControl = UIRefreshControl()
+        refreshControl?.tintColor = .systemGreen
+        refreshControl?.attributedTitle = NSAttributedString(string: "Refreshing...")
+        refreshControl?.addTarget(self, action: #selector(refreshNews), for: .valueChanged)
+    }
+    @objc private func refreshNews() {
+        let startTime = newsList.first?.date ?? Date().timeIntervalSince1970
+        networkService.getNewsList(startTime: startTime + 1) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case let .success(news):
+                self.newsList = news + self.newsList
+                self.tableView.reloadData()
+            case .failure(let error):
+                print(error)
+            }
+            self.refreshControl?.endRefreshing()
+        }
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
         return newsList.count
