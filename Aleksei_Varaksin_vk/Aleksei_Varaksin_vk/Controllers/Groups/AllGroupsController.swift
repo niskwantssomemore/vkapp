@@ -25,6 +25,7 @@ class AllGroupsController: UITableViewController {
     private let networkService = NetworkService()
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.rowHeight = 80
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
