@@ -11,6 +11,8 @@ import UIKit
 class NewsController: UITableViewController {
     private let networkService = NetworkService()
     var newsList = [News]()
+    var nextFrom = ""
+    var isLoading = false
     private let photoService = PhotoService()
     
     override func viewDidLoad() {
@@ -18,8 +20,9 @@ class NewsController: UITableViewController {
         networkService.getNewsList() { [weak self] result in
             guard let self = self else { return }
             switch result {
-            case let .success(news):
+            case let .success(news, nextFrom):
                 self.newsList = news
+                self.nextFrom = nextFrom
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
@@ -27,6 +30,7 @@ class NewsController: UITableViewController {
                 print(error)
             }
         }
+        tableView.prefetchDataSource = self
         setupRefreshControl()
     }
     private func setupRefreshControl() {
@@ -40,7 +44,7 @@ class NewsController: UITableViewController {
         networkService.getNewsList(startTime: startTime + 1) { [weak self] result in
             guard let self = self else { return }
             switch result {
-            case let .success(news):
+            case let .success(news, _):
                 self.newsList = news + self.newsList
                 self.tableView.reloadData()
             case .failure(let error):
@@ -78,6 +82,32 @@ class NewsController: UITableViewController {
                 cell.configure(with: news, indexPath: indexPath)
             }
             return cell
+        }
+    }
+}
+extension NewsController: UITableViewDataSourcePrefetching {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        guard let maxSection = indexPaths.map({ $0.section }).max() else { return }
+        if maxSection > newsList.count - 3,
+            !isLoading {
+            isLoading = true
+            networkService.getNewsList(startFrom: nextFrom) { [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case let .success(news, nextFrom):
+                    let startIndex = self.newsList.count
+                    let endIndex = self.newsList.count + news.count
+                    let indexSet = IndexSet(integersIn: startIndex ..< endIndex)
+                    
+                    self.newsList.append(contentsOf: news)
+                    self.nextFrom = nextFrom
+
+                    self.tableView.insertSections(indexSet, with: .none)
+                case let .failure(error):
+                    print(error)
+                }
+                self.isLoading = false
+            }
         }
     }
 }

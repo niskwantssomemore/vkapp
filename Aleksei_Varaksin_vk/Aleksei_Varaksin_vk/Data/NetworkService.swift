@@ -304,7 +304,7 @@ class NetworkService {
             }
         }
     }
-    public func getNewsList(startTime: Double? = nil, startFrom: String? = nil, completion: @escaping ((Swift.Result<[News], Error>) -> Void) ) {
+    public func getNewsList(startTime: Double? = nil, startFrom: String? = nil, completion: @escaping ((Swift.Result<([News], String), Error>) -> Void) ) {
         let token = Session.shared.token
         let baseUrl = "https://api.vk.com"
         let path = "/method/newsfeed.get"
@@ -327,8 +327,9 @@ class NetworkService {
                 switch response.result {
                 case let .success(data):
                     let json = JSON(data)
+                    let nextFrom = json["response"]["next_from"].stringValue
                     self.getnews(from: json) { NewsList in
-                        completion(.success(NewsList))
+                        completion(.success((NewsList, nextFrom)))
                     }
                 case let .failure(error):
                     completion(.failure(error))

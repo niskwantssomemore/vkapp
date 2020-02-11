@@ -16,7 +16,13 @@ class HeaderCell: UITableViewCell {
     
     func configure (with newsCell: News, indexPath: IndexPath?, using photoService: PhotoService) {
         hostLabel.text = newsCell.title
-        timeLabel.text = String(newsCell.date)
+        let humanDate = Date(timeIntervalSince1970: newsCell.date)
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = .short
+        dateFormatter.dateStyle = DateFormatter.Style.medium
+        dateFormatter.timeZone = .current
+        let localDate = dateFormatter.string(from: humanDate)
+        timeLabel.text = localDate
         mainTextLabel.text = newsCell.content
         
         if let avatar = newsCell.avatar {

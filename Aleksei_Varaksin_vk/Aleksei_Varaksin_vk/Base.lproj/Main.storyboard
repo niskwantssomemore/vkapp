@@ -301,7 +301,7 @@
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="caI-2X-W7f">
                                             <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="60" id="XQE-Az-YVK"/>
+                                                <constraint firstAttribute="width" priority="999" constant="60" id="XQE-Az-YVK"/>
                                                 <constraint firstAttribute="width" secondItem="caI-2X-W7f" secondAttribute="height" multiplier="1:1" id="j8J-lz-NxV"/>
                                             </constraints>
                                         </imageView>
@@ -359,7 +359,7 @@
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dSq-I9-cdL" userLabel="PostImage">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="200" id="b9h-w1-Zhf"/>
+                                                <constraint firstAttribute="height" priority="999" constant="200" id="b9h-w1-Zhf"/>
                                             </constraints>
                                         </imageView>
                                     </subviews>
