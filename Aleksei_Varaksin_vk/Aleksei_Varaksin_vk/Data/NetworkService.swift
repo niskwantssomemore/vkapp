@@ -257,12 +257,12 @@ class NetworkService {
                     var picture: String?
                     if sourceId < 0 {
                         sourceId = sourceId * -1
-                        if let sObj = sourceList[sourceId],
-                            let sName = sObj[0]["name"],
-                            let sAvatar = sObj[1]["avatar"] {
-                            title = sName
-                            avatar = sAvatar
-                        }
+                    }
+                    if let sObj = sourceList[sourceId],
+                        let sName = sObj[0]["name"],
+                        let sAvatar = sObj[1]["avatar"] {
+                        title = sName
+                        avatar = sAvatar
                     }
                     if let attachments = item["attachments"].array {
                         let photos = attachments.filter({ $0["type"].stringValue == "photo" })

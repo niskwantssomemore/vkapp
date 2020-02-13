@@ -13,7 +13,6 @@ class RealmService {
     static let deleteIfMigration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
     
     static func save<T: Object>(items: [T], config: Realm.Configuration = Realm.Configuration(deleteRealmIfMigrationNeeded: true), update: Bool = true) {
-        print(config.fileURL!)
         do {
             let realm = try Realm(configuration: self.deleteIfMigration)
             try realm.write {
@@ -36,7 +35,6 @@ class RealmService {
         object: T,
         configuration: Realm.Configuration = deleteIfMigration
     ) throws {
-        print(configuration.fileURL ?? "")
         let realm = try Realm(configuration: configuration)
         try realm.write {
             realm.delete(object)

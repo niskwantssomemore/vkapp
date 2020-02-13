@@ -41,7 +41,7 @@ class FriendController: UICollectionViewController {
                 }
             }
         } catch {
-            print(error)
+            show(message: error as! String)
         }
     }
     private func tableobesrve() {
@@ -60,7 +60,7 @@ class FriendController: UICollectionViewController {
                     self.collectionView.reloadData()
                 }, completion: nil)
             case .error(let error):
-                print(error)
+                self.show(message: error as! String)
             }
         }
     }

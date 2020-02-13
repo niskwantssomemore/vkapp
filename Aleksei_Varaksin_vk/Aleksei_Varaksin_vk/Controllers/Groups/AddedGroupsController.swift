@@ -35,7 +35,7 @@ class AddedGroupsController: UITableViewController {
                     self.tableView.reloadData()
                 }
             case let .failure(error):
-                print(error)
+                self.show(message: error as! String)
             }
         }
     }

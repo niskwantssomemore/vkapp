@@ -11,27 +11,6 @@ import SwiftyJSON
 import RealmSwift
 
 class News {
-//    @objc dynamic var postId = 0
-//    @objc dynamic var sourceId = 0
-//    @objc dynamic var newsPhoto = ""
-//    @objc dynamic var newsText = ""
-//    @objc dynamic var avatar = ""
-//    @objc dynamic var avatarWidth = 0
-//    @objc dynamic var avatarHeight = 0
-//    @objc dynamic var countLikes = 0
-//    @objc dynamic var isLiked = 0
-//    @objc dynamic var countComments = 0
-//    @objc dynamic var countReposts = 0
-//    @objc dynamic var isReposted = 0
-//    @objc dynamic var totalViews = 0
-//    @objc dynamic var newsHeader = ""
-//
-//    required convenience init(from json: JSON) {
-//        self.init()
-//    }
-//    override static func primaryKey() -> String? {
-//        return "postId"
-//    }
     var title: String
     var content: String
     var date: Double

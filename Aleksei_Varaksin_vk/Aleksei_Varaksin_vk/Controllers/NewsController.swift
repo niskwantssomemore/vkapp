@@ -27,7 +27,7 @@ class NewsController: UITableViewController {
                     self.tableView.reloadData()
                 }
             case let .failure(error):
-                print(error)
+                self.show(message: error as! String)
             }
         }
         tableView.prefetchDataSource = self
@@ -48,7 +48,7 @@ class NewsController: UITableViewController {
                 self.newsList = news + self.newsList
                 self.tableView.reloadData()
             case .failure(let error):
-                print(error)
+                self.show(message: error as! String)
             }
             self.refreshControl?.endRefreshing()
         }
@@ -104,7 +104,7 @@ extension NewsController: UITableViewDataSourcePrefetching {
 
                     self.tableView.insertSections(indexSet, with: .none)
                 case let .failure(error):
-                    print(error)
+                    self.show(message: error as! String)
                 }
                 self.isLoading = false
             }

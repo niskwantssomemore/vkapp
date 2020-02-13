@@ -39,7 +39,7 @@ class AllFriendsController: UITableViewController {
                 self.firstLettersArray = self.prepareFirstLettersArray(filteredFriends: filteredFriends)
                 self.tableView.reloadData()
             case .error(let error):
-                print(error)
+                self.show(message: error as! String)
             }
         }
         networkService.frienduser() { myFriends in

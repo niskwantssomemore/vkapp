@@ -35,19 +35,9 @@ class AllGroupsController: UITableViewController {
             self.groups = operation.groups
         }
         q.addOperation(operation)
-//        networkService.grouprecomend() { [weak self] result in
-//            guard let self = self else { return }
-//            switch result {
-//            case let .success(group):
-//                try? RealmService.save(items: group, configuration: RealmService.deleteIfMigration, update: .all)
-//                self.groups = group
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-//            case let .failure(error):
-//                print(error)
-//            }
-//        }
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -81,7 +71,7 @@ extension AllGroupsController: UISearchBarDelegate {
                     self.tableView.reloadData()
                 }
             case let .failure(error):
-                print(error)
+                self.show(message: error as! String)
             }
         }
         tableView.reloadData()
