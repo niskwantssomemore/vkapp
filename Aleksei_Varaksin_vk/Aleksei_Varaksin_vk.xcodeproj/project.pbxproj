@@ -14,6 +14,9 @@
 		4184DF3F235F4137006E7E4A /* UiViewController+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4184DF3E235F4137006E7E4A /* UiViewController+ext.swift */; };
 		418B602123AEF00D00BF31DD /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418B602023AEF00D00BF31DD /* RealmService.swift */; };
 		41925C2E23CE7FDE00739126 /* LikeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41925C2D23CE7FDE00739126 /* LikeControl.swift */; };
+		4193220224111A700027619D /* PhotoAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193220124111A700027619D /* PhotoAdapter.swift */; };
+		4193220424111CB70027619D /* FlyweightUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193220324111CB70027619D /* FlyweightUIColor.swift */; };
+		4193220A241122550027619D /* FriendStartModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41932209241122550027619D /* FriendStartModelFactory.swift */; };
 		419B20CC2377580D00F5217E /* NewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419B20CB2377580D00F5217E /* NewsController.swift */; };
 		419B8C8C2397C2EE0075031F /* VKLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419B8C8B2397C2EE0075031F /* VKLoginController.swift */; };
 		419B8C8E2397C9600075031F /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419B8C8D2397C9600075031F /* NetworkService.swift */; };
@@ -54,6 +57,9 @@
 		4184DF3E235F4137006E7E4A /* UiViewController+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiViewController+ext.swift"; sourceTree = "<group>"; };
 		418B602023AEF00D00BF31DD /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		41925C2D23CE7FDE00739126 /* LikeControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeControl.swift; sourceTree = "<group>"; };
+		4193220124111A700027619D /* PhotoAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAdapter.swift; sourceTree = "<group>"; };
+		4193220324111CB70027619D /* FlyweightUIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlyweightUIColor.swift; sourceTree = "<group>"; };
+		41932209241122550027619D /* FriendStartModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendStartModelFactory.swift; sourceTree = "<group>"; };
 		419B20CB2377580D00F5217E /* NewsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsController.swift; sourceTree = "<group>"; };
 		419B8C8B2397C2EE0075031F /* VKLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKLoginController.swift; sourceTree = "<group>"; };
 		419B8C8D2397C9600075031F /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -146,6 +152,16 @@
 			path = NewsCell;
 			sourceTree = "<group>";
 		};
+		41932200241100530027619D /* Patterns */ = {
+			isa = PBXGroup;
+			children = (
+				4193220324111CB70027619D /* FlyweightUIColor.swift */,
+				41932209241122550027619D /* FriendStartModelFactory.swift */,
+				4193220124111A700027619D /* PhotoAdapter.swift */,
+			);
+			path = Patterns;
+			sourceTree = "<group>";
+		};
 		41994D4223F2081300596C0B /* GroupCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				41CD651C235B8AE100DD3359 /* Info.plist */,
+				41932200241100530027619D /* Patterns */,
 				419C8D302389857A00D17609 /* Transitions */,
 				41E10EB0236DD76F00F6A27D /* Apple */,
 				41EF7309236342980047E0B5 /* Controllers */,
@@ -377,6 +394,7 @@
 				419C8D34238986AD00D17609 /* PopAnimation.swift in Sources */,
 				41694343239FF45200B1D479 /* User.swift in Sources */,
 				41EF730823633CE40047E0B5 /* FriendCell.swift in Sources */,
+				4193220424111CB70027619D /* FlyweightUIColor.swift in Sources */,
 				41D075CD2363213C00470998 /* AddedGroupCell.swift in Sources */,
 				41A916C223DCF78900C754DC /* NetworkFetchOperation.swift in Sources */,
 				41A916C423DCF7D500C754DC /* AsyncOperation.swift in Sources */,
@@ -400,9 +418,11 @@
 				41FBFC382368492B001685D8 /* FriendStartCell.swift in Sources */,
 				4175C42B239266230016A260 /* Session.swift in Sources */,
 				419C8D2F2389856800D17609 /* NavigationController.swift in Sources */,
+				4193220A241122550027619D /* FriendStartModelFactory.swift in Sources */,
 				41925C2E23CE7FDE00739126 /* LikeControl.swift in Sources */,
 				41D075C923631C6900470998 /* AddedGroupsController.swift in Sources */,
 				41D075CB23631D8300470998 /* AllGroupsController.swift in Sources */,
+				4193220224111A700027619D /* PhotoAdapter.swift in Sources */,
 				41D3369B23D7B55C00198942 /* News.swift in Sources */,
 				418B602123AEF00D00BF31DD /* RealmService.swift in Sources */,
 			);

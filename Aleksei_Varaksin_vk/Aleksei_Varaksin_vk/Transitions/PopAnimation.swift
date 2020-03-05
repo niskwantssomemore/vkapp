@@ -9,27 +9,20 @@
 import UIKit
 
 class PopAnimation: NSObject, UIViewControllerAnimatedTransitioning {
-    
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 1
     }
-    
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        
         guard let source = transitionContext.viewController(forKey: .from) else { return }
         guard let destination = transitionContext.viewController(forKey: .to) else { return }
-        
         let width = source.view.frame.width
         let height = source.view.frame.height
-        
         let initialTranslation = CGAffineTransform(translationX: -100, y: 0)
         let initialScale = CGAffineTransform(scaleX: 0.8, y: 0.8)
-        
         transitionContext.containerView.addSubview(destination.view)
         transitionContext.containerView.sendSubviewToBack(destination.view)
         destination.view.frame = source.view.frame
         destination.view.transform = initialScale.concatenating(initialTranslation)
-        
         UIView.animateKeyframes(withDuration: self.transitionDuration(using: transitionContext),
                                 delay: 0,
                                 options: .calculationModePaced,

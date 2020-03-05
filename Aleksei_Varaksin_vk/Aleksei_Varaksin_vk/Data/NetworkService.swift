@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import RealmSwift
 
 class NetworkService {
     static let session: Alamofire.SessionManager = {
@@ -87,7 +88,7 @@ class NetworkService {
             }
         }
     }
-    public func friendphotos(for id: Int, completion: @escaping ([Photo]) -> Void) {
+    public func friendphotos(for id: Int) {
         let baseUrl = "https://api.vk.com"
         let path = "/method/photos.getAll"
     let params: Parameters = [
@@ -103,22 +104,28 @@ class NetworkService {
             switch response.result {
             case let .success(data):
                 let json = JSON(data)
-                var photos = json["response"]["items"].arrayValue.map { json in return Photo(from: json)}
-                var sortPhoto: [Photo] = []
-                for photo in photos {
-                    if photo.image != "" {
-                        sortPhoto.append(photo)
-                    }
-                }
-                photos = sortPhoto
-                completion(photos)
-                
+                let photos = json["response"]["items"].arrayValue.map { json in return Photo(from: json)}
+                self.savePhotoData(photos, id: id)
             case let .failure(error):
                 print(error)
             }
         }
     }
-    
+    private func savePhotoData(_ photos: [Photo], id: Int) {
+        do {
+            let realm = try Realm()
+            guard let user = realm.object(ofType: User.self, forPrimaryKey: id) else { return }
+            
+            let oldPhotos = user.photos
+            
+            realm.beginWrite()
+            realm.delete(oldPhotos)
+            user.photos.append(objectsIn: photos)
+            try realm.commitWrite()
+        } catch {
+            print(error)
+        }
+    }
     public func groupsearch(search: String, completion: ((Swift.Result<[Group], Error>) -> Void)? = nil) {
         let baseUrl = "https://api.vk.com"
         let path = "/method/groups.search"

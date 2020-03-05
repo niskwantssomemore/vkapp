@@ -23,13 +23,11 @@ class NavigationController: UINavigationController, UINavigationControllerDelega
         let edgePanGR = UIPanGestureRecognizer(target: self, action: #selector(handleEdgeGesture(_:)))
         view.addGestureRecognizer(edgePanGR)
     }
-    
     func navigationController(_ navigationController: UINavigationController,
                               interactionControllerFor animationController: UIViewControllerAnimatedTransitioning)
         -> UIViewControllerInteractiveTransitioning? {
             return interactiveTransition.hasStarted ? interactiveTransition : nil
     }
-    
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation,
                               from fromVC: UIViewController,
                               to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
@@ -53,7 +51,6 @@ class NavigationController: UINavigationController, UINavigationControllerDelega
             let translation = recognizer.translation(in: recognizer.view)
             let relativeTranslation = translation.x / (recognizer.view?.bounds.width ?? 1)
             let progress = max(0, min(1, relativeTranslation))
-            
             interactiveTransition.update(progress)
             interactiveTransition.shouldFinish = progress > 0.33
         case .ended:

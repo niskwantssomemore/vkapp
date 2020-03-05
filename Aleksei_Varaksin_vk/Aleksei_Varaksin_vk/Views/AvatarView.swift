@@ -13,7 +13,7 @@ class AvatarView: UIView {
     @IBOutlet var avatarImageView: UIImageView!
     @IBOutlet var shadowView: UIView!
     
-    var shadowColor = UIColor.black
+    var shadowColor = UIColor.rgba(0, 0, 0, a: 0.5)
     
     override func awakeFromNib() {
         super.awakeFromNib()
